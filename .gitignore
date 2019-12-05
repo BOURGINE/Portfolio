@@ -1,2 +1,4 @@
 Model/Manager/config.php
 README.md
+View/Backend/.htaccess
+View/Backend/.htpasswd
