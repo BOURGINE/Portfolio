@@ -5,15 +5,15 @@
 
 <div class="page_form container">
     <div>
-        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=authen">
+        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=authentification">
             <h2> CONNEXION </h2>
 
             <label for="pseudo">Votre pseudo:</label>
             <input type="text" name="pseudo" id="pseudo"/>
-            <br>
+            <br/>
             <label for="password"> Votre Mot de Passe: </label>
             <input type="password" name="password" id="password"/>
-            <br>
+            <br/>
             <input  id="button" type="submit" value="Connexion" style="text-align:center"/>
         </form>
     </div>

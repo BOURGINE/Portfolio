@@ -52,4 +52,33 @@ class UserController extends Controller
         }
         include(__DIR__ . "/../View/Backend/messageAdmin.php");
     }
+
+    /**
+      * Fonction de verification des données du formulaire et de connexion au BO. 
+     * @Route("/user/authentification", name="")
+     * @return void
+     */ 
+    public function authentification()
+    {
+        // Verififier le type de données
+        if(!empty($_POST))
+        {
+            $pseudo= $this->valid_data($_POST['pseudo']);
+            $password=$this->valid_data($_POST['password']);
+
+            $response= $this->userManager->checkAuthentification($pseudo,$password);
+
+            if($response){
+                $this->admin();
+            }
+            else{   
+                $this->formConnexion();
+                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
+            }
+        }
+        else
+        {
+            var_dump("retourner le formulaire avec un message d'erreur. formulaire vide");
+        }
+    }
 }

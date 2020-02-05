@@ -2,14 +2,13 @@
 
 namespace Portfolio\Model\Entity;
 
-class Realisation
+class Skill
 {
     private $id;
     private $img;
     private $title;
-    private $content;
-    private $link_view;
-    private $link_git;
+    private $link;
+    private $categorie;
 
     /**
      * @return mixed
@@ -34,6 +33,7 @@ class Realisation
     {
         $this->img = $img;
     }
+
 
     /**
      * @return mixed
@@ -66,60 +66,45 @@ class Realisation
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getLink()
     {
-        if(!isset($content) && !is_string($this->content)){
-            echo 'la fonction getContent a du mal à récupérer le titre';
-        }
-        return (string) htmlspecialchars($this->content);
+        return $this->link;
     }
 
     /**
-     * @param mixed $content
+     * @param mixed $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        if (!is_string($this->categorie)){
+            echo 'Problème avec le getCategorie ';
+        }
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
      * @return $this
      */
-    public function setContent($content)
+    public function setCategorie($categorie)
     {
-        if(!isset($content) && !is_string($content))
+
+        if(!isset($categorie) && !is_string($categorie))
         {
-            echo'le contenu n\'est pas bien définie';
-        }
-        else
-        {
-            $this->content = htmlspecialchars($content);
+            echo'le stat_Comment n\'est pas bien définie';
+        }else{
+            $this->categorie = htmlspecialchars($categorie);
         }
         return $this;
-    }
-    /**
-     * @return mixed
-     */
-    public function getLinkView()
-    {
-        return $this->link_view;
-    }
 
-    /**
-     * @param mixed $link_view
-     */
-    public function setLinkView($link_view)
-    {
-        $this->link_view = $link_view;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLinkGit()
-    {
-        return $this->link_git;
-    }
-
-    /**
-     * @param mixed $link_git
-     */
-    public function setLinkGit($link_git)
-    {
-        $this->link_git = $link_git;
     }
 
 

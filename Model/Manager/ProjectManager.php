@@ -1,10 +1,9 @@
 <?php
-
 namespace Portfolio\Model\Manager;
 
-use Portfolio\Model\Entity\Realisation;
+use Portfolio\Model\Entity\Project;
 
-class RealisationManager extends Manager
+class ProjectManager extends Manager
 {
     private $pdoStatement;
 

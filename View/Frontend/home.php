@@ -9,19 +9,6 @@
 include('../Portfolio/View/Frontend/header.php');
 ?>
 
-<!--*************************************
-	 		PRESENTATION
-**************************************-->
-<!-- Banner / Presentation -->
-<section id="banner">
-    <header>
-        <h2><strong>Hello!</strong> Bienvenue sur mon site </h2>
-        <p>
-            Je souhaite une bonne expérience utilisateur. N'hésitez pas à me faire un <a href="#footer">retour</a>. A bientôt.
-        </p>
-    </header>
-</section>
-
 <!--***********************************
 	 	COMPETENCES
 *************************************-->
@@ -32,9 +19,7 @@ include('../Portfolio/View/Frontend/header.php');
     <h2 style="display:none"> Compétences de Bourgine Bérenger developpeur intégrateur web</h2>
 
     <aside class="container special pt-25">
-        <header>
-            <h2> COMPETENCES </h2>
-        </header>
+        <header><h2> COMPETENCES </h2></header>
     </aside>
 
     <aside id="competence_boby">

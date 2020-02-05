@@ -2,18 +2,18 @@
 
 namespace Portfolio\Controller;
 
-use Portfolio\Model\Entity\Competence;
-use Portfolio\Model\Manager\CompetenceManager;
+use Portfolio\Model\Entity\Skill;
+use Portfolio\Model\Manager\SkillManager;
 
-class CompetenceController extends Controller
+class SkillController extends Controller
 {
-    private $competence;
+    private $skill;
     protected $manager;
 
     public function __construct()
     {
-        $this->competence = new Competence();
-        $this->manager= new CompetenceManager();
+        $this->skill = new Skill();
+        $this->manager= new SkillManager();
     }
 
      /**
@@ -23,8 +23,8 @@ class CompetenceController extends Controller
      */ 
     public function index()
     {
-        $backCompetences = $this->manager->readAllBack();
-        $frontCompetences = $this->manager->readAllFront();
+        $backSkill = $this->manager->readAllBack();
+        $frontSkill = $this->manager->readAllFront();
 
         //include(__DIR__ . "/../View/Frontend/home.php");
     }
@@ -32,23 +32,22 @@ class CompetenceController extends Controller
     /*
      *  CREATION d'une compétence
      */
-    public function createCompetence($contenu)
+    public function createSkill($contenu)
     { 
-        $this->competence->setImg($_FILES['img']['name']);
-        $this->competence->setTitle($contenu['title']);
-        $this->competence->setLink($contenu['link']);
-        $this->competence->setCategorie($contenu['categorie']);
+        $this->skill->setImg($_FILES['img']['name']);
+        $this->skill->setTitle($contenu['title']);
+        $this->skill->setLink($contenu['link']);
+        $this->skill->setCategorie($contenu['categorie']);
         
-        $saveIsOk = $this->manager->save($competence);
+        $saveIsOk = $this->manager->save($skill);
 
         if($saveIsOk){
             $this->saveImg();
-            $message = 'Félicitaion. Votre Competence bien été ajoutée';
+            $message = 'Félicitaion. Votre skill bien été ajoutée';
         }
         else{
             $message = 'Désolé. Une erreur est survenue. Action non effectuée';
         }
-
         include(__DIR__ . "/../View/Backend/messageAdmin.php");
     }
 
@@ -57,28 +56,27 @@ class CompetenceController extends Controller
      */
     public function formUpdate($recupInfos)
     {
-        $this->competence = $this->manager->read($_GET['id']);
+        $this->skill = $this->manager->read($_GET['id']);
         include(__DIR__."/../View/Backend/Form_Update/form_Update.php");
     }
-
 
     /*
      * Cette fonction appelle l'action de mise à jour
      */
     public function update()
     {
-        $this->competence= $this->manager->read($_POST['id']);
+        $this->skill= $this->manager->read($_POST['id']);
         
-        $this->competence->setImg($_FILES['img']['name']);
-        $this->competence->setTitle($_POST['title']);
-        $this->competence->setLink($_POST['link']);
-        $this->competence->setCategorie($_POST['categorie']);
+        $this->skill->setImg($_FILES['img']['name']);
+        $this->skill->setTitle($_POST['title']);
+        $this->skill->setLink($_POST['link']);
+        $this->skill->setCategorie($_POST['categorie']);
 
         // Je sauvegarde mes informations dans la base de données
-        $saveIsOk = $this->manager->save($competence);
+        $saveIsOk = $this->manager->save($skill);
 
         if($saveIsOk){
-            $message = 'Félicitation, votre competence a bien été modifiée';
+            $message = 'Félicitation, votre skill a bien été modifiée';
             // 2 - TRAITEMENT DE L'IMAGE ( Envoi de l'image dans mon dossier imgUpload)
             $this->saveImg();
         }else

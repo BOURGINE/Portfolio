@@ -1,10 +1,9 @@
 <?php
-
 namespace Portfolio\Model\Manager;
 
-use Portfolio\Model\Entity\Parcour;
+use Portfolio\Model\Entity\Background;
 
-class ParcourManager extends Manager
+class BackgroundManager extends Manager
 {
 
     private $pdoStatement;
@@ -12,7 +11,7 @@ class ParcourManager extends Manager
     /**
      *
      **/
-    public function create(Parcour &$parcour)
+    public function create(Background &$background)
     {
 
         $this->pdoStatement=$this->getPdo()->prepare('INSERT INTO parcour VALUES(NULL, :title, :link)');

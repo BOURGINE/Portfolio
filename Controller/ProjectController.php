@@ -2,21 +2,21 @@
 
 namespace Portfolio\Controller;
 
-use Portfolio\Model\Entity\Realisation;
-use Portfolio\Model\Manager\RealisationManager;
+use Portfolio\Model\Entity\Project;
+use Portfolio\Model\Manager\ProjectManager;
 
-class RealisationController extends Controller
+class projectController extends Controller
 {
-    private $realisation;
+    private $project;
     protected $manager;
 
     public function __construct()
     {
-        $this->realisation = new Realisation();
-        $this->manager= new RealisationManager();
+        $this->project = new Project();
+        $this->manager= new ProjectManager();
     }
 
-    public function createRealisation($contenu)
+    public function createProject($contenu)
     { 
         $this->realisation->setImg($_FILES['img']['name']);
         $this->realisation->setTitle($contenu['title']);

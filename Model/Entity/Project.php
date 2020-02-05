@@ -2,13 +2,14 @@
 
 namespace Portfolio\Model\Entity;
 
-class Competence
+class Project
 {
     private $id;
     private $img;
     private $title;
-    private $link;
-    private $categorie;
+    private $content;
+    private $link_view;
+    private $link_git;
 
     /**
      * @return mixed
@@ -33,7 +34,6 @@ class Competence
     {
         $this->img = $img;
     }
-
 
     /**
      * @return mixed
@@ -66,45 +66,60 @@ class Competence
     /**
      * @return mixed
      */
-    public function getLink()
+    public function getContent()
     {
-        return $this->link;
+        if(!isset($content) && !is_string($this->content)){
+            echo 'la fonction getContent a du mal à récupérer le titre';
+        }
+        return (string) htmlspecialchars($this->content);
     }
 
     /**
-     * @param mixed $link
+     * @param mixed $content
+     * @return $this
      */
-    public function setLink($link)
+    public function setContent($content)
     {
-        $this->link = $link;
+        if(!isset($content) && !is_string($content))
+        {
+            echo'le contenu n\'est pas bien définie';
+        }
+        else
+        {
+            $this->content = htmlspecialchars($content);
+        }
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getLinkView()
+    {
+        return $this->link_view;
+    }
+
+    /**
+     * @param mixed $link_view
+     */
+    public function setLinkView($link_view)
+    {
+        $this->link_view = $link_view;
     }
 
     /**
      * @return mixed
      */
-    public function getCategorie()
+    public function getLinkGit()
     {
-        if (!is_string($this->categorie)){
-            echo 'Problème avec le getCategorie ';
-        }
-        return $this->categorie;
+        return $this->link_git;
     }
 
     /**
-     * @param mixed $categorie
-     * @return $this
+     * @param mixed $link_git
      */
-    public function setCategorie($categorie)
+    public function setLinkGit($link_git)
     {
-
-        if(!isset($categorie) && !is_string($categorie))
-        {
-            echo'le stat_Comment n\'est pas bien définie';
-        }else{
-            $this->categorie = htmlspecialchars($categorie);
-        }
-        return $this;
-
+        $this->link_git = $link_git;
     }
 
 

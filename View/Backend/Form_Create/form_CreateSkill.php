@@ -1,26 +1,10 @@
 <?php $title = 'Ajouter Competence'; ?>
-
 <?php ob_start(); ?>
 
-<div class="bande_profil container">
-
-    <div class="profile_member">
-        <!-- ** PSEUDO *-->
-       <p> <?= 'HELLO '.$_SESSION['pseudo'].' !'?> </p>
-    </div>
-
-
-    <div class="space_nav">
-        <a href="index.php"> <div class="button">ACCUEIL</div> </a>
-        <a href="index.php?act=code-lioko&req=authentification"> <div class="button">BACK-OFFICE</div> </a>
-        <a href="index.php?act=deconnexion"> <div class="button">DECONNEXION</div> </a>
-    </div>
-
-</div>
-
+<!--  Mettre l'entête ici ou mette en place un tempate pour le backend-->
 
 <div class="page_form container">
-    <h2 class="text-center"> Ajouter une compétence </h2>
+    <h2 class="text-center">Ajouter une compétence</h2>
 
     <form  action="index.php?act=competence&req=create-competence" method="POST" id="form_CreateCompetence" enctype="multipart/form-data">
         <p>
@@ -46,8 +30,8 @@
             <input type="submit" value="Ajouter une compétence">
         </div>
     </form>
-
 </div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('../Portfolio/View/Frontend/template.php'); ?>

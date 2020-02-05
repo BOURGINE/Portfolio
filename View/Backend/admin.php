@@ -1,28 +1,8 @@
 <?php $title = 'Administration'; ?>
-
 <?php ob_start(); ?>
 
 <div class="container"> 
-<!-- ************************
-              CONTENU
-*****************************-->
-    <!-- ****************************************
-                   ENTETE
-       ******************************************-->
-    <!-- ************** ESPACE MEMBRE *****************-->
-<div class="bande_profil">
-    <div class="profile_member">
-        <!-- ** PSEUDO *-->
-        <h3> <?= 'Bonjour '.$_SESSION['pseudo'].' !'?> </h3>
-    </div>
-
-    <!-- ************** MENU DE NAVIGATION *****************-->
-    <div class="space_nav">
-        <a href="index.php"> <div class="button">ACCUEIL</div> </a>
-        <a href="index.php?act=deconnexion"> <div class="button">DECONNEXION</div> </a>
-    </div>
-
-</div>
+<!--  Mettre l'entête ici ou mette en place un tempate pour le backend-->
 
 
 <!-- ****************************************

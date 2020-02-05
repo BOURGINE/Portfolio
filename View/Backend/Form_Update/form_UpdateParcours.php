@@ -1,22 +1,6 @@
 <?php $title = 'Modifier Parcours'; ?>
-
 <?php ob_start(); ?>
-
-<div class="bande_profil container">
-
-    <div class="profile_member">
-        <!-- ** PSEUDO *-->
-       <p> <?= 'HELLO '.$_SESSION['pseudo'].' !'?> </p>
-    </div>
-
-
-    <div class="space_nav">
-        <a href="index.php"> <div class="button">ACCUEIL</div> </a>
-        <a href="index.php?act=code-lioko&req=authentification"> <div class="button">BACK-OFFICE</div> </a>
-        <a href="index.php?act=deconnexion"> <div class="button">DECONNEXION</div> </a>
-    </div>
-
-</div>
+<!--  Mettre l'entête ici ou mette en place un tempate pour le backend-->
 
 <!-- ************** ESPACE MEMBRE *****************-->
 <div class="bande_profil container">

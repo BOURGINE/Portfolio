@@ -1,5 +1,4 @@
 <?php
-
 namespace Portfolio\Model\Manager;
 
 use Portfolio\Model\Entity\User;
@@ -13,7 +12,6 @@ class UserManager extends Manager
      */
     public function create(User &$user)
     {
-      
         $this->pdoStatement=$this->pdo->prepare('INSERT INTO myuser VALUES(NULL, :pseudo, :pass)');
 
         //liaison des paramettres : Liaison des name du formulaire aux champs de la table post

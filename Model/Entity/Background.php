@@ -2,7 +2,7 @@
 
 namespace Portfolio\Model\Entity;
 
-class Parcour
+class Background
 {
 
     private $id;

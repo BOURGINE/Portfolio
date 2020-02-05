@@ -1,27 +1,26 @@
 <?php
-
 namespace Portfolio\Controller;
 
 // On indique les espace de nom des classes utilisées.
 
-use Portfolio\Model\Entity\Parcour;
-use Portfolio\Model\Manager\ParcourManager;
+use Portfolio\Model\Entity\Background;
+use Portfolio\Model\Manager\BackgroundManager;
 
-class ParcourController extends Controller
+class BackgroundController extends Controller
 {
-    private $parcour;
+    private $background;
     protected $manager;
 
     public function __construct()
     {
-        $this->parcour= new Parcour;
-        $this->manager= new ParcourManager();
+        $this->background= new Background;
+        $this->manager= new BackgroundManager();
     }
 
     /*
      *  CREATION d'une compétence
      */
-    public function createParcour($contenu)
+    public function createBackground($contenu)
     { 
         $this->parcour->setTitle($contenu['title']);
         $this->parcour->setLink($contenu['link']);

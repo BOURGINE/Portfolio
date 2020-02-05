@@ -2,9 +2,9 @@
 
 namespace Portfolio\Model\Manager;
 
-use Portfolio\Model\Entity\Competence;
+use Portfolio\Model\Entity\Skill;
 
-class CompetenceManager extends Manager
+class SkillManager extends Manager
 {
     private $pdoStatement;
 
