@@ -8,17 +8,20 @@ use Portfolio\Model\Manager\BackgroundManager;
 
 class BackgroundController extends Controller
 {
-    private $background;
-    protected $manager;
-
-    public function __construct()
-    {
-        $this->background= new Background;
-        $this->manager= new BackgroundManager();
+    
+    /**
+     * Construct
+     */
+    public function __construct () {
+        parent::__construct();
     }
 
-    /*
-     *  CREATION d'une compétence
+    
+    /**
+     * Undocumented function
+     *
+     * @param [type] $contenu
+     * @return void
      */
     public function createBackground($contenu)
     { 

@@ -1,10 +1,3 @@
-<?php
-if (isset($_SESSION['pseudo']))
-{
-    //Affiche les infos de la session
-    $info1 = '';
-}
-?>
 <!DOCTYPE HTML>
 
 <html lang="fr">

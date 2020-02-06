@@ -1,19 +1,13 @@
 <?php
-
 namespace Portfolio\Controller;
 
 use Portfolio\Model\Entity\Skill;
 use Portfolio\Model\Manager\SkillManager;
 
 class SkillController extends Controller
-{
-    private $skill;
-    protected $manager;
-
-    public function __construct()
-    {
-        $this->skill = new Skill();
-        $this->manager= new SkillManager();
+{   
+    public function __construct () {
+        parent::__construct();
     }
 
      /**
@@ -23,8 +17,10 @@ class SkillController extends Controller
      */ 
     public function index()
     {
-        $backSkill = $this->manager->readAllBack();
-        $frontSkill = $this->manager->readAllFront();
+        $backSkills = $this->manager->readAllBack();
+        $frontSkills = $this->manager->readAllFront();
+
+        var_dump();
 
         //include(__DIR__ . "/../View/Frontend/home.php");
     }

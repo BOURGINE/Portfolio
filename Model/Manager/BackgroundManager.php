@@ -5,28 +5,26 @@ use Portfolio\Model\Entity\Background;
 
 class BackgroundManager extends Manager
 {
-
     private $pdoStatement;
+    private $table= "parcour"; // A renommer
 
-    /**
-     *
-     **/
+   /**
+    * Undocumented function
+    * @param Background $background
+    * @return void
+    */
     public function create(Background &$background)
     {
-
         $this->pdoStatement=$this->getPdo()->prepare('INSERT INTO parcour VALUES(NULL, :title, :link)');
-
         $this->pdoStatement->bindValue(':title', $parcour->getTitle(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':link', $parcour->getLink(), PDO::PARAM_STR);
-
         $executeIsOk = $this->pdoStatement->execute();
 
-        if(!$executeIsOk){ // si l'éxécution ne s'est pas bien passée
-
+        if(!$executeIsOk)
+        { // si l'éxécution ne s'est pas bien passée
             return false;
         }
         else{
-
             $id = $this->pdo->lastInsertId();
             $parcour = $this->read($id);
             return true;
@@ -49,7 +47,7 @@ class BackgroundManager extends Manager
 
             // récupération du réslutat. Ici, j'utiliserai fetchObject car je n'affiche qu'une seul ligne da db
 
-            $parcour= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Parcour');
+            $parcour= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Background');
 
             if($parcour === false)
             {
@@ -81,7 +79,7 @@ class BackgroundManager extends Manager
         $parcours=[];
 
         // 2-On ajoute au table chaque ligne.
-        while($parcour=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Parcour'))
+        while($parcour=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Background'))
         {
             $parcours[]=$parcour;
         }
@@ -106,18 +104,5 @@ class BackgroundManager extends Manager
 
         //recuperation du résultat
         return $executeIsOk;
-    }
-
-    /**
-     * Supprime Post à partir de son Id.
-     **/
-    public function delete($id)
-    {
-        $this->pdoStatement =$this->getPdo()->prepare('DELETE FROM parcour WHERE id=:id');
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-        $executionIsOk = $this->pdoStatement->execute();
-
-        //recupération du résultat.
-        return $executionIsOk;
     }
 }

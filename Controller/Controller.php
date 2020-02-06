@@ -1,6 +1,6 @@
 <?php
 namespace Portfolio\Controller;
-// ne pas déclarer le controller comme une fonction abstraite car elle peut-etre directement appeller
+// ne pas déclarer le controller comme une fonction abstraite car elle peut-etre directement appeller pour les fonctions home dashboard(Admin)
 //Les focntions classiques d'un controller
 /**
  * - index
@@ -30,24 +30,38 @@ use Portfolio\Controller\UserController;
 // les formulaires
 use Portfolio\Controller\FormController;
 
+//la vue
+use Portfolio\View\View;
+
 
 class Controller
 {
-    private $skill;
     private $skillManager;
     private $backgroundManager;
     private $ProjectManager;
     private $userManager;
+    private $view;
 
     /**
-     * Chargement des classes. 
-     **/
+     * Constructeur des class
+     */
     public function __construct()
     {
-         $this->skillManager = new skillManager();
-         $this->backgroundManager = new backgroundManager();
-         $this->projectManager = new projectManager();
+         $this->skillManager = new SkillManager();
+         $this->backgroundManager = new BackgroundManager();
+         $this->projectManager = new ProjectManager();
          $this->userManager = new UserManager();
+         $this->view = new View();
+    }
+
+    /**
+     * Index
+     * @Route("", name="")
+     * @param [type] $content
+     */
+    public function index($content)
+    {
+       // retourn la liste de l'entité  qui lui est demandé. 
     }
 
     /**
@@ -55,27 +69,31 @@ class Controller
      * @Route("/", name="home")
      * @return array
      */ 
-    public function index()
+    public function home()
     {
-        // Skill
+        // Skills
         $backSkills = $this->skillManager->readAllBack();
         $frontSkills = $this->skillManager->readAllFront();
         // Background
         $backgrounds = $this->backgroundManager->readAll();
-        // Project
+        // Projects
         $projects = $this->projectManager->readAll();
 
-        include(__DIR__ . "/../View/Frontend/home.php");
+        // Calling render with path
+        $this->view->render('frontend/home', compact('backSkills','frontSkills','backgrounds','projects'));
+
     }
 
     /**
-     * Fonction d'affichage du BO. Fonction ressembe beaucoup a index. voir comment factoriser
+     * Fonction d'affichage du BO.
+     * Fonction ressemble beaucoup a index. voir comment factoriser (sauf skill)
+     * creer des fonctions index pour chaque entités et appeller cette fonctions dans admin et dans home
      * @Route("/form/connexion", name="")
      * @return void
      */ 
-    public function Admin()
+    public function dashboard()
     {
-        // Skill
+        // Skills
         $skillManager = new SkillManager();
         $skills = $SkillManager->readAll();
 
@@ -83,17 +101,17 @@ class Controller
         $backgroundManager = new BackgroundManager();
         $background = $backgroundManager->readAll();
 
-        // Réalisation
+        // Projects
         $projectManager = new ProjectManager();
         $projets = $projectManager->readAll();
 
-        //User. Seullement pour le BO. 
+        //User.
         $userManager = new UserManager();
         $users = $userManager->readAll();
 
         include(__DIR__ . "/../View/Backend/admin.php");
     }
- 
+
     /**
      * Create
      * @Route("", name="")
@@ -192,6 +210,19 @@ class Controller
         }else{$message = 'message';}
         include(__DIR__ . "/../View/Backend/messageAdmin.php");
     }
+
+    /**
+     * fonction render($path')
+     */
+    public function render(string $path)
+    {
+        \ob_start();
+        require('../View/'.$path.'.html.php');
+        $pageContent = \ob_get_clean();
+
+        require(__DIR__ .'/../View.base.html.php');
+    }
+
 
    /**
      * Cette fonction sécurise les données reçu par un formulaire avant son traitement. 

@@ -9,8 +9,11 @@ class SkillManager extends Manager
     private $pdoStatement;
 
     /**
-     * Création
-     **/
+     * A renommer en insert
+     *
+     * @param Competence $competence
+     * @return void
+     */
     public function create(Competence &$competence)
     {
         $this->pdoStatement=$this->getPdo()->prepare('INSERT INTO competence VALUES(NULL, :img, :title, :link, :categorie)');
@@ -35,6 +38,7 @@ class SkillManager extends Manager
     }
 
     /**
+     * A supprimer car f
      * Cette fonction n'est pas utile pour le moment.
      **/
     public function read($id)
@@ -46,7 +50,7 @@ class SkillManager extends Manager
         $executeIsOk = $this->pdoStatement->execute();
         if($executeIsOk)
         {
-            $competence= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Competence');
+            $competence= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill');
             if($competence === false)
             {
                 return null;
@@ -64,8 +68,7 @@ class SkillManager extends Manager
 
 
     /**
-     * Cette fonction lira toutes les competences (Front et back)
-     * Elle servira pour le backoffice
+     *  A supprimer car f
      * Je ne sais pas encore si elle me servira.
      **/
     public function readAll():array
@@ -74,7 +77,8 @@ class SkillManager extends Manager
         $competences=[];
 
         // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Competence'))
+        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
+        //while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
         {
             $competences[]=$competence;
         }
@@ -84,15 +88,15 @@ class SkillManager extends Manager
 
 
     /**
-     * Cette fonction lira les compétences du Front
+     *  A supprimer car f
      **/
     public function readAllFront()
     {
         $this->pdoStatement = $this->getPdo()->query('SELECT * FROM competence WHERE categorie=1 ORDER BY id DESC ');
-
         $competences=[];
+
         // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Competence'))
+        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
         {
             $competences[]=$competence;
         }
@@ -101,7 +105,7 @@ class SkillManager extends Manager
     }
 
     /**
-     * Cette fonction lira les compétences du BACK
+     *  A supprimer car f
      **/
     public function readAllBack()
     {
@@ -110,7 +114,7 @@ class SkillManager extends Manager
         //1- initialisation du tableau vide
         $competences=[];
         // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Competence'))
+        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
         {
             $competences[]=$competence;
         }
@@ -136,16 +140,5 @@ class SkillManager extends Manager
 
         return $executeIsOk;
     }
-
-    /**
-     * Supprime Post à partir de son Id.
-     **/
-    public function delete($id)
-    {
-        $this->pdoStatement =$this->getPdo()->prepare('DELETE FROM competence WHERE id=:id');
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-        $executionIsOk = $this->pdoStatement->execute();
-
-        return $executionIsOk;
-    }
+    
 }

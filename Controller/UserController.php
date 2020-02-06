@@ -7,14 +7,7 @@ use Portfolio\Model\Manager\UserManager;
 
 class UserController extends Controller
 {
-    private $user;
-    protected $manager;
-
-    public function __construct()
-    {
-        $this->user = new User();
-        $this->manager= new UserManager();
-    }
+    //Appel du manager de controller
    
     /*
      *@Route("/user/create", name="")

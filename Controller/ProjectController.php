@@ -7,14 +7,7 @@ use Portfolio\Model\Manager\ProjectManager;
 
 class projectController extends Controller
 {
-    private $project;
-    protected $manager;
-
-    public function __construct()
-    {
-        $this->project = new Project();
-        $this->manager= new ProjectManager();
-    }
+    //appel du manager de controller
 
     public function createProject($contenu)
     { 

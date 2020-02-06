@@ -6,10 +6,14 @@ use Portfolio\Model\Entity\Project;
 class ProjectManager extends Manager
 {
     private $pdoStatement;
-
-    /**
-     *
-     **/
+    private $table= "realisation"; // A renommer
+    
+  /**
+   * Undocumented function
+   *
+   * @param Realisation $realisation
+   * @return void
+   */
     public function create(Realisation &$realisation)
     {
         $this->pdoStatement=$this->getPdo()->prepare('INSERT INTO realisation VALUES(NULL, :img, :title, :content, :link_view, :link_git)');
@@ -34,7 +38,6 @@ class ProjectManager extends Manager
     /**
      * lis un post précis
      **/
-
     public function read($id)
     {
         $this->pdoStatement=$this->getPdo()->prepare('SELECT * FROM realisation WHERE id=:id');
@@ -42,21 +45,14 @@ class ProjectManager extends Manager
         $executeIsOk = $this->pdoStatement->execute();
         if($executeIsOk)
         {
-            $realisation= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Realisation');
-
+            $realisation= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Project');
             if($realisation === false)
-            {
-                return null;
-            }
+            { return null;}
             else
-            {
-                return $realisation;
-            }
+            {return $realisation;}
         }
         else
-        {
-            return false;
-        }
+        {return false;}
     }
 
 
@@ -67,16 +63,11 @@ class ProjectManager extends Manager
     {
         $this->pdoStatement = $this->getPdo()->query('SELECT * FROM realisation ORDER BY id DESC ');
 
-        // récupération de résultats tableau. Un tableau se récupère en 3 étapes
-
         //1- initialisation du tableau vide
         $realisations=[];
-
         // 2-On ajoute au table chaque ligne.
-        while($realisation=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Realisation'))
-        {
-            $realisations[]=$realisation;
-        }
+        while($realisation=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Project'))
+        {$realisations[]=$realisation;}
         //3- On retourne le table finalisé.
         return $realisations;
     }
@@ -96,26 +87,7 @@ class ProjectManager extends Manager
         $this->pdoStatement->bindValue(':link_git', $realisation->getLinkGit(), PDO::PARAM_STR);
 
         $executeIsOk= $this->pdoStatement->execute();
-
         return $executeIsOk;
     }
 
-    /**
-     * Supprime Post à partir de son Id.
-     **/
-
-    public function delete($id)
-    {
-        //preparation de la req
-        $this->pdoStatement =$this->getPdo()->prepare('DELETE FROM realisation WHERE id=:id');
-
-        //liaison des paramettres
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-
-        // execution de la req
-        $executionIsOk = $this->pdoStatement->execute();
-
-        //recupération du résultat.
-        return $executionIsOk;
-    }
 }

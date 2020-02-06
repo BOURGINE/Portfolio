@@ -79,24 +79,12 @@ class UserManager extends Manager
         return $users;
     }
 
-    /**
-     *  Supprimer un compte user
-     **/
-    public function delete($id)
-    {
-        $this->pdoStatement =$this->getPdo()->prepare('DELETE FROM myuser WHERE id=:id');
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-        $executionIsOk = $this->pdoStatement->execute();
-        return $executionIsOk;
-    }
-
-
     /*
     * Cette fonction verifie si les informations du formulaire de connexion sont exactes.
      * Elle récupère les infos de la base de donnée
      * Et les compare avec les information du formulaire de connexion
      */
-    public function checkAuthentification($pseudo, $password)
+    public function login($pseudo, $password)
     {
         // On verifiera plus tard avec l'email au lieu du pseudo
         $this->pdoStatement = $this->getPdo()->prepare("SELECT * FROM myuser WHERE pseudo=:pseudo");
