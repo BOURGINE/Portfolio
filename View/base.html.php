@@ -30,13 +30,14 @@
 </head>
 
 <body class="homepage">
+        <!-- Navbarre -->
 
+        <!--/Navbarre -->
         <div id="page-wrapper">
-            <?= $content ?>
+            <?= $pageContent ?>
         </div>
 
 <!-- Scripts -->
-
 <script src="Public/js/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="Public/js/filter.js"></script>

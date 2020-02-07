@@ -1,5 +1,4 @@
 <?php $title = 'Bourgine B. FAGADE'; ?>
-<?php ob_start(); ?>
 
 <!--*****HEADER********-->
 <div id="header">
@@ -53,7 +52,7 @@
         <!--BLOCK FRONT-END-->
         <div class="competence_enfant">
             <div class="ordinateur">
-                <p><img src="Public/images/frontend.jpg" alt="frontend" style="text-align: center; width: 100%;"></p>
+                <p><img src="Public/img/frontend.jpg" alt="frontend" style="text-align: center; width: 100%;"></p>
             </div>
             <div class="titre_h3"><h3>FRONTEND</h3></div>
 
@@ -69,7 +68,7 @@
                             <!-- POUR CHAQUE COMPETENCES Front-->
                             <div class="section_liste">
                                 <div class="div_icone">
-                                    <img src="Public/images/<?=$skill->getImg();?>" alt="compétences de FAGADE Bourgine Bérenger"/>   
+                                    <img src="Public/img/<?=$skill->getImg();?>" alt="compétences de FAGADE Bourgine Bérenger"/>   
                                 </div>
                                 <div class="div_texte">
                                     <span> <?= $skill->getTitle();?> </span> 
@@ -84,7 +83,7 @@
         <!--BLOCK BACKEND-->
         <div class="competence_enfant">
             <div class="ordinateur">
-                <p><img src="Public/images/backend.jpg" alt="backend" style="text-align: center; width: 100%;"></p>
+                <p><img src="Public/img/backend.jpg" alt="backend" style="text-align: center; width: 100%;"></p>
             </div>
             <div class="titre_h3"><h3>BACKEND</h3></div>
 
@@ -105,7 +104,7 @@
                                 <!-- POUR CHAQUE COMPETENCES Front-->
                                 <div class="section_liste">
                                     <div class="div_icone">
-                                        <img src="Public/images/<?= $skill->getImg();?>" alt=" bourgine fagade competences"/><!-- Image en php-->
+                                        <img src="Public/img/<?= $skill->getImg();?>" alt=" bourgine fagade competences"/><!-- Image en php-->
                                     </div>
                                     <div class="div_texte">
                                         <span> <?= $skill->getTitle();?> </span>  
@@ -180,7 +179,7 @@
                                 <div class="tab-content">
                                     <div id="tab1">
                                         <a href="<?= $project->getLinkView();?>" class="image_realisation" >
-                                            <img src="Public/images/<?= $project->getImg();?>" alt="tab1" class="img img-responsive">
+                                            <img src="Public/img/<?= $project->getImg();?>" alt="tab1" class="img img-responsive">
                                         </a>
                                     </div>
                                 </div>
@@ -195,7 +194,3 @@
         </div> <!-- fin div-mac -->
     </div>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('../Portfolio/View/base.html.php'); ?>

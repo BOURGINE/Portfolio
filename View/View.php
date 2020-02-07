@@ -12,10 +12,13 @@ class View
      * @param array $data
      * @return void
      */
-    public function render(string $path, array $data)
+    public function render(string $path, array $data=null)
     {
-        extract($data);
-
+        if($data!=null)
+        {
+            extract($data);
+        }
+       
         \ob_start();
         require(__DIR__.'/../View/'.$path.'.html.php');
         $pageContent = \ob_get_clean();
@@ -23,13 +26,13 @@ class View
         require('base.html.php');
     }
 
-
      /**
      * fonction render($path')
      */
-    public function redirectTo(string $path)
+    public function redirectTo(string $url):void
     {
-        header('Location: $path');
+        header("Location: $url");
+        exit();
     }
 
 }

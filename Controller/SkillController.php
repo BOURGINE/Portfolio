@@ -41,9 +41,7 @@ class SkillController extends Controller
             $this->saveImg();
             $message = 'Félicitaion. Votre skill bien été ajoutée';
         }
-        else{
-            $message = 'Désolé. Une erreur est survenue. Action non effectuée';
-        }
+        else{$message = 'Désolé. Une erreur est survenue. Action non effectuée';}
         include(__DIR__ . "/../View/Backend/messageAdmin.php");
     }
 

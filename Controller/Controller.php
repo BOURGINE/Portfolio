@@ -9,6 +9,8 @@ namespace Portfolio\Controller;
  * - show
  * - findAllBy
  * - delete
+ * 
+ * - home
  */ 
 
 //Skill
@@ -40,7 +42,7 @@ class Controller
     private $backgroundManager;
     private $ProjectManager;
     private $userManager;
-    private $view;
+    protected $view;
 
     /**
      * Constructeur des class
@@ -61,7 +63,7 @@ class Controller
      */
     public function index($content)
     {
-       // retourn la liste de l'entité  qui lui est demandé. 
+       // return la liste de l'entité  qui lui est demandé. 
     }
 
     /**
@@ -75,9 +77,9 @@ class Controller
         $backSkills = $this->skillManager->readAllBack();
         $frontSkills = $this->skillManager->readAllFront();
         // Background
-        $backgrounds = $this->backgroundManager->readAll();
+        $backgrounds = $this->backgroundManager->findAll();
         // Projects
-        $projects = $this->projectManager->readAll();
+        $projects = $this->projectManager->findAll();
 
         // Calling render with path
         $this->view->render('frontend/home', compact('backSkills','frontSkills','backgrounds','projects'));

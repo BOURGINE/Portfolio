@@ -6,7 +6,9 @@ use Portfolio\Model\Entity\Background;
 class BackgroundManager extends Manager
 {
     private $pdoStatement;
-    private $table= "parcour"; // A renommer
+    protected $table= "parcour"; // A renommer
+    protected $entity= "Background";
+    
 
    /**
     * Undocumented function
@@ -34,7 +36,6 @@ class BackgroundManager extends Manager
     /**
      * lis un post précis
      **/
-
     public function read($id)
     {
         $this->pdoStatement=$this->getPdo()->prepare('SELECT * FROM parcour WHERE id=:id');
@@ -44,47 +45,16 @@ class BackgroundManager extends Manager
         $executeIsOk = $this->pdoStatement->execute();
         if($executeIsOk)
         {
-
-            // récupération du réslutat. Ici, j'utiliserai fetchObject car je n'affiche qu'une seul ligne da db
-
             $parcour= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Background');
-
             if($parcour === false)
             {
                 return null;
             }
             else
-            {
-                return $parcour;
-            }
+            {return $parcour;}
         }
         else
-        {
-            return false;
-        }
-    }
-
-
-    /**
-     * Cette fonction lira toutes les articles
-     **/
-
-    public function readAll()
-    {
-        $this->pdoStatement = $this->getPdo()->query('SELECT * FROM parcour ORDER BY id DESC ');
-
-        // récupération de résultats tableau. Un tableau se récupère en 3 étapes
-
-        //1- initialisation du tableau vide
-        $parcours=[];
-
-        // 2-On ajoute au table chaque ligne.
-        while($parcour=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Background'))
-        {
-            $parcours[]=$parcour;
-        }
-        //3- On retourne le table finalisé.
-        return $parcours;
+        {return false;}
     }
 
     /**

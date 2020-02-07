@@ -6,11 +6,11 @@ use Portfolio\Model\Entity\Project;
 class ProjectManager extends Manager
 {
     private $pdoStatement;
-    private $table= "realisation"; // A renommer
-    
+    protected $table= "realisation"; // A renommer
+    protected $entity= "Project";
+
   /**
    * Undocumented function
-   *
    * @param Realisation $realisation
    * @return void
    */
@@ -53,23 +53,6 @@ class ProjectManager extends Manager
         }
         else
         {return false;}
-    }
-
-
-    /**
-     * Cette fonction lira toutes les articles
-     **/
-    public function readAll()
-    {
-        $this->pdoStatement = $this->getPdo()->query('SELECT * FROM realisation ORDER BY id DESC ');
-
-        //1- initialisation du tableau vide
-        $realisations=[];
-        // 2-On ajoute au table chaque ligne.
-        while($realisation=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Project'))
-        {$realisations[]=$realisation;}
-        //3- On retourne le table finalisé.
-        return $realisations;
     }
 
     /**

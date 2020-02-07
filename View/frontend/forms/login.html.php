@@ -1,13 +1,10 @@
 
-<?php $title = 'Connexion'; ?>
-
-<?php ob_start(); ?>
+<?php $title = 'Login'; ?>
 
 <div class="page_form container">
     <div>
-        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=authentification">
-            <h2> CONNEXION </h2>
-
+        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=login">
+            <h2> LOGIN </h2>
             <label for="pseudo">Votre pseudo:</label>
             <input type="text" name="pseudo" id="pseudo"/>
             <br/>
@@ -22,7 +19,4 @@
         <p> <a href="index.php">Retour à la page d'acceuil</a></p>
     </div>
 </div>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
 

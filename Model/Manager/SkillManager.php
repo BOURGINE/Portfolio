@@ -1,12 +1,14 @@
 <?php
-
 namespace Portfolio\Model\Manager;
+//Il ne doit rester que insert et update
 
 use Portfolio\Model\Entity\Skill;
 
 class SkillManager extends Manager
 {
     private $pdoStatement;
+    protected $table= "competence"; // A renommer
+    protected $entity= "Skill";
 
     /**
      * A renommer en insert
@@ -65,27 +67,6 @@ class SkillManager extends Manager
             return false;
         }
     }
-
-
-    /**
-     *  A supprimer car f
-     * Je ne sais pas encore si elle me servira.
-     **/
-    public function readAll():array
-    {
-        $this->pdoStatement = $this->getPdo()->query('SELECT * FROM competence ORDER BY id DESC ');
-        $competences=[];
-
-        // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
-        //while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
-        {
-            $competences[]=$competence;
-        }
-        //3- On retourne le table finalisé.
-        return $competences;
-    }
-
 
     /**
      *  A supprimer car f
