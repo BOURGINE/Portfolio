@@ -1,14 +1,15 @@
 <?php
-//il ne restera que formlogin, login, create et update
+//il ne restera que login, signin, create et update
 namespace Portfolio\Controller;
 
-use Portfolio\Model\Entity\User;
-use Portfolio\Model\Manager\UserManager;
 use Portfolio\View\View;
-
+use Portfolio\Model\Entity\User;
+use Portfolio\Controller\Controller;
+use Portfolio\Model\Manager\UserManager;
 
 class UserController extends Controller
 {
+    protected $entity= "User";
     /**
      * Undocumented function
      *@Route("/user/login", name="index.php?ent=user&tsk=login")
@@ -19,65 +20,92 @@ class UserController extends Controller
         $this->view->render("frontend/forms/login");
     }
 
-    /*
-     *@Route("/user/create", name="")
-     */
-    public function create($contenu)
-    {
-        $pass_hache = password_hash($contenu['pass'], PASSWORD_DEFAULT);
-        //$user = new user();
-        $this->user->setPseudo($contenu['pseudo']);
-        $this->user->setPass($pass_hache);
-
-        $saveIsOk = $this->manager->save($user);
-
-        if($saveIsOk){
-            $message = "Votre Compte à bien été créé";
-        } else{
-            $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;';
-        }
-        include(__DIR__ ."/../View/Backend/messageAdmin.php");
-    }
-
-    /*
-     *@Route("/user/delete", name="")
-     */
-    public function delete($recupUser)
-    {
-        $deleteIsOk = $this->manager->delete($recupUser);
-        if($deleteIsOk){
-            $message = "L\'utilisateur a été bien supprimé";
-        }else
-        {$message = 'Une erreur est arrivée';}
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
-    }
-
     /**
-      * Fonction de verification des données du formulaire et de connexion au BO. 
-     * @Route("/user/authentification", name="")
+      * Signin 
+     * @Route("/user/sign-in", name="index.php?ent=user&tsk=signin")
      * @return void
      */ 
-    public function authentification()
+    public function signin()
     {
-        // Verififier le type de données
+        // Verififier le type de données.
         if(!empty($_POST))
         {
-            $pseudo= $this->valid_data($_POST['pseudo']);
-            $password=$this->valid_data($_POST['password']);
+            $pseudo= ($_POST['pseudo']);
+            $password=($_POST['password']);
 
-            $response= $this->userManager->checkAuthentification($pseudo,$password);
-
+            $response= $this->userManager->singin($pseudo,$password);
             if($response){
-                $this->admin();
+                $this->dashboard();
             }
-            else{   
-                $this->formConnexion();
+            else{  
+                //Retoune au formulaire de contact avec un message flash 
+                $this->login();
                 echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
             }
         }
         else
+        {$this->login();}
+    }
+
+    /*
+     * @Route("/user/new", name="user_new")
+     */
+    public function new()
+    {
+        if(!isset($_POST) || empty($_POST))
         {
-            var_dump("retourner le formulaire avec un message d'erreur. formulaire vide");
+            $this->view->render('backend/'.strtolower($this->entity).'/new');
+        }
+        else
+        {   
+            // Verifier en Js que pass est égal a confirmPass
+            $this->user->setPassword($_POST['password']);
+            $pass_secure=$this->user->getPassword();
+            $pass_hache = password_hash($pass_secure, PASSWORD_DEFAULT);
+           
+            $this->user->setPseudo($_POST['pseudo']);
+            $this->user->setPassword($pass_hache);
+
+            $saveIsOk = $this->userManager->insert($this->user);
+            if($saveIsOk){ $message = "Votre Compte à bien été créé";
+            } else{ $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;'; }
+            // DASHBOARD
+            $this->dashboard($message);
         }
     }
+
+    /**
+    * Undocumented function
+    * @param [type] $id
+    * @return void
+    */
+    public function show($id)
+    {
+        $this->user= $this->userManager->find($id);
+        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
+            'user'=>$this->user
+        ]);
+    }
+
+    /**
+     * Fonction de suppression
+     * @param [type] $recupPost
+     * @return void
+     */
+    public function delete()
+    {
+        $id=htmlspecialchars($_POST['id']);
+        $deleteIsOk = $this->userManager->delete($id);
+        if($deleteIsOk){
+            $message = 'Félicitation. le project bien été supprimée';
+            var_dump($message);
+        }else
+        {
+            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
+            var_dump($message);
+        }
+        // DASHBOARD ou index de l'object
+        $this->dashboard($message);
+    }
+    
 }

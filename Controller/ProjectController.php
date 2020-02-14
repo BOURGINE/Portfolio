@@ -1,89 +1,109 @@
 <?php
-
 namespace Portfolio\Controller;
 
 use Portfolio\Model\Entity\Project;
+use Portfolio\Controller\Controller;
 use Portfolio\Model\Manager\ProjectManager;
 
 class projectController extends Controller
 {
-    //appel du manager de controller
+    protected $entity= "Project";
 
-    public function createProject($contenu)
+    public function new()
     { 
-        $this->realisation->setImg($_FILES['img']['name']);
-        $this->realisation->setTitle($contenu['title']);
-        $this->realisation->setContent($contenu['content']);
-        $this->realisation->setLinkView($contenu['link_view']);
-        $this->realisation->setLinkGit($contenu['link_git']);
-
-        $saveIsOk = $this->manager->save($realisation);
-
-        if($saveIsOk){
-            $message = 'Féliciation. Votre Realisation a bien été ajoutée';
-            $this->saveImg();
-        }else
+        if(!isset($_POST) || empty($_POST))
         {
-            $message = 'Désolé. Une erreur est survenue. Action non effectuée';
+            $this->view->render('backend/'.strtolower($this->entity).'/new');
         }
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        else
+        {   
+            $this->project->setImg($_FILES['img']['name']);
+            $this->project->setTitle($_POST['title']);
+            $this->project->setContent($_POST['content']);
+            $this->project->setLinkView($_POST['link_view']);
+            $this->project->setLinkGit($_POST['link_git']);
+
+            $saveIsOk = $this->projectManager->Insert($this->project);
+            if($saveIsOk){
+                $message = 'Féliciation. Votre Realisation a bien été ajoutée';
+                $this->saveImg();
+            }else
+            {
+                $message = 'Désolé. Une erreur est survenue. Action non effectuée';
+            }
+            // DASHBOARD
+            $this->dashboard($message);
+        }
     }
 
     /**
-     * Appel du formulaire de modification
-     * @param [type] $recupInfos
-     * @return void
-     */
-    public function formUpdate($recupInfos)
+    * Undocumented function
+    *
+    * @param [type] $id
+    * @return void
+    */
+    public function show($id)
     {
-        $this->realisation= $this->manager->read($_GET['id']);
-        include(__DIR__."/../View/Backend/Form_Update/form_UpdateRealisation.php");
+        $this->project= $this->projectManager->find($id);
+
+        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
+            'project'=>$this->project
+            ]);
     }
 
     /**
      * Fonction de modification
      * @return void
      */
-    public function update()
+    public function edit()
     {
-        $this->realisation= $this->manager->read($_POST['id']);
+         // S'il n'y a pas de soumission de formulaire
+         if(!isset($_POST) || empty($_POST))
+         {
+             $id=htmlspecialchars($_GET['id']);
+             $this->show($id);
+         }
+         else
+         {
+            $this->project= $this->projectManager->find($_POST['id']);
+            // J'envoi en les infos aux differents élements de la classe contact
+            $this->project->setImg($_FILES['img']['name']);
+            $this->project->setTitle($_POST['title']);
+            $this->project->setContent($_POST['content']);
+            $this->project->setLinkView($_POST['link_view']);
+            $this->project->setLinkGit($_POST['link_git']);
 
-        // J'envoi en les infos aux differents élements de la classe contact
-        $this->realisation->setImg($_FILES['img']['name']);
-        $this->realisation->setTitle($_POST['title']);
-        $this->realisation->setContent($_POST['content']);
-        $this->realisation->setLinkView($_POST['link_view']);
-        $this->realisation->setLinkGit($_POST['link_git']);
+            $saveIsOk = $this->projectManager->update($this->project);
+            if($saveIsOk)
+            {
+                $message = 'Félicitation, votre réalisation a bien été modifiée';
+                $this->saveImg();
+            }else
+            {$message = 'Désolé. Une erreur est survenu au niveau de la modification de votre réalisation';}
 
-        $saveIsOk = $this->manager->save($realisation);
-
-        if($saveIsOk)
-        {
-            $message = 'Félicitation, votre réalisation a bien été modifiée';
-            $this->saveImg();
-        }else
-        {
-            $message = 'Désolé. Une erreur est survenu au niveau de la modification de votre réalisation';
+             // DASHBOARD ou index de l'object
+             $this->dashboard($message);
+            }
         }
-
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
-    }
 
     /**
      * Fonction de suppression
      * @param [type] $recupPost
      * @return void
      */
-    public function delete($recupPost)
+    public function delete()
     {
-        $deleteIsOk = $this->manager->delete($recupPost);
+        $id=htmlspecialchars($_POST['id']);
+        $deleteIsOk = $this->projectManager->delete($id);
         if($deleteIsOk){
-            $message = 'Félicitation. La realisation bien été supprimée';
+            $message = 'Félicitation. le project bien été supprimée';
+            var_dump($message);
         }else
         {
             $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
+            var_dump($message);
         }
-        //NB: il faut que je retroune le réslutat en HTML
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        // DASHBOARD ou index de l'object
+        $this->dashboard($message);
     }
 }

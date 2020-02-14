@@ -2,99 +2,106 @@
 namespace Portfolio\Controller;
 
 use Portfolio\Model\Entity\Skill;
+use Portfolio\Controller\Controller;
 use Portfolio\Model\Manager\SkillManager;
 
 class SkillController extends Controller
 {   
-    public function __construct () {
-        parent::__construct();
-    }
-
-     /**
-     * Cette fonction affiche la liste d'une entité. (FF)
-     * @Route("/form/connexion", name="")
-     * @return array
-     */ 
-    public function index()
-    {
-        $backSkills = $this->manager->readAllBack();
-        $frontSkills = $this->manager->readAllFront();
-
-        var_dump();
-
-        //include(__DIR__ . "/../View/Frontend/home.php");
-    }
-
+    protected $entity= "Skill";
     /*
      *  CREATION d'une compétence
      */
-    public function createSkill($contenu)
+    public function new()
     { 
-        $this->skill->setImg($_FILES['img']['name']);
-        $this->skill->setTitle($contenu['title']);
-        $this->skill->setLink($contenu['link']);
-        $this->skill->setCategorie($contenu['categorie']);
-        
-        $saveIsOk = $this->manager->save($skill);
-
-        if($saveIsOk){
-            $this->saveImg();
-            $message = 'Félicitaion. Votre skill bien été ajoutée';
+        if(!isset($_POST) || empty($_POST))
+        {
+            $this->view->render('backend/'.strtolower($this->entity).'/new');
         }
-        else{$message = 'Désolé. Une erreur est survenue. Action non effectuée';}
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        else
+        {   
+            $this->skill->setImg($_FILES['img']['name']);
+            $this->skill->setTitle($_POST['title']);
+            $this->skill->setLink($_POST['link']);
+            $this->skill->setCategorie($_POST['categorie']);
+
+            $saveIsOk = $this->skillManager->insert($this->skill);
+            if($saveIsOk){
+                $this->saveImg();
+                $message = 'Félicitaion. Votre skill bien été ajoutée';
+            }
+            else{$message = 'Désolé. Une erreur est survenue. Action non effectuée';}
+        }
+        // DASHBOARD
+        $this->dashboard($message);
     }
 
-    /*
-     * Cette fonction appelle le formulaire de mise à jour
-     */
-    public function formUpdate($recupInfos)
+    /**
+    * Undocumented function
+    *
+    * @param [type] $id
+    * @return void
+    */
+    public function show($id)
     {
-        $this->skill = $this->manager->read($_GET['id']);
-        include(__DIR__."/../View/Backend/Form_Update/form_Update.php");
+        $this->skill= $this->skillManager->find($id);
+
+        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
+            'skill'=>$this->skill
+            ]);
     }
 
     /*
      * Cette fonction appelle l'action de mise à jour
      */
-    public function update()
+    public function edit()
     {
-        $this->skill= $this->manager->read($_POST['id']);
-        
-        $this->skill->setImg($_FILES['img']['name']);
-        $this->skill->setTitle($_POST['title']);
-        $this->skill->setLink($_POST['link']);
-        $this->skill->setCategorie($_POST['categorie']);
+         // S'il n'y a pas de soumission de formulaire
+         if(!isset($_POST) || empty($_POST))
+         {
+             $id=htmlspecialchars($_GET['id']);
+             $this->show($id);
+         }
+         else
+         {
+            $this->skill= $this->skillManager->find($_POST['id']);
+            
+            $this->skill->setImg($_FILES['img']['name']);
+            $this->skill->setTitle($_POST['title']);
+            $this->skill->setLink($_POST['link']);
+            $this->skill->setCategorie($_POST['categorie']);
 
-        // Je sauvegarde mes informations dans la base de données
-        $saveIsOk = $this->manager->save($skill);
-
-        if($saveIsOk){
-            $message = 'Félicitation, votre skill a bien été modifiée';
-            // 2 - TRAITEMENT DE L'IMAGE ( Envoi de l'image dans mon dossier imgUpload)
-            $this->saveImg();
-        }else
-            {
-            $message = 'Désolé. Une erreur est survenue  au niveau de la modification de votre compétence';
+            // Je sauvegarde mes informations dans la base de données
+            $saveIsOk = $this->skillManager->update($this->skill);
+            if($saveIsOk){
+                $message = 'Félicitation, votre skill a bien été modifiée';
+                $this->saveImg();
+            }else
+                {$message = 'Désolé. Une erreur est survenue  au niveau de la modification de votre compétence';
+            }
         }
-
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        // DASHBOARD
+        $this->dashboard($message);
     }
 
-    /**
-     ** Cette fonction supprime une Compétence ayant un id spécifique
-     **/
-    public function delete($recupPost)
+     /**
+     * Fonction de suppression
+     * @param [type] $recupPost
+     * @return void
+     */
+    public function delete()
     {
-        $deleteIsOk = $this->manager->delete($recupPost);
-
+        $id=htmlspecialchars($_POST['id']);
+        $deleteIsOk = $this->skillManager->delete($id);
         if($deleteIsOk){
-            $message = ' Félicitation, votre compétence bien été supprimée';
+            $message = 'Félicitation. le project bien été supprimée';
+            var_dump($message);
         }else
         {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette compétence';
+            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
+            var_dump($message);
         }
-        //NB: il faut que je retroune le réslutat en HTML
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        // DASHBOARD ou index de l'object
+        $this->dashboard($message);
     }
+
 }

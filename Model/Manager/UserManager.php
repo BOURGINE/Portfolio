@@ -1,7 +1,11 @@
 <?php
 namespace Portfolio\Model\Manager;
-
+/** 
+ * [singin] [insert]
+ */
+use PDO;
 use Portfolio\Model\Entity\User;
+use Portfolio\Model\Manager\Manager;
 
 class UserManager extends Manager
 {
@@ -9,15 +13,17 @@ class UserManager extends Manager
     protected $table= "myuser"; 
     protected $entity= "User";
 
-    /*
-    * Cette fonction verifie si les informations du formulaire de connexion sont exactes.
-     * Elle récupère les infos de la base de donnée
-     * Et les compare avec les information du formulaire de connexion
-     */
-    public function login($pseudo, $password)
+  /**
+   * Undocumented function
+   *
+   * @param string $pseudo
+   * @param string $password
+   * @return void
+   */
+    public function singin(string $pseudo, string $password)
     {
         // On verifiera plus tard avec l'email au lieu du pseudo
-        $this->pdoStatement = $this->getPdo()->prepare("SELECT * FROM myuser WHERE pseudo=:pseudo");
+        $this->pdoStatement = $this->getPdo()->prepare("SELECT * FROM {$this->table} WHERE pseudo=:pseudo");
         $this->pdoStatement->execute(array(
             'pseudo' => $pseudo));
         $resultat = $this->pdoStatement->fetch();
@@ -34,51 +40,20 @@ class UserManager extends Manager
         }
     }
 
-
     /*
      *@Route("/user/create", name="")
      */
-    public function insert(User &$user)
+    public function insert(User $user)
     {
-        $this->pdoStatement=$this->pdo->prepare('INSERT INTO myuser VALUES(NULL, :pseudo, :pass)');
+        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :pseudo, :pass)");
         //liaison des paramettres : Liaison des name du formulaire aux champs de la table post
         $this->pdoStatement->bindValue(':pseudo', $user->getPseudo(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':pass', $user->getPass(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':pass', $user->getPassword(), PDO::PARAM_STR);
         //Exécution de la req
         $executeIsOk = $this->pdoStatement->execute();
 
-        if(!$executeIsOk)
-        {return false;}
-        else{
-            $id = $this->pdo->lastInsertId();
-            $user = $this->read($id);
-            return true;
-        }
+        if(!$executeIsOk) {return false;}
+        else{ return true; }
     }
 
-    /**
-     * Cette fonction lis un utilisateur précis.
-     * A supprimer car sera centraliser
-     **/
-    public function read($id)
-    {
-        //préparation de la req
-        $this->pdoStatement=$this->connexion()->prepare('SELECT * FROM myuser WHERE id=:id');
-        // liaison de la req
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-        //exécution de la req
-        $executeIsOk = $this->pdoStatement->execute();
-        if($executeIsOk)
-        {
-            $user= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\User');
-            if($user === false)
-            {return null;}
-            else
-            {return $user;}
-        }
-        else
-        {return false;}
-    }
-
-    
 }

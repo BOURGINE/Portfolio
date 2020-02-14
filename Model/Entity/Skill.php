@@ -2,12 +2,14 @@
 
 namespace Portfolio\Model\Entity;
 
-class Skill
+use Portfolio\Model\Entity\SecureData;
+
+class Skill extends SecureData
 {
     private $id;
     private $img;
     private $title;
-    private $link;
+    private $link;// a supprimer
     private $categorie;
 
     /**
@@ -31,9 +33,8 @@ class Skill
      */
     public function setImg($img)
     {
-        $this->img = $img;
+        $this->img = $this->clean_data($img);
     }
-
 
     /**
      * @return mixed
@@ -43,7 +44,7 @@ class Skill
         if(!isset($title) && !is_string($this->title)){
             echo 'la fonction getTitle a du mal a récupérer le titre';
         }
-        return (string) htmlspecialchars($this->title);
+        return (string) $this->clean_data($this->title);
     }
 
     /**
@@ -53,13 +54,9 @@ class Skill
     public function setTitle($title)
     {
         if(!isset($title) && !is_string($title))
-        {
-            echo'le titre n\'est pas bien définie';
-        }
+        { echo'le titre n\'est pas bien définie'; }
         else
-        {
-            $this->title = htmlspecialchars($title);
-        }
+        {$this->title = $this->clean_data($title);  }
         return $this;
     }
 
@@ -76,7 +73,7 @@ class Skill
      */
     public function setLink($link)
     {
-        $this->link = $link;
+        $this->link = $this->clean_data($link);
     }
 
     /**
@@ -96,15 +93,13 @@ class Skill
      */
     public function setCategorie($categorie)
     {
-
         if(!isset($categorie) && !is_string($categorie))
         {
             echo'le stat_Comment n\'est pas bien définie';
         }else{
-            $this->categorie = htmlspecialchars($categorie);
+            $this->categorie = $this->clean_data($categorie);
         }
         return $this;
-
     }
 
 

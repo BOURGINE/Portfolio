@@ -1,8 +1,12 @@
 <?php
 namespace Portfolio\Model\Manager;
-//Il ne doit rester que insert et update
+/** 
+ * [insert] [update]
+ */
 
+use PDO;
 use Portfolio\Model\Entity\Skill;
+use Portfolio\Model\Manager\Manager;
 
 class SkillManager extends Manager
 {
@@ -11,111 +15,37 @@ class SkillManager extends Manager
     protected $entity= "Skill";
 
     /**
-     * A renommer en insert
-     *
+     * Insert
      * @param Competence $competence
      * @return void
      */
-    public function create(Competence &$competence)
+    public function insert(Skill $skill)
     {
-        $this->pdoStatement=$this->getPdo()->prepare('INSERT INTO competence VALUES(NULL, :img, :title, :link, :categorie)');
+        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :img, :title, :link, :categorie)");
 
-        $this->pdoStatement->bindValue(':img', $competence->getImg(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':title', $competence->getTitle(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link', $competence->getLink(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':categorie', $competence->getCategorie(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':img', $skill->getImg(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':title', $skill->getTitle(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':link', $skill->getLink(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':categorie', $skill->getCategorie(), PDO::PARAM_STR);
 
         $executeIsOk = $this->pdoStatement->execute();
-
-        if(!$executeIsOk){ // si l'éxécution ne s'est pas bien passée
-
-            return false;
-        }
-        else{
-
-            $id = $this->pdo->lastInsertId();
-            $competence = $this->read($id);
-            return true;
-        }
-    }
-
-    /**
-     * A supprimer car f
-     * Cette fonction n'est pas utile pour le moment.
-     **/
-    public function read($id)
-    {
-        $this->pdoStatement=$this->getPdo()->prepare('SELECT * FROM competence WHERE id=:id');
-
-        $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-
-        $executeIsOk = $this->pdoStatement->execute();
-        if($executeIsOk)
-        {
-            $competence= $this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill');
-            if($competence === false)
-            {
-                return null;
-            }
-            else
-            {
-                return $competence;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    /**
-     *  A supprimer car f
-     **/
-    public function readAllFront()
-    {
-        $this->pdoStatement = $this->getPdo()->query('SELECT * FROM competence WHERE categorie=1 ORDER BY id DESC ');
-        $competences=[];
-
-        // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
-        {
-            $competences[]=$competence;
-        }
-        //3- On retourne le table finalisé.
-        return $competences;
-    }
-
-    /**
-     *  A supprimer car f
-     **/
-    public function readAllBack()
-    {
-        $this->pdoStatement = $this->getPdo()->query('SELECT * FROM competence WHERE categorie=2 ORDER BY id DESC ');
-
-        //1- initialisation du tableau vide
-        $competences=[];
-        // 2-On ajoute au table chaque ligne.
-        while($competence=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Skill'))
-        {
-            $competences[]=$competence;
-        }
-        //3- On retourne le table finalisé.
-        return $competences;
+        if(!$executeIsOk) {return false;}
+        else{ return true; }
     }
 
     /**
      * Utilise l'id pour modifier les autres éléments d'un Post sauf le post_cat qui reste le meme.
      **/
-    public function update(Competence $competence)
+    public function update(Skill $skill)
     {
-        $this->pdoStatement = $this->getPdo()->prepare('UPDATE competence set img=:img, title=:title, link=:link, categorie=:categorie WHERE id=:id');
+        $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, link=:link, categorie=:categorie WHERE id=:id");
 
         //Liaison des paramètres des elements de formulaire a ceux des champs de la bdd
-        $this->pdoStatement->bindValue(':id', $competence->getId(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':img', $competence->getImg(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':title', $competence->getTitle(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link', $competence->getLink(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':categorie', $competence->getCategorie(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':id', $skill->getId(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':img', $skill->getImg(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':title', $skill->getTitle(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':link', $skill->getLink(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':categorie', $skill->getCategorie(), PDO::PARAM_STR);
 
         $executeIsOk= $this->pdoStatement->execute();
 

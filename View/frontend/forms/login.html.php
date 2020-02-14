@@ -3,7 +3,7 @@
 
 <div class="page_form container">
     <div>
-        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=login">
+        <form  id="connexion" method="POST" action="index.php?ent=user&tsk=signin">
             <h2> LOGIN </h2>
             <label for="pseudo">Votre pseudo:</label>
             <input type="text" name="pseudo" id="pseudo"/>

@@ -2,37 +2,42 @@
 
 namespace Portfolio\Model\Entity;
 
-class Background
-{
+use Portfolio\Model\Entity\SecureData;
 
+class Background extends SecureData
+{
     private $id;
     private $title;
-    private $link;
+    private $link;// a supprimer
 
     /**
-     * @return mixed
+     * Undocumented function
+     *
+     * @return integer
      */
-    public function getId()
+    public function getId():int
     {
-        return $this->id;
+        return $this->clean_data($this->id);
     }
 
     /**
-     * @return mixed
+     * Undocumented function
+     *
+     * @return string
      */
-    public function getTitle()
+    public function getTitle():string
     {
         if(!isset($title) && !is_string($this->title)){
             echo 'la fonction getTitle a du mal a récupérer le titre';
         }
-        return (string) htmlspecialchars($this->title);
+        return (string) $this->clean_data($this->title);
     }
 
     /**
      * @param mixed $title
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle($title):string
     {
         if(!isset($title) && !is_string($title))
         {
@@ -40,9 +45,9 @@ class Background
         }
         else
         {
-            $this->title = htmlspecialchars($title);
+            $this->title = $this->clean_data($title);
         }
-        return $this;
+        return $this->title;
     }
 
     /**
@@ -58,7 +63,7 @@ class Background
      */
     public function setLink($link)
     {
-        $this->link = $link;
+        $this->link = $this->clean_data($link);
     }
 
 

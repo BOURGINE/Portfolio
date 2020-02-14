@@ -2,14 +2,16 @@
 
 namespace Portfolio\Model\Entity;
 
-class Project
+use Portfolio\Model\Entity\SecureData;
+
+class Project extends SecureData
 {
     private $id;
     private $img;
     private $title;
-    private $content;
+    private $content;// a supprimer
     private $link_view;
-    private $link_git;
+    private $link_git; //a supprimer
 
     /**
      * @return mixed
@@ -43,7 +45,7 @@ class Project
         if(!isset($title) && !is_string($this->title)){
             echo 'la fonction getTitle a du mal a récupérer le titre';
         }
-        return (string) htmlspecialchars($this->title);
+        return (string) $this->clean_data($this->title);
     }
 
     /**
@@ -58,7 +60,7 @@ class Project
         }
         else
         {
-            $this->title = htmlspecialchars($title);
+            $this->title = $this->clean_data($title);
         }
         return $this;
     }
@@ -71,7 +73,7 @@ class Project
         if(!isset($content) && !is_string($this->content)){
             echo 'la fonction getContent a du mal à récupérer le titre';
         }
-        return (string) htmlspecialchars($this->content);
+        return (string) $this->clean_data($this->content);
     }
 
     /**
@@ -86,7 +88,7 @@ class Project
         }
         else
         {
-            $this->content = htmlspecialchars($content);
+            $this->content = $this->clean_data($content);
         }
         return $this;
     }
@@ -103,7 +105,7 @@ class Project
      */
     public function setLinkView($link_view)
     {
-        $this->link_view = $link_view;
+        $this->link_view = $this->clean_data($link_view);
     }
 
     /**
@@ -119,7 +121,7 @@ class Project
      */
     public function setLinkGit($link_git)
     {
-        $this->link_git = $link_git;
+        $this->link_git = $this->clean_data($link_git);
     }
 
 

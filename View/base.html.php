@@ -37,6 +37,10 @@
             <?= $pageContent ?>
         </div>
 
+        <!-- footer -->
+        <a href="index.php?ent=user&tsk=login" class="btn btn-primary text-center">login</a>
+        <!--/footer -->
+
 <!-- Scripts -->
 <script src="Public/js/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>

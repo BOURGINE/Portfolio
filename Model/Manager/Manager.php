@@ -1,24 +1,24 @@
 <?php
-// Déclarer model comme une classe abstraite. Elle sera utiliser par les autres classes mais ne sera pas directement instancier
-/**
- * find()
- * findAll()
- * findAllBy()
- * delete()
+/** 
+ * [find] [findAll] [findAllBy] [delete]
  */
 namespace Portfolio\Model\Manager;
 
-class Manager extends Database
+use PDO;
+use Portfolio\Model\Manager\Database;
+
+abstract class Manager extends Database
 {
     private $pdoStatement;
     private $objectPath="Portfolio\Model\Entity\\";
 
     /**
      * Undocumented function
+     *
      * @param integer $id
-     * @return array
+     * @return void
      */
-    public function find(int $id):array
+    public function find(int $id)
     {
         $this->pdoStatement=$this->getPdo()->prepare("SELECT * FROM {$this->table} WHERE id=:id");
         $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -26,7 +26,7 @@ class Manager extends Database
 
         if($execIsOk)
         {
-            $item= $this->pdoStatement->fetchObject("Portfolio\Model\Entity\{$this->entity}");
+            $item= $this->pdoStatement->fetchObject($this->objectPath.$this->entity);
             if($item === false)
             {return null;}
             else
@@ -47,7 +47,7 @@ class Manager extends Database
     {
         $sql= "SELECT * FROM {$this->table}";
         if($order){
-            $sql.= "ORDER BY".$order;
+            $sql.= " ORDER BY ".$order;
         }
         $this->pdoStatement = $this->getPdo()->query($sql);
 
@@ -57,7 +57,6 @@ class Manager extends Database
         {$items[]=$item;}
         //3- On retourne le table finalisé.
         return $items;
-
     }
 
     /**
@@ -67,35 +66,38 @@ class Manager extends Database
      * @param string|null $by
      * @return array
      */
-    /*
-    public function findAllBy(?string $order="", ?string $by):array
+    public function findAllBy(?string $by="", $val="", ?string $order=""):array
     {
-        $sql= "SELECT * FROM {$this->table} WHERE categorie=1";
+        $sql= "SELECT * FROM {$this->table}";
+        if($by AND $val){
+            $sql.=" WHERE ".$by."=".$val;
+        }
         if($order){
-            $sql.= "ORDER BY".$order;
+            $sql.= " ORDER BY ".$order;
         }
         $this->pdoStatement = $this->getPdo()->query($sql);
         //1- initialisation du tableau vide
-        $realisations=[];
-        while($realisation=$this->pdoStatement->fetchObject('Portfolio\Model\Entity\Project'))
-        {$realisations[]=$realisation;}
+        $items=[];
+        while($item=$this->pdoStatement->fetchObject($this->objectPath.$this->entity))
+        {$items[]=$item;}
         //3- On retourne le table finalisé.
-        return $realisations;
+        return $items;
     }
-    */
 
     /**
      * Undocumented function
-     *
      * @param integer $id
      * @return boolean
      */
     public function delete(int $id):bool
     {
-        $this->pdoStatement =$this->getPdo()->prepare('DELETE FROM {$this->table} WHERE id=:id');
+        $this->pdoStatement =$this->getPdo()->prepare("DELETE FROM {$this->table} WHERE id=:id");
         $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
         $execIsOk = $this->pdoStatement->execute();
-
-        return $execIsOk;
+        if($execIsOk){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

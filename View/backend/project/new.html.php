@@ -1,11 +1,9 @@
 <?php $title = 'Ajouter un Realisation'; ?>
-<?php ob_start(); ?>
-<!--  Mettre l'entête ici ou mette en place un tempate pour le backend-->
 
 <div class="page_form container">
     <h2 class="text-center"> Ajouter une réalisation</h2>
 
-    <form  action="index.php?act=realisation&req=create-realisation" method="POST" id="form_CreateRealisation" enctype="multipart/form-data">
+    <form  action="index.php?ent=project&tsk=new" method="POST" id="form_CreateRealisation" enctype="multipart/form-data">
         <p>
             <label for="img"> Image </label> <span class="error"></span>
             <input type="file" id="img" name="img">
@@ -35,9 +33,6 @@
             <input type="submit" value="Ajouter une réalisation">
         </div>
     </form>
-
 </div>
-<?php $content = ob_get_clean(); ?>
 
-<?php require('../Portfolio/View/Frontend/template.php'); ?>
 

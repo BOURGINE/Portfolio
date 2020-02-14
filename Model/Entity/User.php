@@ -2,12 +2,14 @@
 
 namespace Portfolio\Model\Entity;
 
-class User
+use Portfolio\Model\Entity\SecureData;
+
+class User extends SecureData
 {
     private $id;
     private $pseudo;
     private $password;
-    private $confirmPassword;
+    private $confirmPassword; // A supprimer
 
     /**
      * @return mixed
@@ -39,11 +41,10 @@ class User
         {
             echo'le titre n\'est pas bien définie';
         }else{
-            $this->pseudo = htmlspecialchars($pseudo);
+            $this->pseudo = $this->clean_data($pseudo);
         }
         return $this;
     }
-
 
     /**
      * @return mixed
@@ -54,11 +55,14 @@ class User
     }
 
     /**
-     * @param mixed $pass
+     * Undocumented function
+     *
+     * @param [type] $password
+     * @return void
      */
     public function setPassword($password)
     {
-        $this->pass = $password;
+        $this->password = $this->clean_data($password);
     }
 
     /**
@@ -74,7 +78,7 @@ class User
      */
     public function setConfirmPassword($confirmPassword)
     {
-        $this->confirmPass = $confirmPassword;
+        $this->confirmPass = $this->clean_data($confirmPassword);
     }
 
 
