@@ -6,5 +6,4 @@ use Autoload\Autoloader;
 Autoloader::register();
 
 use Portfolio\App;
-
 App::process();

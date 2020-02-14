@@ -1,5 +1,4 @@
 <?php
-
 namespace Autoload;
 /**
  * Class Autoloader

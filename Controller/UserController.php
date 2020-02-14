@@ -1,55 +1,111 @@
 <?php
-
+//il ne restera que login, signin, create et update
 namespace Portfolio\Controller;
 
+use Portfolio\View\View;
 use Portfolio\Model\Entity\User;
+use Portfolio\Controller\Controller;
 use Portfolio\Model\Manager\UserManager;
 
 class UserController extends Controller
 {
-    private $user;
-    protected $manager;
-
-    public function __construct()
-    {
-        $this->user = new User();
-        $this->manager= new UserManager();
-    }
-   
-    /*
-     *@Route("/user/create", name="")
+    protected $entity= "User";
+    /**
+     * Undocumented function
+     *@Route("/user/login", name="index.php?ent=user&tsk=login")
+     * @return void
      */
-    public function create($contenu)
+    public function login():void
     {
-        $pass_hache = password_hash($contenu['pass'], PASSWORD_DEFAULT);
+        $this->view->render("frontend/forms/login");
+    }
 
-        //$user = new user();
-        $this->user->setPseudo($contenu['pseudo']);
-        $this->user->setPass($pass_hache);
+    /**
+      * Signin 
+     * @Route("/user/sign-in", name="index.php?ent=user&tsk=signin")
+     * @return void
+     */ 
+    public function signin()
+    {
+        // Verififier le type de données.
+        if(!empty($_POST))
+        {
+            $pseudo= ($_POST['pseudo']);
+            $password=($_POST['password']);
 
-        $saveIsOk = $this->manager->save($user);
-
-        if($saveIsOk){
-            $message = 'Votre Compte à bien été créé ';
-        } else{
-            $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;';
+            $response= $this->userManager->singin($pseudo,$password);
+            if($response){
+                $this->dashboard();
+            }
+            else{  
+                //Retoune au formulaire de contact avec un message flash 
+                $this->login();
+                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
+            }
         }
-        include(__DIR__ ."/../View/Backend/messageAdmin.php");
+        else
+        {$this->login();}
     }
 
     /*
-     *@Route("/user/delete", name="")
+     * @Route("/user/new", name="user_new")
      */
-    public function delete($recupUser)
+    public function new()
     {
-        $deleteIsOk = $this->manager->delete($recupUser);
+        if(!isset($_POST) || empty($_POST))
+        {
+            $this->view->render('backend/'.strtolower($this->entity).'/new');
+        }
+        else
+        {   
+            // Verifier en Js que pass est égal a confirmPass
+            $this->user->setPassword($_POST['password']);
+            $pass_secure=$this->user->getPassword();
+            $pass_hache = password_hash($pass_secure, PASSWORD_DEFAULT);
+           
+            $this->user->setPseudo($_POST['pseudo']);
+            $this->user->setPassword($pass_hache);
 
+            $saveIsOk = $this->userManager->insert($this->user);
+            if($saveIsOk){ $message = "Votre Compte à bien été créé";
+            } else{ $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;'; }
+            // DASHBOARD
+            $this->dashboard($message);
+        }
+    }
+
+    /**
+    * Undocumented function
+    * @param [type] $id
+    * @return void
+    */
+    public function show($id)
+    {
+        $this->user= $this->userManager->find($id);
+        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
+            'user'=>$this->user
+        ]);
+    }
+
+    /**
+     * Fonction de suppression
+     * @param [type] $recupPost
+     * @return void
+     */
+    public function delete()
+    {
+        $id=htmlspecialchars($_POST['id']);
+        $deleteIsOk = $this->userManager->delete($id);
         if($deleteIsOk){
-            $message = 'L\'utilisateur a été bien supprimé';
+            $message = 'Félicitation. le project bien été supprimée';
+            var_dump($message);
         }else
         {
-            $message = 'Une erreur est arrivée';
+            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
+            var_dump($message);
         }
-        include(__DIR__ . "/../View/Backend/messageAdmin.php");
+        // DASHBOARD ou index de l'object
+        $this->dashboard($message);
     }
+    
 }
