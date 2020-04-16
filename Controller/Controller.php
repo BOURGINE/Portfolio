@@ -1,7 +1,7 @@
 <?php
 namespace Portfolio\Controller;
 /**
- * - [index] [edit] [show] [delete] [home]
+ * - [index] [edit] [show] [delete] [home] [dashboard] [saveImg]
  */
 
 use Portfolio\View\View;
@@ -47,13 +47,12 @@ class Controller
      */ 
     public function home()
     {
-        $frontSkills = $this->skillManager->findAllBy('categorie','1');
-        $backSkills = $this->skillManager->findAllBy('categorie','2');
         $backgrounds = $this->backgroundManager->findAll();
+        $skills = $this->skillManager->findAll();
         $projects = $this->projectManager->findAll();
 
         // Render()
-        $this->view->render('frontend/home', compact('backSkills','frontSkills','backgrounds','projects'));
+        $this->view->render('frontend/home', compact('skills','backgrounds','projects'));
     }
     
     /**
@@ -69,17 +68,21 @@ class Controller
         $users = $this->userManager->findAll();
 
          // Render()
-         $this->view->render('backend/dashboard', compact('skills','backgrounds','projects','users'));
+         $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects','users', 'message'));
     }
 
     /**
-     * Permet d'afficher la liste d'une entité
-     * @param [type] $content
+     * Fonction d'affichage de la liste
+     * @Route("/", name="")
      * @return void
      */
-    public function index($data)
+    public function index($message=false)
     {
-       // return la liste de l'entité  qui lui est demandé. 
+        $em = strtolower($this->entity)."Manager";
+      
+        $items = $this->$em->findAll();
+        // Render()
+        $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
     }
 
     /**

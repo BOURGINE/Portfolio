@@ -1,30 +1,55 @@
-<?php $title = 'Ajouter Competence'; ?>
+<?php $title = 'Ajouter une compétence'; ?>
 
-<div class="page_form container">
-    <h2 class="text-center">Ajouter une compétence</h2>
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!--Titre-->
+        <h3><i class="fa fa-angle-right"></i><?=$title?></h3>
+        <!--end/Titre-->
 
-    <form  action="index.php?ent=skill&tsk=new" method="POST" id="form_CreateCompetence" enctype="multipart/form-data">
-        <p>
-            <label for="img"> Image </label> <span class="error"></span>
-            <input type="file" id="img" name="img">
-        </p>
+    <!-- /row -->
+    <div class="row mt">
+          <div class="col-lg-12">
+            <div class="form-panel">
+              <div class="form">
 
-        <p>
-            <label for="title"> Titre </label> <span class="error"></span>
-            <input type="text" id="title" name="title"/>
-        </p>
-        
-        <p>
-            <label for="link"> Lien (vers certificats)</label> <span class="error"></span>
-            <input type="url" id="link" name="link"/>
-        </p>
+                <form method="POST" action="index.php?ent=skill&tsk=new" enctype="multipart/form-data" class="cmxform form-horizontal style-form" id="form_CreateCompetence" >
 
-        <label for="categorie"> Catégorie (1 pour Front et 2 pour Back)</label> <span class="error"></span>
-        <input type="number" min="1" max="2" name="categorie" id="categorie"/>
+                  <div class="form-group ">
+                    <label for="img" class="control-label col-lg-2">Image</label>
+                    <div class="col-lg-10">
+                      <input class=" form-control" id="img" name="img" type="file"/>
+                    </div>
+                  </div>
 
-        <div>
-            <br/>
-            <input type="submit" value="Ajouter"/>
+                  <div class="form-group ">
+                    <label for="title" class="control-label col-lg-2">Titre</label>
+                    <div class="col-lg-10">
+                      <input class=" form-control" id="title" name="title" type="text"/>
+                    </div>
+                  </div>
+
+                  <!--boutons-->
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme" type="submit">Valider</button>
+                      <button class="btn btn-theme04" type="button">Annuler</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
         </div>
-    </form>
-</div>
+        <!-- /row -->
+
+    </div>
+    </section>
+</section>
+
+
+
+
+

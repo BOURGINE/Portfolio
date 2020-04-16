@@ -20,13 +20,12 @@ class ProjectManager extends Manager
     */
     public function insert(Project $project):bool
     {
-        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :img, :title, :content, :link_view, :link_git)");
+        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :img, :title, :content, :link)");
 
         $this->pdoStatement->bindValue(':img', $project->getImg(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':title', $project->getTitle(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':content', $project->getContent(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link_view', $project->getLinkView(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link_git', $project->getLinkGit(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':link', $project->getLink(), PDO::PARAM_STR);
 
         $executeIsOk = $this->pdoStatement->execute();
         if(!$executeIsOk) {return false;}
@@ -40,14 +39,15 @@ class ProjectManager extends Manager
     */
     public function update(Project $project):bool
     {
-        $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, content=:content, link_view=:link_view, Link_git=:link_git WHERE id=:id");
+        var_dump($project);
+        die();
+        $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, content=:content, Link=:link WHERE id=:id");
 
         $this->pdoStatement->bindValue(':id', $project->getId(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':img', $project->getImg(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':title', $project->getTitle(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':content', $project->getContent(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link_view', $project->getLinkView(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link_git', $project->getLinkGit(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':link', $project->getLink(), PDO::PARAM_STR);
 
         $executeIsOk= $this->pdoStatement->execute();
         return $executeIsOk;

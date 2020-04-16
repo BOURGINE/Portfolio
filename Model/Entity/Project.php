@@ -9,9 +9,8 @@ class Project extends SecureData
     private $id;
     private $img;
     private $title;
-    private $content;// a supprimer
-    private $link_view;
-    private $link_git; //a supprimer
+    private $content;
+    private $link;
 
     /**
      * @return mixed
@@ -92,38 +91,31 @@ class Project extends SecureData
         }
         return $this;
     }
-    /**
-     * @return mixed
-     */
-    public function getLinkView()
-    {
-        return $this->link_view;
-    }
-
-    /**
-     * @param mixed $link_view
-     */
-    public function setLinkView($link_view)
-    {
-        $this->link_view = $this->clean_data($link_view);
-    }
 
     /**
      * @return mixed
      */
-    public function getLinkGit()
+    public function getLink()
     {
-        return $this->link_git;
+        if(!isset($link) && !is_string($this->link)){
+            echo 'la fonction getContent a du mal à récupérer le titre';
+        }
+        return (string) $this->clean_data($this->link);
     }
 
     /**
-     * @param mixed $link_git
+     * @param mixed $link
      */
-    public function setLinkGit($link_git)
+    public function setLink($link)
     {
-        $this->link_git = $this->clean_data($link_git);
+        if(!isset($link) && !is_string($link))
+        {
+            echo'lien mal définis définie';
+        }
+        else
+        {
+            $this->link = $this->clean_data($link);
+        }
+        return $this;
     }
-
-
-
 }
