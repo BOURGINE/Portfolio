@@ -3,8 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d594451a40b0249c7d70/maintainability)](https://codeclimate.com/github/kirokou/Portfolio/maintainability)
 
 <p align="center">
-<img src = "Public/img/kirokou.png"  width="150" height="150"  title = "" alt = "kirokou">
-<img src = "Public/img/sf5.png"  width="150" height="150" title = "" alt = "sf5">
+<img src = "Public/front/img/kirokou.png"  width="150" height="150"  title = "" alt = "kirokou">
+<img src = "Public/front/img/sf5.png"  width="150" height="150" title = "" alt = "sf5">
 </p>
 
 # How install this project
