@@ -78,6 +78,8 @@ class Controller
      */
     public function index($message=false)
     {
+        var_dump("le premier");
+        die();
         $em = strtolower($this->entity)."Manager";
       
         $items = $this->$em->findAll();
