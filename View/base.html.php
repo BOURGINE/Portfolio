@@ -55,10 +55,6 @@
     </div>
     <!-- /Content -->
 
-    <!-- NOTE POUR SE CONNECET -->
-    <a href="index.php?ent=user&tsk=login" class="btn btn-primary text-center">login</a>
-    <!--/footer -->
-
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
