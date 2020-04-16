@@ -20,9 +20,12 @@ class BackgroundManager extends Manager
     */
     public function insert(Background $background):bool
     {
-        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :title, :link)");
+        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :title, :year, :location, :description, :category)");
         $this->pdoStatement->bindValue(':title', $background->getTitle(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link', $background->getLink(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':year', $background->getYear(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':location', $background->getLocation(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':description', $background->getDescription(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':category', $background->getCategory(), PDO::PARAM_STR);
         $executeIsOk = $this->pdoStatement->execute();
 
         if(!$executeIsOk) {return false;}
@@ -35,20 +38,21 @@ class BackgroundManager extends Manager
     public function update(Background $background):bool
     {
         //preparation de la req
-        $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set title=:title, link=:link WHERE id=:id");
+        $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set title=:title, year=:year, location=:location, description=:description, category=:category  WHERE id=:id");
 
         //Liaison des paramètres des elements de formulaire a ceux des champs de la bdd
         $this->pdoStatement->bindValue(':id', $background->getId(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':title', $background->getTitle(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':link', $background->getLink(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':year', $background->getYear(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':location', $background->getLocation(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':description', $background->getDescription(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':category', $background->getCategory(), PDO::PARAM_STR);
 
         $executeIsOk= $this->pdoStatement->execute();
 
         if(!$executeIsOk)
         {  return false;  }
-        else{ // A revoir. car faux
-            //$id = $this->pdo->lastInsertId();
-           //$background = $this->read($id);
+        else{
             return true;
         }
     }

@@ -9,8 +9,7 @@ class Skill extends SecureData
     private $id;
     private $img;
     private $title;
-    private $link;// a supprimer
-    private $categorie;
+  
 
     /**
      * @return mixed
@@ -59,49 +58,4 @@ class Skill extends SecureData
         {$this->title = $this->clean_data($title);  }
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param mixed $link
-     */
-    public function setLink($link)
-    {
-        $this->link = $this->clean_data($link);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategorie()
-    {
-        if (!is_string($this->categorie)){
-            echo 'Problème avec le getCategorie ';
-        }
-        return $this->categorie;
-    }
-
-    /**
-     * @param mixed $categorie
-     * @return $this
-     */
-    public function setCategorie($categorie)
-    {
-        if(!isset($categorie) && !is_string($categorie))
-        {
-            echo'le stat_Comment n\'est pas bien définie';
-        }else{
-            $this->categorie = $this->clean_data($categorie);
-        }
-        return $this;
-    }
-
-
-
 }

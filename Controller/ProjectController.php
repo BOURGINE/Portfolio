@@ -13,16 +13,15 @@ class projectController extends Controller
     { 
         if(!isset($_POST) || empty($_POST))
         {
-            $this->view->render('backend/'.strtolower($this->entity).'/new');
+            $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
         }
         else
         {   
             $this->project->setImg($_FILES['img']['name']);
             $this->project->setTitle($_POST['title']);
             $this->project->setContent($_POST['content']);
-            $this->project->setLinkView($_POST['link_view']);
-            $this->project->setLinkGit($_POST['link_git']);
-
+            $this->project->setLink($_POST['link']);
+           
             $saveIsOk = $this->projectManager->Insert($this->project);
             if($saveIsOk){
                 $message = 'Féliciation. Votre Realisation a bien été ajoutée';
@@ -31,8 +30,8 @@ class projectController extends Controller
             {
                 $message = 'Désolé. Une erreur est survenue. Action non effectuée';
             }
-            // DASHBOARD
-            $this->dashboard($message);
+            // Liste de l'entité demandée. 
+            $this->index($message);
         }
     }
 
@@ -60,8 +59,13 @@ class projectController extends Controller
          // S'il n'y a pas de soumission de formulaire
          if(!isset($_POST) || empty($_POST))
          {
-             $id=htmlspecialchars($_GET['id']);
-             $this->show($id);
+            // Mettre cette partie dans une fonction au niveau de Controller centrale
+            $id=htmlspecialchars($_GET['id']);
+            $this->project = $this->projectManager->find($id);
+
+            $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
+                'project'=>$this->project
+                ]);
          }
          else
          {
@@ -70,8 +74,7 @@ class projectController extends Controller
             $this->project->setImg($_FILES['img']['name']);
             $this->project->setTitle($_POST['title']);
             $this->project->setContent($_POST['content']);
-            $this->project->setLinkView($_POST['link_view']);
-            $this->project->setLinkGit($_POST['link_git']);
+            $this->project->setLink($_POST['link']);
 
             $saveIsOk = $this->projectManager->update($this->project);
             if($saveIsOk)
@@ -81,8 +84,8 @@ class projectController extends Controller
             }else
             {$message = 'Désolé. Une erreur est survenu au niveau de la modification de votre réalisation';}
 
-             // DASHBOARD ou index de l'object
-             $this->dashboard($message);
+            // Liste de l'entité demandée. 
+            $this->index($message);
             }
         }
 
@@ -97,13 +100,11 @@ class projectController extends Controller
         $deleteIsOk = $this->projectManager->delete($id);
         if($deleteIsOk){
             $message = 'Félicitation. le project bien été supprimée';
-            var_dump($message);
         }else
         {
             $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-            var_dump($message);
         }
-        // DASHBOARD ou index de l'object
-        $this->dashboard($message);
+       // Liste de l'entité demandée. 
+       $this->index($message);
     }
 }

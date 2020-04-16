@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     protected $entity= "User";
     /**
-     * Undocumented function
+     * Retourne le formulaire de connexion
      *@Route("/user/login", name="index.php?ent=user&tsk=login")
      * @return void
      */
@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
     /**
-      * Signin 
+      * Signin | Connecte l'utilisateur
      * @Route("/user/sign-in", name="index.php?ent=user&tsk=signin")
      * @return void
      */ 
@@ -48,7 +48,8 @@ class UserController extends Controller
     }
 
     /*
-     * @Route("/user/new", name="user_new")
+     * Make new user
+     * @Route("/user/new", name="index.php?ent=user&tsk=new")
      */
     public function new()
     {
@@ -69,8 +70,8 @@ class UserController extends Controller
             $saveIsOk = $this->userManager->insert($this->user);
             if($saveIsOk){ $message = "Votre Compte à bien été créé";
             } else{ $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;'; }
-            // DASHBOARD
-            $this->dashboard($message);
+            // Liste de l'entité demandée. 
+            $this->index($message);
         }
     }
 
@@ -97,15 +98,13 @@ class UserController extends Controller
         $id=htmlspecialchars($_POST['id']);
         $deleteIsOk = $this->userManager->delete($id);
         if($deleteIsOk){
-            $message = 'Félicitation. le project bien été supprimée';
-            var_dump($message);
+            $message = 'Félicitation. Le compte bien été supprimée';
         }else
         {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-            var_dump($message);
+            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer ce compte';
         }
-        // DASHBOARD ou index de l'object
-        $this->dashboard($message);
+        // Liste de l'entité demandée. 
+        $this->index($message);
     }
     
 }

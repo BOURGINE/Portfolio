@@ -26,6 +26,27 @@ class View
         require('base.html.php');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $path
+     * @param array $data
+     * @return void
+     */
+    public function renderBack(string $path, array $data=null)
+    {
+        if($data!=null)
+        {
+            extract($data);
+        }
+       
+        \ob_start();
+        require(__DIR__.'/../View/'.$path.'.html.php');
+        $pageContent = \ob_get_clean();
+
+        require('base_dashboard.html.php');
+    }
+
      /**
      * fonction render($path')
      */

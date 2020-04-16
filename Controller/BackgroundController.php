@@ -9,7 +9,7 @@ use Portfolio\Model\Manager\BackgroundManager;
 
 class BackgroundController extends Controller
 {
-    private $entity= "Background"; // no object just a name to render root
+    protected $entity= "Background"; // no object just a name to render root
 
     /**
      * @param [type] $contenu
@@ -19,25 +19,29 @@ class BackgroundController extends Controller
     { 
         if(!isset($_POST) || empty($_POST))
         {
-            $this->view->render('backend/'.strtolower($this->entity).'/new');
+            $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
         }
         else
         {
             $this->background->setTitle($_POST['title']);
-            $this->background->setLink($_POST['link']);
+            $this->background->setYear($_POST['year']);
+            $this->background->setLocation($_POST['location']);
+            $this->background->setDescription($_POST['description']);
+            $this->background->setCategory($_POST['category']);
+
             $saveIsOk = $this->backgroundManager->insert($this->background);
             if($saveIsOk){
                 $message = 'Félicitation. Votre Parcours bien été ajouté';
             } else{
                 $message = 'Désolé. Une erreur est survenue. Action non effectuée';
             }
-            // DASHBOARD
-            $this->dashboard($message);
+            // Liste de l'entité demandée. 
+            $this->index($message);
         }
     }
 
     /**
-    * Undocumented function
+    * A modifier. A Adpater 
     *
     * @param [type] $id
     * @return void
@@ -60,23 +64,31 @@ class BackgroundController extends Controller
         // S'il n'y a pas de soumission de formulaire
         if(!isset($_POST) || empty($_POST))
         {
+            // Mettre cette partie dans une fonction au niveau de Controller centrale
             $id=htmlspecialchars($_GET['id']);
-            $this->show($id);
+            $this->background = $this->backgroundManager->find($id);
+
+            $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
+                'background'=>$this->background
+                ]);
         }
         else
         {
             $this->background = $this->backgroundManager->find($_POST['id']);
             $this->background->setTitle($_POST['title']);
-            $this->background->setLink($_POST['link']);
+            $this->background->setYear($_POST['year']);
+            $this->background->setLocation($_POST['location']);
+            $this->background->setDescription($_POST['description']);
+            $this->background->setCategory($_POST['category']);
 
             // Je sauvegarde mes informations dans la base de données
             $saveIsOk = $this->backgroundManager->update($this->background);
             if($saveIsOk)
-            { $message = 'Félicitation. Votre parours a bien été modifié'; }
+            { $message = 'Félicitation. Votre parcours a bien été modifié'; }
             else
             { $message = 'Désolé. Une erreur est survenue au niveau de la modification de votre parcours'; }
-            // DASHBOARD ou index de l'object
-            $this->dashboard($message);
+            // Liste de l'entité demandée. 
+            $this->index($message);
         }
     }
 
@@ -91,14 +103,12 @@ class BackgroundController extends Controller
         $deleteIsOk = $this->backgroundManager->delete($id);
         if($deleteIsOk){
             $message = 'Félicitation. La realisation bien été supprimée';
-            var_dump($message);
         }else
         {
             $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-            var_dump($message);
         }
-        // DASHBOARD ou index de l'object
-        $this->dashboard($message);
+        // Liste de l'entité demandée. 
+        $this->index($message);
     }
 
 }
