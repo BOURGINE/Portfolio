@@ -252,7 +252,7 @@
         </div>
       </div>
       <div class="container text-center">
-        <a href="index.php?ent=post" class="btn btn-primary">Voir tous</a>
+        <a href="index.php?ent=post&tsk=list" class="btn btn-primary">Voir tous</a>
       </div>
     </section>
 

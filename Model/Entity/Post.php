@@ -4,7 +4,7 @@ namespace Portfolio\Model\Entity;
 
 use Portfolio\Model\Entity\SecureData;
 
-class Skill extends SecureData
+class Post extends SecureData
 {
     private $id;
     private $img;
@@ -13,6 +13,7 @@ class Skill extends SecureData
     private $content;
     private $createdAt;
     private $updatedAt;
+    private $slug;
 
     /**
      * @return mixed
@@ -106,7 +107,7 @@ class Skill extends SecureData
     public function setContent($content)
     {
         if(!isset($content) && !is_string($content))
-        { echo'le content n\'est pas bien définie'; }
+        { echo 'le content n\'est pas bien définie'; }
         else
         {$this->content = $this->clean_data($content);  }
         return $this;
@@ -117,9 +118,7 @@ class Skill extends SecureData
      */ 
     public function getCreatedAt()
     {
-        if(!isset($createdAt)){
-            echo 'la fonction getCreatedAt a dû mal a récupéré la donnée.';
-        }
+    
         return (string) $this->clean_data($this->createdAt);
     }
 
@@ -129,12 +128,8 @@ class Skill extends SecureData
      * @return  self
      */ 
     public function setCreatedAt($createdAt)
-    {
-        if(!isset($createdAt) && !is_string($createdAt))
-        { echo'le createdAt n\'est pas bien définie'; }
-        else
-        {$this->createdAt = $this->clean_data($createdAt);  }
-        return $this;
+    {   
+        return $this->createdAt = $this->clean_data($createdAt);
     }
 
     /**
@@ -142,9 +137,6 @@ class Skill extends SecureData
      */ 
     public function getUpdatedAt()
     {
-        if(!isset($updatedAt)){
-            echo 'la fonction getUpdated a dû mal a récupéré la donnée.';
-        }
         return (string) $this->clean_data($this->updatedAt);
     }
 
@@ -155,10 +147,32 @@ class Skill extends SecureData
      */ 
     public function setUpdatedAt($updatedAt)
     {
-        if(!isset($updatedAt) && !is_string($updatedAt))
-        { echo'le updatedAt n\'est pas bien définie'; }
+        return $this->updatedAt = $this->clean_data($updatedAt);
+    }
+
+    /**
+     * Get the value of slug
+     */ 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug)
+    {
+        if(!isset($slug) && !is_string($slug))
+        { echo 'le slug n\'est pas bien définie'; }
         else
-        {$this->updatedAt = $this->clean_data($updatedAt);  }
+        {
+            $this->slug = $this->clean_data($slug);
+            $this->slug = strtolower($this->slug);
+            $this->slug = str_replace(" ","-", $this->slug);  
+        }
         return $this;
     }
 }
