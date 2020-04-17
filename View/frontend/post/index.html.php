@@ -14,28 +14,36 @@
 <section class="ftco-section">
       <div class="container">
       <div class="row">
+
+                <h1>LISTE DES ARTICLES</h1>
                 <!--********** foreach ***********-->  
                 
-                <?php if(empty($projects)):?>
+                <?php if(empty($items)):?>
                     <p>No project</p>
                 <?php else:?>
-                    <?php if($projects === false):?>
+                    <?php if($items === false):?>
                         <p>An error has occured</p>
                     <?php else:?>
-                        <?php foreach ($projects as $project):?>
-                            <!--********** foreach ***********-->  
-                            <div class="col-md-6">
-                                <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/Portfolio/public/front/images/project-4.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center p-4">
-                                        <h3><?= $project->getTitle();?></h3>
-                                        <span><?= $project->getContent();?></span>
-
-                                        <p><a href="<?= $project->getLink();?>" class="btn btn-primary">Voir le site</a></p>
+                        <?php foreach ($items as $post):?>
+                            <!--********** foreach ***********--> 
+                            <div class="col-md-4 mt-3 ftco-animate">
+                                <div class="blog-entry justify-content-end">
+                                    <a href="index.php?ent=post&tsk=show&id=<?=$post->getId()?>" class="block-20" style="background-image: url('/Portfolio/public/front/images/image_1.jpg');">
+                                    </a>
+                                    <div class="text mt-3 float-right d-block">
+                                        <div class="d-flex align-items-center mb-3 meta">
+                                            <p class="mb-0">
+                                                <span class="mr-2"><?= $post->getCreatedAt();?></span>
+                                                <a href="#" class="mr-2">Bourgine Bérenger</a>
+                                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                            </p>
+                                        </div>
+                                        <h3 class="heading"><a href="single.html"><?= $post->getTitle();?></a></h3>
+                                        <p><?= $post->getChapo();?></p>
                                     </div>
                                 </div>
                             </div>
-                            <!--********** foreach ***********-->  
+                            <!--********** for each ***********--> 
                         <?php endforeach; ?>
                     <?php endif;?>
                 <?php endif;?>

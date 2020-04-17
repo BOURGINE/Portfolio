@@ -86,8 +86,8 @@ class projectController extends Controller
 
             // Liste de l'entité demandée. 
             $this->index($message);
-            }
         }
+    }
 
     /**
      * Fonction de suppression

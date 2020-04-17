@@ -4,28 +4,31 @@
 
          <!-- Partie 1 --> <!-- .col-md-4 -->
           <div class="col-lg-8 ftco-animate fadeInUp ftco-animated">
+            
+            <!-- Chapo -->
+            <div><?=$post->getChapo();?></div>
+            <!-- ./Chapo -->
+
             <!-- TITRE -->
-            <h2 class="mb-3">It is a long established fact a reader be distracted</h2>
+            <h2 class="mb-3"> <?=$post->getTitle();?> </h2>
             <!-- Fin/.TITRE -->
             
             <!-- IMAGE -->
             <img src="/Portfolio/public/front/images/image_3.jpg" alt="" class="img-fluid">
             
+            <!-- CONTENT -->
             <div>
-                <p>Content</p>
+              <?=$post->getContent();?> 
             </div>
-           
+            <!-- ./CONTENTE -->
             
-            
+            <!-- AUTEUR -->
             <div class="about-author d-flex p-4 bg-dark">
-              <div class="bio mr-5">
-                <img src="/Portfolio/public/front/images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
               <div class="desc">
                 <h3>Auteur: Bourgine FAGADE</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
               </div>
             </div>
+            <!-- AUTEUR -->
 
 
             <div class="pt-5 mt-5">
@@ -73,7 +76,6 @@
                 </form>
               </div>
             </div>
-
           </div> 
           <!-- fin Partie 1 --> <!-- .col-md-4 -->
 
@@ -81,9 +83,11 @@
           <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated">
            
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-            	<h3 class="heading-sidebar">Liste des articles</h3>
+            	<h3 class="heading-sidebar">LISTE DES ARTICLES (<?= count($posts);?>)</h3>
               <ul class="categories">
-                <li><a href="#">Interior Designe </a></li>
+                <?php foreach ($posts as $post):?>
+                    <li><a href="index.php?ent=post&tsk=show&id=<?=$post->getId();?>"> <?=$post->getTitle();?> </a></li>
+                <?php endforeach; ?>
               </ul>
             </div>
 

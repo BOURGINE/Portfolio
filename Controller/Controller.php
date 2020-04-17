@@ -9,10 +9,12 @@ use Portfolio\Model\Entity\User;
 use Portfolio\Model\Entity\Skill;
 use Portfolio\Model\Entity\Project;
 use Portfolio\Model\Entity\Background;
+use Portfolio\Model\Entity\Post;
 use Portfolio\Model\Manager\UserManager;
 use Portfolio\Model\Manager\SkillManager;
 use Portfolio\Model\Manager\ProjectManager;
 use Portfolio\Model\Manager\BackgroundManager;
+use Portfolio\Model\Manager\PostManager;
 
 class Controller
 {
@@ -20,8 +22,10 @@ class Controller
     protected $backgroundManager;
     protected $ProjectManager;
     protected $userManager;
+    protected $postManager;
     protected $view;
     protected $background;
+    protected $post;
 
    /**
     * function construct
@@ -32,11 +36,13 @@ class Controller
         $this->skill = new Skill();
         $this->project = new Project();
         $this->user = new User();
+        $this->post = new Post();
 
         $this->skillManager = new SkillManager();
         $this->backgroundManager = new BackgroundManager();
         $this->projectManager = new ProjectManager();
         $this->userManager = new UserManager();
+        $this->postManager = new PostManager();
         $this->view = new View();
     }
   
@@ -78,10 +84,7 @@ class Controller
      */
     public function index($message=false)
     {
-        var_dump("le premier");
-        die();
         $em = strtolower($this->entity)."Manager";
-      
         $items = $this->$em->findAll();
         // Render()
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
