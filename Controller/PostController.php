@@ -51,8 +51,8 @@ class PostController extends Controller
     public function show()
     {
         // Post
-        $id=htmlspecialchars($_GET['id']);
-        $post= $this->postManager->find($id);
+        $slug=htmlspecialchars($_GET['slug']);
+        $post= $this->postManager->findOneBySlug($slug);
         // index posts
         $posts= $this->postManager->findAll();
 

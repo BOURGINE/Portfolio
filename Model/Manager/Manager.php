@@ -36,6 +36,31 @@ abstract class Manager extends Database
         {return false;}
     }
 
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function findOneBySlug(string $slug)
+    {
+        $this->pdoStatement=$this->getPdo()->prepare("SELECT * FROM {$this->table} WHERE slug=:slug");
+        $this->pdoStatement->bindValue(':slug', $slug, PDO::PARAM_INT);
+        $execIsOk = $this->pdoStatement->execute();
+
+        if($execIsOk)
+        {
+            $item= $this->pdoStatement->fetchObject($this->objectPath.$this->entity);
+            if($item === false)
+            {return null;}
+            else
+            {return $item;}
+        }
+        else
+        {return false;}
+    }
+
   /**
    * Undocumented function
    * $order can be propriety or propriety and DESC

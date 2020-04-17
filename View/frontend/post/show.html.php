@@ -79,14 +79,14 @@
           </div> 
           <!-- fin Partie 1 --> <!-- .col-md-4 -->
 
-          <!-- Partie 2 --> <!-- .col-md-8 -->
+          <!-- Partie 2 LISTE DES ARTICLES --> <!-- .col-md-8 -->
           <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated">
            
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
             	<h3 class="heading-sidebar">LISTE DES ARTICLES (<?= count($posts);?>)</h3>
               <ul class="categories">
                 <?php foreach ($posts as $post):?>
-                    <li><a href="index.php?ent=post&tsk=show&id=<?=$post->getId();?>"> <?=$post->getTitle();?> </a></li>
+                    <li><a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug();?>"> <?=$post->getTitle();?> </a></li>
                 <?php endforeach; ?>
               </ul>
             </div>
