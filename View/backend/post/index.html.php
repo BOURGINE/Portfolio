@@ -35,13 +35,13 @@
 
                                 <?php foreach ($items as $post):?>
                                     <tr>
-                                        <td> <?= $post->getImg();?> </td>
-                                        <td><?= $post->getTitle();?> </td>
-                                        <td><?= $post->getSlug();?> </td>
-                                        <td><?= $post->getChapo();?> </td>
+                                        <td><?=$post->getImg();?></td>
+                                        <td><?=$post->getTitle();?></td>
+                                        <td><?=$post->getSlug();?></td>
+                                        <td><?=$post->getChapo();?></td>
                                         <!-- Actions -->
                                         <td>
-                                            <a class="btn btn-success btn-xs" href="index.php?ent=post&tsk=show&id=<?=$post->getId();?>">
+                                            <a class="btn btn-success btn-xs" href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug();?>">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a class="btn btn-warning btn-xs" href="index.php?ent=post&tsk=edit&id=<?=$post->getId();?>">

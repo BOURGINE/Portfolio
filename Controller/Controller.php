@@ -56,9 +56,10 @@ class Controller
         $backgrounds = $this->backgroundManager->findAll();
         $skills = $this->skillManager->findAll();
         $projects = $this->projectManager->findAll();
+        $posts = $this->postManager->findAll();
 
         // Render()
-        $this->view->render('frontend/home', compact('skills','backgrounds','projects'));
+        $this->view->render('frontend/home', compact('skills','backgrounds','projects','posts'));
     }
     
     /**
@@ -72,9 +73,10 @@ class Controller
         $backgrounds = $this->backgroundManager->findAll();
         $projects = $this->projectManager->findAll();
         $users = $this->userManager->findAll();
+        $post = $this->postManager->findAll();
 
          // Render()
-         $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects','users', 'message'));
+         $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
     }
 
     /**
