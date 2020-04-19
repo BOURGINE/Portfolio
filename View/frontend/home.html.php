@@ -91,7 +91,7 @@
 <!--********** PARCOURS ***********-->  
 <section class="ftco-section ftco-no-pb" id="resume-section">
   <div class="container">
-    <div class="row justify-content-center pb-5">
+    <div class="row justify-content-center pb-4">
       <div class="col-md-10 heading-section text-center ftco-animate">
         <h1 class="big big-2">Parcours</h1>
         <h2 class="mb-4">Parcours</h2>
@@ -110,11 +110,13 @@
                         <?php foreach ($backgrounds as $background):?>
                         <div class="col-md-6"> 
                             <div class="resume-wrap ftco-animate">
-                                <span class="date"><?= $background->getYear();?></span>
+                                <div class="d-flex">
+                                  <span class="date"><?= $background->getYear();?></span>
+                                  <span class="h6 ml-2 mt-3"><?= $background->getCategory();?></span>
+                                </div>
                                 <h3><?= $background->getTitle();?></h3>
-                                <p class="h6"><?= $background->getCategory();?></p>
-                                <span class="position"><?= $background->getLocation();?></span>
-                                <p class="mt-4"><?= $background->getDescription();?></p>
+                                <span><?= $background->getLocation();?></span>
+                                <p class="mt-3"><?= $background->getDescription();?></p>
                             </div>
                         </div>
                         <?php endforeach; ?>
@@ -123,18 +125,19 @@
             <!--********** foreach ***********-->  
     </div>
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-3">
       <div class="col-md-6 text-center ftco-animate">
-        <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+        <p><a href="#" class="btn btn-primary py-2 px-3">Download CV</a></p>
       </div>
     </div>
+
   </div>
 </section>
 
 <!--********** TECHNO ET COMPETENCES (Skills) ***********-->  
 <section class="ftco-section" id="services-section">
     	<div class="container">
-    		<div class="row justify-content-center py-5 mt-5">
+    		<div class="row justify-content-center py-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Skills et Techno</h1>
             <h2 class="mb-4">Skills et Techno</h2>

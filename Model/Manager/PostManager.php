@@ -43,7 +43,7 @@ class PostManager extends Manager
     {
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, chapo=:chapo, content=:content, updated_at=date(now()), slug=:slug WHERE id=:id");
 
-        $this->pdoStatement->bindValue(':id', $post->getId(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':id', $post->getId(), PDO::PARAM_INT);
         $this->pdoStatement->bindValue(':img', $post->getImg(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':chapo', $post->getChapo(), PDO::PARAM_STR);

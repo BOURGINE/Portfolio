@@ -12,41 +12,41 @@
 </section>
 <!--header-->
 <section class="ftco-section">
-      <div class="container">
-      <div class="row">
+    <div class="container">
+        <div class="row">
 
-                <h1>LISTE DES ARTICLES</h1>
-                <!--********** foreach ***********-->  
-                
-                <?php if(empty($items)):?>
-                    <p>No project</p>
+            <h1>LISTE DES ARTICLES</h1>
+            <!--********** foreach ***********-->  
+            
+            <?php if(empty($items)):?>
+                <p>No project</p>
+            <?php else:?>
+                <?php if($items === false):?>
+                    <p>An error has occured</p>
                 <?php else:?>
-                    <?php if($items === false):?>
-                        <p>An error has occured</p>
-                    <?php else:?>
-                        <?php foreach ($items as $post):?>
-                            <!--********** foreach ***********--> 
-                            <div class="col-md-4 mt-3 ftco-animate">
-                                <div class="blog-entry justify-content-end">
-                                    <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('/Portfolio/public/front/images/image_1.jpg');">
-                                    </a>
-                                    <div class="text mt-3 float-right d-block">
-                                        <div class="d-flex align-items-center mb-3 meta">
-                                            <p class="mb-0">
-                                                <span class="mr-2"><?=$post->getCreatedAt();?></span>
-                                                <a href="#" class="mr-2">Bourgine Bérenger</a>
-                                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                                            </p>
-                                        </div>
-                                        <h3 class="heading"><a href="single.html"><?=$post->getTitle();?></a></h3>
-                                        <p><?= $post->getChapo();?></p>
+                    <?php foreach ($items as $post):?>
+                        <!--********** foreach ***********--> 
+                        <div class="col-md-4 mt-3 ftco-animate">
+                            <div class="blog-entry justify-content-end">
+                                <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('/Portfolio/public/front/images/image_1.jpg');">
+                                </a>
+                                <div class="text mt-3 float-right d-block">
+                                    <div class="d-flex align-items-center mb-3 meta">
+                                        <p class="mb-0">
+                                            <span class="mr-2"><?=$post->getCreatedAt();?></span>
+                                            <a href="#" class="mr-2">Bourgine Bérenger</a>
+                                            <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                        </p>
                                     </div>
+                                    <h3 class="heading"><a href="single.html"><?=$post->getTitle();?></a></h3>
+                                    <p><?= $post->getChapo();?></p>
                                 </div>
                             </div>
-                            <!--********** for each ***********--> 
-                        <?php endforeach; ?>
-                    <?php endif;?>
+                        </div>
+                        <!--********** for each ***********--> 
+                    <?php endforeach; ?>
                 <?php endif;?>
-    		</div>
-      </div>
-    </section> <!-- .section -->
+            <?php endif;?>
+    	</div>
+    </div>
+</section> <!-- .section -->

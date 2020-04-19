@@ -10,11 +10,13 @@ use Portfolio\Model\Entity\Skill;
 use Portfolio\Model\Entity\Project;
 use Portfolio\Model\Entity\Background;
 use Portfolio\Model\Entity\Post;
+use Portfolio\Model\Entity\Comment;
 use Portfolio\Model\Manager\UserManager;
 use Portfolio\Model\Manager\SkillManager;
 use Portfolio\Model\Manager\ProjectManager;
 use Portfolio\Model\Manager\BackgroundManager;
 use Portfolio\Model\Manager\PostManager;
+use Portfolio\Model\Manager\CommentManager;
 
 class Controller
 {
@@ -23,9 +25,11 @@ class Controller
     protected $ProjectManager;
     protected $userManager;
     protected $postManager;
+    protected $commentManager;
     protected $view;
     protected $background;
     protected $post;
+    protected $comment;
 
    /**
     * function construct
@@ -37,13 +41,15 @@ class Controller
         $this->project = new Project();
         $this->user = new User();
         $this->post = new Post();
+        $this->comment = new Comment();
+        $this->view = new View();
 
         $this->skillManager = new SkillManager();
         $this->backgroundManager = new BackgroundManager();
         $this->projectManager = new ProjectManager();
         $this->userManager = new UserManager();
         $this->postManager = new PostManager();
-        $this->view = new View();
+        $this->commentManager = new CommentManager();
     }
   
     /**
@@ -73,7 +79,7 @@ class Controller
         $backgrounds = $this->backgroundManager->findAll();
         $projects = $this->projectManager->findAll();
         $users = $this->userManager->findAll();
-        $post = $this->postManager->findAll();
+        $posts = $this->postManager->findAll();
 
          // Render()
          $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
@@ -81,13 +87,14 @@ class Controller
 
     /**
      * Fonction d'affichage de la liste
+     * Fonction index centraliser - peut etre surcharger dans un controller
      * @Route("/", name="")
      * @return void
      */
     public function index($message=false)
     {
         $em = strtolower($this->entity)."Manager";
-        $items = $this->$em->findAll();
+        $items = $this->$em->findAll("id DESC");
         // Render()
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
     }

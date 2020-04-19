@@ -1,92 +1,71 @@
 <?php
-//il ne restera que login, signin, create et update
 namespace Portfolio\Controller;
 
 use Portfolio\View\View;
-use Portfolio\Model\Entity\User;
+use Portfolio\Model\Entity\Comment;
 use Portfolio\Controller\Controller;
-use Portfolio\Model\Manager\UserManager;
+use Portfolio\Controller\PostController;
+use Portfolio\Model\Manager\CommentManager;
 
-class UserController extends Controller
+class CommentController extends Controller
 {
-    protected $entity= "User";
-    /**
-     * Retourne le formulaire de connexion
-     *@Route("/user/login", name="index.php?ent=user&tsk=login")
-     * @return void
-     */
-    public function login():void
-    {
-        $this->view->render("frontend/forms/login");
-    }
-
-    /**
-      * Signin | Connecte l'utilisateur
-     * @Route("/user/sign-in", name="index.php?ent=user&tsk=signin")
-     * @return void
-     */ 
-    public function signin()
-    {
-        // Verififier le type de données.
-        if(!empty($_POST))
-        {
-            $pseudo= ($_POST['pseudo']);
-            $password=($_POST['password']);
-
-            $response= $this->userManager->singin($pseudo,$password);
-            if($response){
-                $this->dashboard();
-            }
-            else{  
-                //Retoune au formulaire de contact avec un message flash 
-                $this->login();
-                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
-            }
-        }
-        else
-        {$this->login();}
-    }
+    protected $entity= "Comment";
 
     /*
-     * Make new user
-     * @Route("/user/new", name="index.php?ent=user&tsk=new")
+     * Make new Comment
+     * @Route("/comment/new", name="index.php?ent=comment&tsk=new")
      */
     public function new()
     {
-        if(!isset($_POST) || empty($_POST))
-        {
-            $this->view->render('backend/'.strtolower($this->entity).'/new');
+        $this->comment->setContent($_POST['content']);
+        $this->comment->setAuthor("Auteur");
+        $this->comment->setPostId($_POST['post_id']);
+        $this->comment->setStatut("EN ATTENTE");
+        
+        $saveIsOk = $this->commentManager->insert($this->comment);
+        if($saveIsOk){
+            $message = 'Félicitation. Votre commentaire bien été ajouté';
+        } else{
+            $message = 'Désolé. Une erreur est survenue. Action non effectuée';
         }
-        else
-        {   
-            // Verifier en Js que pass est égal a confirmPass
-            $this->user->setPassword($_POST['password']);
-            $pass_secure=$this->user->getPassword();
-            $pass_hache = password_hash($pass_secure, PASSWORD_DEFAULT);
-           
-            $this->user->setPseudo($_POST['pseudo']);
-            $this->user->setPassword($pass_hache);
-
-            $saveIsOk = $this->userManager->insert($this->user);
-            if($saveIsOk){ $message = "Votre Compte à bien été créé";
-            } else{ $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;'; }
-            // Liste de l'entité demandée. 
-            $this->index($message);
-        }
+    
+        $id_post=$this->comment->getPostId();
+        $post= $this->postManager->find($id_post);
+     
+        $slug= $post->getSlug();
+        $this->view->redirectTo("index.php?ent=post&tsk=show&slug=".$slug);  
     }
 
     /**
-    * Undocumented function
     * @param [type] $id
     * @return void
     */
-    public function show($id)
+    public function validate()
     {
-        $this->user= $this->userManager->find($id);
-        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
-            'user'=>$this->user
-        ]);
+        $id=htmlspecialchars($_GET['id']);
+        if(is_numeric($id)){
+            $this->comment->setStatut("ACCEPTE");
+            $this->commentManager->update($id, $this->comment);
+        }
+        //Retour vu.
+        $this->index();
     }
+
+    /**
+    * @param [type] $id
+    * @return void
+    */
+    public function refuse()
+    {
+        $id=htmlspecialchars($_GET['id']);
+        if(is_numeric($id)){
+            $this->comment->setStatut("REFUSE");
+            $this->commentManager->update($id, $this->comment);
+        }
+        //Retour vu.
+        $this->index();
+    }
+
 
     /**
      * Fonction de suppression
@@ -96,12 +75,12 @@ class UserController extends Controller
     public function delete()
     {
         $id=htmlspecialchars($_POST['id']);
-        $deleteIsOk = $this->userManager->delete($id);
+        $deleteIsOk = $this->commentManager->delete($id);
         if($deleteIsOk){
-            $message = 'Félicitation. Le compte bien été supprimée';
+            $message = 'Félicitation, votre commentaire a bien été supprimé';
         }else
         {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer ce compte';
+            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer le commentaire';
         }
         // Liste de l'entité demandée. 
         $this->index($message);
