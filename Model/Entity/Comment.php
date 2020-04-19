@@ -10,7 +10,7 @@ class Comment extends SecureData
     private $post_id;
     private $content;
     private $author;
-    private $createdAt;
+    private $created_at;
     private $statut;
 
     /**
@@ -24,10 +24,10 @@ class Comment extends SecureData
     /**
      * Get the value of post_id
      */ 
-    public function getPost_id()
+    public function getPostId()
     {
-        if(!isset($post_id) && !is_int($this->post_id))
-        {echo 'Une problème de récupération du  get post_id';}
+        if(!isset($post_id) && !is_numeric($this->post_id))
+        {echo 'Un problème de récupération du  getPostId';}
         return (int) $this->clean_data($this->post_id);
     }
 
@@ -36,9 +36,9 @@ class Comment extends SecureData
      *
      * @return  self
      */ 
-    public function setPost_id($post_id)
+    public function setPostId($post_id)
     {
-        if(!isset($post_id) && !is_int($post_id))
+        if(!isset($post_id) && !is_numeric($post_id))
         { echo'Il y a un problème au niveau du set post_id'; }
         else
         {$this->post_id = $this->clean_data($post_id);  }
@@ -51,7 +51,7 @@ class Comment extends SecureData
     public function getContent()
     {
         if(!isset($content) && !is_string($this->content))
-        {echo 'Une problème de récupération du content';}
+        {echo 'Un problème de récupération du content';}
         return (string) $this->clean_data($this->content);
     }
 
@@ -74,7 +74,7 @@ class Comment extends SecureData
     public function getAuthor()
     {
         if(!isset($author) && !is_string($this->author))
-        {echo 'Une problème de récupération du author';}
+        {echo 'Un problème de récupération du author..';}
         return (string) $this->clean_data($this->author);
     }
 
@@ -93,21 +93,20 @@ class Comment extends SecureData
     }
 
     /**
-     * Get the value of createdAt
+     * Get the value of created_at
      */ 
-    public function getCreatedAt()
+    public function getCreated_at()
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
-     * Set the value of createdAt
-     *
+     * Set the value of created_at
      * @return  self
      */ 
-    public function setCreatedAt($createdAt)
+    public function setCreated_at($created_at)
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
         return $this;
     }
 
@@ -117,7 +116,7 @@ class Comment extends SecureData
     public function getStatut()
     {
         if(!isset($statut) && !is_string($this->statut))
-        {echo 'Une problème de récupération du statut';}
+        {echo 'Un problème de récupération du statut';}
         return (string) $this->clean_data($this->statut);
     }
 

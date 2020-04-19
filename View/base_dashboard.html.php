@@ -40,8 +40,6 @@
           </header>
         <!-- ******* Affichage du content de page ******** --> 
 
-
-            <!--header end-->
         <!-- ************ MAIN SIDEBAR MENU *********** -->
         <!--sidebar start-->
           <aside>
@@ -108,7 +106,6 @@
                     </a>
                   <ul class="sub">
                     <li><a href="index.php?ent=comment">Lister</a></li>
-                    <li><a href="index.php?ent=comment&tsk=new">Administrer</a></li>
                   </ul>
                 </li>
 

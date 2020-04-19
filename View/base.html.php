@@ -42,7 +42,7 @@
 	          <li class="nav-item"><a href="index.php#projects-section" class="nav-link"><span>Projets</span></a></li>
 	          <li class="nav-item"><a href="index.php#blog-section" class="nav-link"><span>Blog</span></a></li>
 	          <li class="nav-item"><a href="index.php#contact-section" class="nav-link"><span>Contact</span></a></li>
-              <li class="nav-item"><a href="index.php?ent=user&tsk=login" class="nav-link"><span> Connexion</span></a></li>
+            <li class="nav-item"><a href="index.php?ent=user&tsk=login" class="nav-link"><span>Connexion</span></a></li>
 	        </ul>
 	      </div>
 	    </div>

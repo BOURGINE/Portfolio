@@ -44,19 +44,21 @@ class PostController extends Controller
 
     /**
     * A modifier. A Adpater 
-    *
     * @param [type] $id
     * @return void
     */
-    public function show()
+    public function show($message= false)
     {
         // Post
         $slug=htmlspecialchars($_GET['slug']);
         $post= $this->postManager->findOneBySlug($slug);
-        // index posts
+        // Comments et id of post
+        $id=$post->getId();
+        $comments= $this->commentManager->findAllBy("post_id",$id);
+        // index posts for list of articles
         $posts= $this->postManager->findAll();
-
-        $this->view->render('frontend/'.strtolower($this->entity).'/show', compact('post', 'posts'));
+        // Render
+        $this->view->render('frontend/'.strtolower($this->entity).'/show', compact('post', 'posts','comments'));
     }
 
      /**
@@ -75,7 +77,7 @@ class PostController extends Controller
     }
 
 
-     /**
+    /**
      * Fonction de modification
      * @return void
      */

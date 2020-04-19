@@ -46,7 +46,7 @@ abstract class Manager extends Database
     public function findOneBySlug(string $slug)
     {
         $this->pdoStatement=$this->getPdo()->prepare("SELECT * FROM {$this->table} WHERE slug=:slug");
-        $this->pdoStatement->bindValue(':slug', $slug, PDO::PARAM_INT);
+        $this->pdoStatement->bindValue(':slug', $slug, PDO::PARAM_STR);
         $execIsOk = $this->pdoStatement->execute();
 
         if($execIsOk)

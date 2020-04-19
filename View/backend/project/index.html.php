@@ -12,7 +12,7 @@
         <!--Titre-->
         <div class="row mt">
             <div class="col-md-12">
-            <?php $skills="toto"?>
+            
                 <?php if(empty($items)):?>
                         <p> il n'y a aucun parcours dans la base de données</p>
                 <?php else:?>

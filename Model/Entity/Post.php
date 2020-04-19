@@ -118,7 +118,6 @@ class Post extends SecureData
      */ 
     public function getCreatedAt()
     {
-    
         return (string) $this->clean_data($this->createdAt);
     }
 
