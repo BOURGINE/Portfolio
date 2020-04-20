@@ -10,21 +10,22 @@ class App
         $controllerName = "Controller";
         $tsk = "home";
 
-        // Sinon si une entité est définit
-        if(!empty($_GET['ent']) && !empty($_GET['tsk']))
+
+        if(!empty($_GET['ent']))
         {
             $controllerName = ucfirst($_GET['ent'])."Controller";
+        }
+        if(!empty($_GET['tsk']))
+        {
             $tsk = $_GET['tsk'];
-            
         }
 
         if(!empty($_GET['ent']) && empty($_GET['tsk']))
         {
             $controllerName = ucfirst($_GET['ent'])."Controller";
-            $tsk = "index";
-            
+            $tsk = "index";   
         }
-
+ 
         // Empecher l'appel des function update et delete via l'url
         // Si une fonction utilise les variables globales, vérifier qu'elles ne sont pas vides.
         $controllerName = "Portfolio\Controller\\".$controllerName;

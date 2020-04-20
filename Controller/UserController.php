@@ -10,56 +10,21 @@ use Portfolio\Model\Manager\UserManager;
 class UserController extends Controller
 {
     protected $entity= "User";
-    /**
-     * Retourne le formulaire de connexion
-     *@Route("/user/login", name="index.php?ent=user&tsk=login")
-     * @return void
-     */
-    public function login():void
-    {
-        $this->view->render("frontend/forms/login");
-    }
-
-    /**
-      * Signin | Connecte l'utilisateur
-     * @Route("/user/sign-in", name="index.php?ent=user&tsk=signin")
-     * @return void
-     */ 
-    public function signin()
-    {
-        // Verififier le type de données.
-        if(!empty($_POST))
-        {
-            $pseudo= ($_POST['pseudo']);
-            $password=($_POST['password']);
-
-            $response= $this->userManager->singin($pseudo,$password);
-            if($response){
-                $this->dashboard();
-            }
-            else{  
-                //Retoune au formulaire de contact avec un message flash 
-                $this->login();
-                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
-            }
-        }
-        else
-        {$this->login();}
-    }
 
     /*
      * Make new user
-     * @Route("/user/new", name="index.php?ent=user&tsk=new")
+     * @Route("/user/register", name="index.php?ent=user&tsk=register")
      */
-    public function new()
+    public function register(?String $message="", ?String $type="" )
     {
         if(!isset($_POST) || empty($_POST))
         {
-            $this->view->render('backend/'.strtolower($this->entity).'/new');
+            $this->view->render("frontend/forms/register", compact("message","type"));
         }
         else
         {   
             // Verifier en Js que pass est égal a confirmPass
+            // Verifier que le pseudo n'existe pas déjà dans la bdd. (unicité)
             $this->user->setPassword($_POST['password']);
             $pass_secure=$this->user->getPassword();
             $pass_hache = password_hash($pass_secure, PASSWORD_DEFAULT);
@@ -68,10 +33,18 @@ class UserController extends Controller
             $this->user->setPassword($pass_hache);
 
             $saveIsOk = $this->userManager->insert($this->user);
-            if($saveIsOk){ $message = "Votre Compte à bien été créé";
-            } else{ $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue;'; }
-            // Liste de l'entité demandée. 
-            $this->index($message);
+            if($saveIsOk)
+            { 
+                $message = "Votre Compte à bien été créé avec succèss";
+                $type= "success";
+                $this->login($message, $type);
+            } 
+            else{ 
+                $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue.';
+                $type= "danger";
+                $this->register($message, $type);
+            }
+            
         }
     }
 
