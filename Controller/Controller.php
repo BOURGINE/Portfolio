@@ -85,6 +85,45 @@ class Controller
          $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
     }
 
+
+    /**
+     * Retourne le formulaire de connexion
+     *@Route("/login", name="index.php?tsk=login")
+     * @return void
+     */
+    public function login(?String $message="", ?String $type="" ):void
+    {
+        $this->view->render("frontend/forms/login", compact('message','type'));
+    }
+
+
+    /**
+      * Signin | Connecte l'utilisateur
+     * @Route("/sign-in", name="index.php?tsk=signin")
+     * @return void
+     */ 
+    public function signin()
+    {
+        // Verififier le type de données.
+        if(!empty($_POST))
+        {
+            $pseudo= ($_POST['pseudo']);
+            $password=($_POST['password']);
+
+            $response= $this->userManager->singin($pseudo,$password);
+            if($response){
+                $this->dashboard();
+            }
+            else{  
+                //Retoune au formulaire de contact avec un message flash 
+                $this->login();
+                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
+            }
+        }
+        else
+        {$this->login();}
+    }
+
     /**
      * Fonction d'affichage de la liste
      * Fonction index centraliser - peut etre surcharger dans un controller
