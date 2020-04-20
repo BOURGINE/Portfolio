@@ -9,14 +9,17 @@ class User extends SecureData
     private $id;
     private $pseudo;
     private $password;
-    private $confirmPassword; // A supprimer
+    private $role_user; // A supprimer
 
     /**
      * @return mixed
      */
     public function getId()
     {
-        return $this->id;
+        if(!is_numeric($this->id)){
+            echo 'Problème de validation de la fonction getId';
+        }
+        return $this->clean_data($this->id);
     }
 
     /**
@@ -24,11 +27,10 @@ class User extends SecureData
      */
     public function getPseudo()
     {
-        //doi
         if(!is_string($this->pseudo)){
-            echo'la fonction getPseudo a du mal a récupérer votre pseudo';
+            echo 'Problème de validation de la fonction getPseudo';
         }
-        return (string) htmlspecialchars($this->pseudo);
+        return (string) $this->clean_data($this->pseudo);
     }
 
     /**
@@ -51,7 +53,10 @@ class User extends SecureData
      */
     public function getPassword()
     {
-        return $this->password;
+        if(!isset($password) && !is_string($this->password)){
+            echo 'Problème de validation de la fonction getPassword';
+        }
+        return (string)$this->clean_data($this->password);
     }
 
     /**
@@ -62,24 +67,35 @@ class User extends SecureData
      */
     public function setPassword($password)
     {
-        $this->password = $this->clean_data($password);
+        if(!isset($password) && !is_string($password))
+        { echo'Il y a un problème au niveau de setPassword'; }
+        else
+        {$this->password = $this->clean_data($password);  }
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getConfirmPassword()
+     * Get the value of role_user
+     */ 
+    public function getRole_user()
     {
-        return $this->confirmPassword;
+        if(!isset($role_user) && !is_string($this->role_user)){
+            echo 'Problème de validation de la fonction getRole_user';
+        }
+        return (string) $this->clean_data($this->role_user);
     }
 
     /**
-     * @param mixed $confirmPass
-     */
-    public function setConfirmPassword($confirmPassword)
+     * Set the value of role_user
+     *
+     * @return  self
+     */ 
+    public function setRole_user($role_user)
     {
-        $this->confirmPass = $this->clean_data($confirmPassword);
+        if(!isset($role_user) && !is_string($role_user))
+        { echo'Il y a un problème au niveau de setRole_user'; }
+        else
+        {$this->role_user = $this->clean_data($role_user);  }
+        return $this;
     }
-
-
 }

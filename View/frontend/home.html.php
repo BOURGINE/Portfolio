@@ -1,11 +1,4 @@
 <?php $title = 'Bourgine B. FAGADE'; ?>
-
-<!--*****HEADER
-// Affichage des infos de connexion, si connexion encours
-               // if (isset($_SESSION['pseudo']) AND !empty($_SESSION['pseudo']))
-               // {$info1 = '<li><a href="index.php?ent=user&tsk=authentification">BACKOFFICE</a></li>';}
-********-->
-
 <!--********** HERO ***********-->   
 <section id="home-section" class="hero">
 		  <div class="home-slider  owl-carousel">
@@ -69,9 +62,7 @@
             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
             <ul class="about-info mt-4 px-md-0 px-2">
               <li class="d-flex"><span>Identité:</span> <span>Bourgine Fagade</span></li>
-              <li class="d-flex"><span>Date of birth:</span> <span>January 01, 1987</span></li>
-              <li class="d-flex"><span>Address:</span> <span>32 Rue Cauchoix, 95170</span></li>
-              <li class="d-flex"><span>Zip code:</span> <span>1000</span></li>
+              <li class="d-flex"><span>Région:</span> <span>Ile-de-France</span></li>
               <li class="d-flex"><span>Email:</span> <span>clarkthomp@gmail.com</span></li>
             </ul>
           </div>
@@ -275,45 +266,6 @@
       </div>
     </div>
 
-    <div class="row d-flex contact-info mb-5">
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-map-signs"></span>
-          </div>
-          <h3 class="mb-4">Address</h3>
-          <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-phone2"></span>
-          </div>
-          <h3 class="mb-4">Contact Number</h3>
-          <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-paper-plane"></span>
-          </div>
-          <h3 class="mb-4">Email Address</h3>
-          <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-globe"></span>
-          </div>
-          <h3 class="mb-4">Website</h3>
-          <p><a href="#">yoursite.com</a></p>
-        </div>
-      </div>
-    </div>
-
     <div class="row no-gutters block-9">
       <div class="col-md-6 order-md-last d-flex">
         <form action="#" class="bg-light p-4 p-md-5 contact-form">
@@ -337,19 +289,8 @@
       </div>
 
       <div class="col-md-6 d-flex">
-        <div class="img" style="background-image: url(/images/about.jpg);"></div>
+        <div class="img" style="background-image: url(Portfolio/public/images/about.jpg);"></div>
       </div>
     </div>
   </div>
-</section>
-
-<!--********PROJECT*************-->
-<section class="carousel pt-25" id="portefolio">
-
-    <h2 style="display:none">Réalisation de Bourgine Bérenger developpeur intégrateur web</h2>
-    <header class="pt-25"><h2>PORTFOLIO</h2></header>
-
-    <div class="reel">
-
-    </div>
 </section>

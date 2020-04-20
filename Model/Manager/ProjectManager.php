@@ -39,8 +39,6 @@ class ProjectManager extends Manager
     */
     public function update(Project $project):bool
     {
-        var_dump($project);
-        die();
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, content=:content, Link=:link WHERE id=:id");
 
         $this->pdoStatement->bindValue(':id', $project->getId(), PDO::PARAM_STR);
