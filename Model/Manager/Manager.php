@@ -85,7 +85,7 @@ abstract class Manager extends Database
     }
 
     /**
-     * Fonction non active. 
+     *  
      * réflechir a comment factorier cette fonction en fonction de l'url envoyé par la fonction app.php
      * @param string|null $order
      * @param string|null $by

@@ -20,7 +20,7 @@
                 
                     <div class="registration text-center">
                         <p> Vous n'avez pas encore de compte ?</p> 
-                        <p><a href="#">Inscription</a></p> 
+                        <p><a href="index.php?ent=user&tsk=register">Inscription</a></p> 
                     </div>
                 </div>
 

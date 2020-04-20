@@ -32,10 +32,8 @@ class UserManager extends Manager
 
         if($resultat && $isPasswordCorrect)
         {
-            session_destroy();
-            session_start();
-            $_SESSION['id'] = $resultat['id'];
             $_SESSION['pseudo'] = $resultat['pseudo'];
+            $_SESSION['role_user'] = $resultat['role_user'];
             return true;
         }
     }
@@ -45,9 +43,10 @@ class UserManager extends Manager
      */
     public function insert(User $user)
     {
-        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :pseudo, :pass)");
+        $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :pseudo, :pass, :role_user)");
         //liaison des paramettres : Liaison des name du formulaire aux champs de la table post
         $this->pdoStatement->bindValue(':pseudo', $user->getPseudo(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':role_user', $user->getRole_user(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':pass', $user->getPassword(), PDO::PARAM_STR);
         //Exécution de la req
         $executeIsOk = $this->pdoStatement->execute();

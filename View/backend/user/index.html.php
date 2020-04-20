@@ -1,11 +1,10 @@
-<?php $title = 'Mon parcours'; ?>
+<?php $title = 'Liste des utilisateurs'; ?>
 
 <section id="main-content">
     <section class="wrapper site-min-height">
         <!--Titre-->
         <h3><i class="fa fa-angle-right"></i>
         <?=$title?>
-        <a href="index.php?ent=user&tsk=new" class="btn btn-success"> Ajouter </a>
         </h3>
         <!--end/Titre-->
 
@@ -13,55 +12,41 @@
         <div class="row mt">
             <div class="col-md-12">
             <?php $skills="toto"?>
-                <?php if(empty($backgrounds)):?>
-                        <p> il n'y a aucun parcours dans la base de données</p>
+                <?php if(empty($items)):?>
+                        <p> il n'y a aucun utilisateur dans la base de données.</p>
                 <?php else:?>
-                    <?php if($backgrounds === false):?>
+                    <?php if($items === false):?>
                         <p> Une erreur vient de se produire</p>
                     <?php else:?>
-
                         <div class="content-panel">
-                       
-                        <table class="table table-striped table-advance table-hover">
-                            <thead>
-                            <tr>
-                                <th> Titre</th>
-                                <th> Période </th>
-                                <th> Description</th>
-                                <th> Lieu </th>
-                                <th colspan="2">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                            <table class="table table-striped table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Id</th>
+                                        <th> Pseudo </th>
+                                        <th> Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <?php foreach ($backgrounds as $background):?>
-                                <tr>
-                                    <td> <?= $background->getTitle();?> </td>
-                                    <td> <span class="label label-info label-mini"><?= $background->getYear();?> </span></td>
-                                    <td><?= $background->getDescription();?> </td>
-                                    <td><?= $background->getLocation();?> </td>
-                                    <!-- Actions -->
-                                    <td>
-                                        <!-- update -->
-                                        <a class="btn btn-success btn-xs" href="index.php?ent=background&tsk=edit&id=<?= $background->getId();?>">
-                                            <i class="fa fa-check"></i>
-                                        </a>
-                                        <a class="btn btn-warning btn-xs" href="index.php?ent=background&tsk=edit&id=<?= $background->getId();?>">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        
-                                    </td>
-                                    <td>
-                                    <!-- delete -->
-                                    <span class="d-inline">
-                                            <?php include(__DIR__.'/_delete_form.php'); ?>
-                                        </span>
-                                    </td>
-                                </tr>
-                            <?php endforeach;?>
+                                <?php foreach ($items as $user):?>
+                                    <tr>
+                                        <td> <?= $user->getId();?> </td>
+                                        <td> <span class="label label-info label-mini"><?= $user->getPseudo();?> </span></td>
+                                        <td><?= $user->getRole_user();?> </td>
+                                        <!-- Actions -->
+                                        <td>
+                                        <!-- delete -->
+                                            <span class="d-inline">
+                                                <?php include(__DIR__.'/_delete_form.php'); ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;?>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                         </div>
 
                     <?php endif;?>

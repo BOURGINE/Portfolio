@@ -1,3 +1,8 @@
+<?php
+require_once "Controller/Security.php";
+use Portfolio\Controller\Security;
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -9,15 +14,11 @@
 
     <link rel="stylesheet" href="public/front/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="public/front/css/animate.css">
-    
     <link rel="stylesheet" href="public/front/css/owl.carousel.min.css">
     <link rel="stylesheet" href="public/front/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="public/front/css/magnific-popup.css">
-
     <link rel="stylesheet" href="public/front/css/aos.css">
-
     <link rel="stylesheet" href="public/front/css/ionicons.min.css">
-    
     <link rel="stylesheet" href="public/front/css/flaticon.css">
     <link rel="stylesheet" href="public/front/css/icomoon.css">
     <link rel="stylesheet" href="public/front/css/style.css">
@@ -42,18 +43,24 @@
 	          <li class="nav-item"><a href="index.php#projects-section" class="nav-link"><span>Projets</span></a></li>
 	          <li class="nav-item"><a href="index.php#blog-section" class="nav-link"><span>Blog</span></a></li>
 	          <li class="nav-item"><a href="index.php#contact-section" class="nav-link"><span>Contact</span></a></li>
-            <li class="nav-item">
-              <div class="btn-group mt-2">
-                <a class="btn btn-primary" href="#"><i class="icon-user"></i> Compte</a>
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"></a>
-                <ul class="dropdown-menu">
-                  <li class="ml-3"><a href="index.php?tsk=login">Connexion</a></li>
-                  <li class="ml-3"><a href="index.php?ent=user&tsk=register">Inscription</a></li>
-                </ul>
-              </div>
-            </li>
-
-
+            <?php if((Security::is_logged())):?>
+                <?php if((Security::is_admin())):?>
+                  <li class="nav-item"><a href="index.php?tsk=dashboard" class="btn btn-primary mt-2"><span>Dashboard</span></a></li>
+                <?php else:?>
+                  <li class="nav-item"><a href="index.php?tsk=logout" class="btn btn-primary mt-2"><span>Déconnexion</span></a></li>
+                <?php endif?>
+            <?php else:?>
+              <li class="nav-item">
+                <div class="btn-group mt-2">
+                  <a class="btn btn-primary" href="#"><i class="icon-user"></i>Compte</a>
+                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"></a>
+                  <ul class="dropdown-menu" style="width:10px">
+                    <li class="ml-3"><a href="index.php?tsk=login">Connexion</a></li>
+                    <li class="ml-3"><a href="index.php?ent=user&tsk=register">Inscription</a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif?>
 	        </ul>
 	      </div>
 	    </div>
@@ -108,7 +115,6 @@
     
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
 
   <script src="public/front/js/jquery.min.js"></script>
   <script src="public/front/js/jquery-migrate-3.0.1.min.js"></script>

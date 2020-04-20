@@ -30,32 +30,62 @@
 
         <div class="row mt">
             <!--  /col-md-4 -->
-            <div class="col-md-4 col-sm-4 mb">
+            <div class="col-md-3 col-sm-3 mb">
                 <div class="darkblue-panel pn">
                     <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=background"> BACKGROUND </a></h2>
+                    <h2> <a href="index.php?ent=background"> Parcours </a></h2>
                     </div>
-                    <h1 class="mt"><i class="fa fa-user fa-3x"></i></h1>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
                 </div>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-4 col-sm-4 mb">
+            <div class="col-md-3 col-sm-3 mb">
                 <div class="darkblue-panel pn">
                     <div class="darkblue-header">
-                    <h2>BACKGROUND</h2>
+                    <h2> <a href="index.php?ent=skill"> Skill-Techno </a></h2>
                     </div>
-                    <h1 class="mt"><i class="fa fa-user fa-3x"></i></h1>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
                 </div>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-4 col-sm-4 mb">
+            <div class="col-md-3 col-sm-3 mb">
                 <div class="darkblue-panel pn">
                     <div class="darkblue-header">
-                    <h2>BACKGROUND</h2>
+                    <h2> <a href="index.php?ent=project"> Projets </a></h2>
                     </div>
-                    <h1 class="mt"><i class="fa fa-user fa-3x"></i></h1>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
+                </div>
+            </div>
+
+            <!--  /col-md-4 -->
+            <div class="col-md-3 col-sm-3 mb">
+                <div class="darkblue-panel pn">
+                    <div class="darkblue-header">
+                    <h2> <a href="index.php?ent=post"> Articles </a></h2>
+                    </div>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
+                </div>
+            </div>
+
+            <!--  /col-md-4 -->
+            <div class="col-md-3 col-sm-3 mb">
+                <div class="darkblue-panel pn">
+                    <div class="darkblue-header">
+                    <h2> <a href="index.php?ent=comment"> Commentaires </a></h2>
+                    </div>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
+                </div>
+            </div>
+
+            <!--  /col-md-4 -->
+            <div class="col-md-3 col-sm-3 mb">
+                <div class="darkblue-panel pn">
+                    <div class="darkblue-header">
+                    <h2> <a href="index.php?ent=user"> Utilisateurs </a></h2>
+                    </div>
+                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
                 </div>
             </div>
         </div>

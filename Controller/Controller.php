@@ -18,7 +18,7 @@ use Portfolio\Model\Manager\BackgroundManager;
 use Portfolio\Model\Manager\PostManager;
 use Portfolio\Model\Manager\CommentManager;
 
-class Controller
+class Controller extends Security
 {
     protected $skillManager;
     protected $backgroundManager;
@@ -62,7 +62,7 @@ class Controller
         $backgrounds = $this->backgroundManager->findAll();
         $skills = $this->skillManager->findAll();
         $projects = $this->projectManager->findAll();
-        $posts = $this->postManager->findAll();
+        $posts = $this->postManager->findAll("id DESC LIMIT 3");
 
         // Render()
         $this->view->render('frontend/home', compact('skills','backgrounds','projects','posts'));
@@ -75,25 +75,21 @@ class Controller
      */
     public function dashboard($message=false)
     {
-        $skills = $this->skillManager->findAll();
-        $backgrounds = $this->backgroundManager->findAll();
-        $projects = $this->projectManager->findAll();
-        $users = $this->userManager->findAll();
-        $posts = $this->postManager->findAll();
-
-         // Render()
-         $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
-    }
-
-
-    /**
-     * Retourne le formulaire de connexion
-     *@Route("/login", name="index.php?tsk=login")
-     * @return void
-     */
-    public function login(?String $message="", ?String $type="" ):void
-    {
-        $this->view->render("frontend/forms/login", compact('message','type'));
+        if(isset($_SESSION['role_user']) && $_SESSION['role_user']=="ROLE_ADMIN")
+        {
+            $skills = $this->skillManager->findAll();
+            $backgrounds = $this->backgroundManager->findAll();
+            $projects = $this->projectManager->findAll();
+            $users = $this->userManager->findAll();
+            $posts = $this->postManager->findAll();
+            $users = $this->userManager->findAll();
+    
+             // Render()
+             $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
+        }else{
+            $this->login();
+        }
+        
     }
 
 
@@ -105,23 +101,29 @@ class Controller
     public function signin()
     {
         // Verififier le type de données.
-        if(!empty($_POST))
+        if(!empty($_POST['pseudo']) && !empty($_POST['password']))
         {
-            $pseudo= ($_POST['pseudo']);
-            $password=($_POST['password']);
+            $pseudo= htmlspecialchars($_POST['pseudo']);
+            $password=htmlspecialchars($_POST['password']);
 
             $response= $this->userManager->singin($pseudo,$password);
-            if($response){
-                $this->dashboard();
-            }
-            else{  
-                //Retoune au formulaire de contact avec un message flash 
-                $this->login();
-                echo "<script> alert(\"Identifiant ou Mot de passe incorrect\")</script>";
+            if($response)
+            {
+                if(isset($_SESSION['role_user']) && $_SESSION['role_user']== "ROLE_ADMIN")
+                    $this->dashboard();
+                $this->view->redirectTo("index.php");  
+                }
+            else
+            {  
+                $message = "Identifiant ou mot de passe incorrect." ;             
+                $this->login($message,"danger");
             }
         }
         else
-        {$this->login();}
+        {   
+            $message = "Vous devez remplir votre identifiant et votre mot de passe." ;   
+            $this->login($message,"danger");
+        }
     }
 
     /**

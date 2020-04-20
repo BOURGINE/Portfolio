@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function register(?String $message="", ?String $type="" )
     {
-        if(!isset($_POST) || empty($_POST))
+        if(empty($_POST['confirm_password']) || empty($_POST['pseudo']) || empty($_POST['password']) )
         {
             $this->view->render("frontend/forms/register", compact("message","type"));
         }
@@ -27,15 +27,16 @@ class UserController extends Controller
             // Verifier que le pseudo n'existe pas déjà dans la bdd. (unicité)
             $this->user->setPassword($_POST['password']);
             $pass_secure=$this->user->getPassword();
-            $pass_hache = password_hash($pass_secure, PASSWORD_DEFAULT);
+            $pass_hache = password_hash($pass_secure, PASSWORD_BCRYPT, ['cost'=>12]);
            
             $this->user->setPseudo($_POST['pseudo']);
+            $this->user->setRole_user("ROLE_USER");
             $this->user->setPassword($pass_hache);
 
             $saveIsOk = $this->userManager->insert($this->user);
             if($saveIsOk)
             { 
-                $message = "Votre Compte à bien été créé avec succèss";
+                $message = "Votre Compte à bien été créé avec succès";
                 $type= "success";
                 $this->login($message, $type);
             } 

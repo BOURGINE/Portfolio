@@ -34,10 +34,10 @@
               <!--logo end-->
               <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                  <li><a class="logout" href="index.php">Front</a></li>
+                  <li><a class="logout" href="index.php">FRONT</a></li>
                 </ul>
                 <ul class="nav pull-right top-menu">
-                  <li><a class="logout" href="logout.html">Logout</a></li>
+                  <li><a class="logout" href="index.php?tsk=logout">LOGOUT</a></li>
                 </ul>
               </div>
           </header>
@@ -57,7 +57,7 @@
                 <li class="sub-menu">
                   <a href="javascript:;">
                     <i class="fa fa-desktop"></i>
-                    <span>Background</span>
+                    <span>Parcours</span>
                     </a>
                   <ul class="sub">
                     <li><a href="index.php?ent=background">Lister</a></li>
@@ -112,6 +112,17 @@
                   </ul>
                 </li>
 
+                <!-- User -->
+                <li class="sub-menu">
+                  <a href="javascript:;">
+                    <i class="fa fa-desktop"></i>
+                    <span>Utilisateurs</span>
+                    </a>
+                  <ul class="sub">
+                    <li><a href="index.php?ent=user">Lister</a></li>
+                  </ul>
+                </li>
+
               </ul>
               <!-- sidebar menu end-->
             </div>
@@ -157,31 +168,7 @@
   <!--common script for all pages-->
   <script src="public/back/lib/common-scripts.js"></script>
   <!--script for this page-->
-  <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
-
-  <script>
-    $('.contact-map').click(function() {
-
-      //google map in tab click initialize
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(40.6700, -73.9400);
-        var mapOptions = {
-          zoom: 11,
-          scrollwheel: false,
-          center: myLatlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Dashio Admin Theme!'
-        });
-      }
-      google.maps.event.addDomListener(window, 'click', initialize);
-    });
-  </script>
+  
 </body>
 
 </html>
