@@ -43,7 +43,7 @@ class PostController extends Controller
     }
 
     /**
-    * A modifier. A Adpater 
+    * 
     * @param [type] $id
     * @return void
     */
@@ -54,7 +54,7 @@ class PostController extends Controller
         $post= $this->postManager->findOneBySlug($slug);
         // Comments et id of post
         $id=$post->getId();
-        $comments= $this->commentManager->findAllBy("post_id",$id);
+        $comments= $this->commentManager->findAllBy("statut='ACCEPTE' AND post_id=".$id);
         // index posts for list of articles
         $posts= $this->postManager->findAll();
         // Render
@@ -63,7 +63,7 @@ class PostController extends Controller
 
      /**
      * index du front
-     * Affiche la liste de
+     * Affiche la liste d'une entité demandée.
      * @Route("/", name="")
      * @return void
      */

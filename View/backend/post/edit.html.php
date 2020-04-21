@@ -18,6 +18,7 @@
                   <div class="form-group ">
                     <label for="img" class="control-label col-lg-2">Images</label>
                     <div class="col-lg-10">
+                      <img class="img-circle" src="/Portfolio/public/front/images/<?=$post->getImg();?>" alt="" width="32"/>
                       <input class=" form-control" id="img" name="img" type="file" value="<?=$post->getImg();?>"/>
                     </div>
                   </div>

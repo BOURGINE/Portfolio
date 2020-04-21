@@ -36,7 +36,7 @@
 
                             <?php foreach ($items as $project):?>
                                 <tr>
-                                    <td> <?= $project->getImg();?> </td>
+                                    <td><img class="img-circle" src="/Portfolio/public/front/images/<?=$project->getImg();?>" alt="" width="32"></td>
                                     <td> <?= $project->getTitle();?> </span></td>
                                     <td><?= $project->getContent();?> </td>
                                     <td><?= $project->getLink();?> </td>

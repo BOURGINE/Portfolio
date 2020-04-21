@@ -9,20 +9,14 @@
             <div class="col-lg-12">
                 <div class="row content-panel">
                     <!-- /col-md-4 -->
-                    <div class="col-md-4 profile-text">
-                        <h3>Sam Soffes</h3>
-                        <h6>Main Administrator</h6>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
+                    <div class="col-md-10 profile-text">
+                        <h3>Bourgine Bérenger</h3>
+                        <h6>Administrateur</h6>
+                        <p>Issue d'un parcours de Gestion de projet (Master 2 en Ingénierie de Projets de l'Economie Sociale et Solidaire, j'ai entamé une reconversion professionnelle depuis 2017 pour dévenir développeur web.).</p>
+                        <p>Passionné par PHP, j'apprivoise les Frameworks les plus utilisés dans le domaine telles que SYMFONY.</p>
                         <br>
                     </div>
                     <!-- /col-md-4 -->
-                    <!-- img -->
-                    <div class="col-md-4 centered">
-                        <div class="profile-pic">
-                        <p><img src="img/ui-sam.jpg" class="img-circle"></p>
-                        </div>
-                    </div>
-                    <!-- end/img -->
                 </div>
             </div>
         </div>
@@ -30,64 +24,41 @@
 
         <div class="row mt">
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=background"> Parcours </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 content-panel">  
+                <h2> <a href="index.php?ent=background" class="text-white"> Parcours </a></h3>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1> 
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=skill"> Skill-Techno </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 mb content-panel">  
+                <h2> <a href="index.php?ent=skill"> Skill-Techno </a></h2>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=project"> Projets </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 mb content-panel">  
+                <h2> <a href="index.php?ent=project"> Projets </a></h2>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=post"> Articles </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 mb content-panel">  
+                <h2> <a href="index.php?ent=post"> Articles </a></h2>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=comment"> Commentaires </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 mb content-panel">  
+                <h2> <a href="index.php?ent=comment"> Commentaires </a></h2>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
-            <div class="col-md-3 col-sm-3 mb">
-                <div class="darkblue-panel pn">
-                    <div class="darkblue-header">
-                    <h2> <a href="index.php?ent=user"> Utilisateurs </a></h2>
-                    </div>
-                    <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-                </div>
+            <div class="col-md-3 col-sm-3 mb content-panel"> 
+                <h2> <a href="index.php?ent=user"> Utilisateurs </a></h2>
+                <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
+
         </div>
 
     </section>

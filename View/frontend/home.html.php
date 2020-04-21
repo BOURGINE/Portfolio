@@ -1,4 +1,7 @@
-<?php $title = 'Bourgine B. FAGADE'; ?>
+<?php $title = 'Bourgine B. FAGADE';
+$dir= '/Portfolio/public/front/images';
+define("DIR", "/Portfolio/public/front/images");
+?>
 <!--********** HERO ***********-->   
 <section id="home-section" class="hero">
 		  <div class="home-slider  owl-carousel">
@@ -7,7 +10,7 @@
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(/Portfolio/public/front/images/bg_1.png);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(<?=$dir?>/bg_1.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -15,7 +18,7 @@
 		          		<span class="subheading">Salut!</span>
 			            <h1 class="mb-4 mt-3">Je suis <span>Bourgine FAGADE</span></h1>
 			            <h2 class="mb-4">I'm Bourgine FAGADE</h2>
-			            <p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+			            <p><a href="index.php#about-section" class="btn btn-primary py-3 px-4">A propos</a> <a href="index.php?ent=post&tsk=list" class="btn btn-white btn-outline-white py-3 px-4">Mon blog</a></p>
 		            </div>
 		          </div>
 	        	</div>
@@ -26,14 +29,14 @@
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(/Portfolio/public/front/images/bg_1.jpg);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(<?=$dir?>/bg_2.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
 		          	<div class="text">
                         <span class="subheading"></span>
 			            <h1 class="mb-4 mt-3">Développeur <span>PHP/SYMFONY</span> basé à Paris</h1>
-			            <p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+			            <p><a href="index.php#resume-section" class="btn btn-primary py-3 px-4">Parcours</a> <a href="index.php#contact-section" class="btn btn-white btn-outline-white py-3 px-4">Contact</a></p>
 		            </div>
 		          </div>
 	        	</div>
@@ -50,27 +53,28 @@
       <div class="col-md-6 col-lg-5 d-flex">
         <div class="img-about img d-flex align-items-stretch">
           <div class="overlay"></div>
-          <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(/Portfolio/public/front/images/bg_2.png);">
+          <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(<?=$dir?>/bg_3.png);">
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
         <div class="row justify-content-start pb-3">
           <div class="col-md-12 heading-section ftco-animate">
-            <h1 class="big">Ci</h1>
+            <h1 class="big">A Propos</h1>
             <h2 class="mb-4">A propos</h2>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <p> « Qui que vous soyez, vous serez jugé par rapport à ce que vous apportez au bilan de fin d'année et à l'éthique de travail que vous respectez.» </p>
+            <em>Kevin LILES</em>
             <ul class="about-info mt-4 px-md-0 px-2">
               <li class="d-flex"><span>Identité:</span> <span>Bourgine Fagade</span></li>
               <li class="d-flex"><span>Région:</span> <span>Ile-de-France</span></li>
-              <li class="d-flex"><span>Email:</span> <span>clarkthomp@gmail.com</span></li>
+              <li class="d-flex"><span>Email:</span> <span>bourgine.fagade@gmail.com</span></li>
             </ul>
           </div>
         </div>
         <div class="counter-wrap ftco-animate d-flex mt-md-3">
           <div class="text">
 
-            <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+            <p><a href="#" class="btn btn-primary py-3 px-3">Télécharger CV</a></p>
           </div>
         </div>
       </div>
@@ -86,7 +90,8 @@
       <div class="col-md-10 heading-section text-center ftco-animate">
         <h1 class="big big-2">Parcours</h1>
         <h2 class="mb-4">Parcours</h2>
-        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+        <p> « Prenez vos décisions en fonction d’où vous allez, pas en fonction d’où vous êtes.»</p>
+        <em>James Arthur Ray</em>
       </div>
     </div>
 
@@ -118,7 +123,7 @@
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-6 text-center ftco-animate">
-        <p><a href="#" class="btn btn-primary py-2 px-3">Download CV</a></p>
+        <p><a href="#" class="btn btn-primary py-2 px-3">Télécharger CV</a></p>
       </div>
     </div>
 
@@ -132,7 +137,8 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Skills et Techno</h1>
             <h2 class="mb-4">Skills et Techno</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p> « Vis comme si tu devais mourir demain, apprends comme si tu devais vivre toujours. » </p>
+            <em>Gandhi</em>
           </div>
         </div>
 
@@ -148,7 +154,7 @@
                             <div class="col-md-2 text-center d-flex ftco-animate">
                                 <a href="#" class="services-1">
                                     <span class="icon">
-                                        <i class="flaticon-analysis"></i>
+                                      <img src="<?=$dir?>/<?= $skill->getImg();?>" alt="" height="48px" class="rounded-circle"/>
                                     </span>
                                     <div class="desc">
                                         <h3 class="mb-5"><?= $skill->getTitle();?></h3>
@@ -170,7 +176,8 @@
       <div class="col-md-12 heading-section text-center ftco-animate">
         <h1 class="big big-2">Projets</h1>
         <h2 class="mb-4">Mes Projets</h2>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+        <p> « Le seul endroit où le succès vient avant le travail, c’est dans le dictionnaire.» </p>
+        <em>Vidal Sassoon </em>   
       </div>
     </div>
     <!--********** /section title ***********-->  
@@ -187,7 +194,7 @@
                     <?php foreach ($projects as $project):?>
                         <!--********** foreach ***********-->  
                         <div class="col-md-6">
-                            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/Portfolio/public/front/images/project-4.jpg);">
+                            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(<?=$dir?>/<?=$project->getImg();?>);">
                                 <div class="overlay"></div>
                                 <div class="text text-center p-4">
                                     <h3><?= $project->getTitle();?></h3>
@@ -229,17 +236,18 @@
                   <!--********** foreach ***********--> 
                   <div class="col-md-4 mt-3 ftco-animate">
                     <div class="blog-entry justify-content-end">
-                        <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('/Portfolio/public/front/images/image_1.jpg');">
+                        <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('<?=$dir?>/<?=$post->getImg()?>');">
                         </a>
                         <div class="text mt-3 float-right d-block">
                             <div class="d-flex align-items-center mb-3 meta">
                                 <p class="mb-0">
-                                    <span class="mr-2"><?=$post->getCreatedAt();?></span>
-                                    <a href="#" class="mr-2">Bourgine Bérenger</a>
-                                    <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                    <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="mr-2">Bourgine Bérenger</a>
+                                    <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="meta-chat">
+                                      - <?= date('d M Y', strtotime($post->getCreated_at())) ;?>
+                                    </a>
                                 </p>
                             </div>
-                            <h3 class="heading"><a href="single.html"><?=$post->getTitle();?></a></h3>
+                            <h3 class="heading"><a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>"><?=$post->getTitle();?></a></h3>
                             <p><?= $post->getChapo();?></p>
                         </div>
                     </div>
@@ -268,28 +276,28 @@
 
     <div class="row no-gutters block-9">
       <div class="col-md-6 order-md-last d-flex">
-        <form action="#" class="bg-light p-4 p-md-5 contact-form">
+        <form method="POST" action="index.php?contact" class="bg-light p-4 p-md-5 contact-form">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Name">
+            <input type="text" class="form-control" placeholder="Votre identité">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Email">
+            <input type="email" class="form-control" placeholder="Votre email">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Subject">
+            <input type="text" class="form-control" placeholder="Sujet">
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Votre Message"></textarea>
           </div>
           <div class="form-group">
-            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+            <input type="submit" value="Envoyer" class="btn btn-primary py-3 px-5">
           </div>
         </form>
       
       </div>
 
       <div class="col-md-6 d-flex">
-        <div class="img" style="background-image: url(Portfolio/public/images/about.jpg);"></div>
+        <div class="img" style="background-image: url(<?=$dir?>/bg_3.png);"></div>
       </div>
     </div>
   </div>
