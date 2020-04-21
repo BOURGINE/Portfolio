@@ -11,8 +11,8 @@ class Post extends SecureData
     private $title;
     private $chapo;
     private $content;
-    private $createdAt;
-    private $updatedAt;
+    private $created_at;
+    private $updated_at;
     private $slug;
 
     /**
@@ -116,9 +116,9 @@ class Post extends SecureData
     /**
      * Get the value of createdAt
      */ 
-    public function getCreatedAt()
+    public function getCreated_at()
     {
-        return (string) $this->clean_data($this->createdAt);
+        return (string) $this->clean_data($this->created_at);
     }
 
     /**
@@ -126,17 +126,17 @@ class Post extends SecureData
      *
      * @return  self
      */ 
-    public function setCreatedAt($createdAt)
+    public function setCreated_at($created_at)
     {   
-        return $this->createdAt = $this->clean_data($createdAt);
+        return $this->created_at = $this->clean_data($created_at);
     }
 
     /**
      * Get the value of updatedAt
      */ 
-    public function getUpdatedAt()
+    public function getUpdated_at()
     {
-        return (string) $this->clean_data($this->updatedAt);
+        return (string) $this->clean_data($this->updated_at);
     }
 
     /**
@@ -144,9 +144,9 @@ class Post extends SecureData
      *
      * @return  self
      */ 
-    public function setUpdatedAt($updatedAt)
+    public function setUpdated_at($updated_at)
     {
-        return $this->updatedAt = $this->clean_data($updatedAt);
+        return $this->updated_at = $this->clean_data($updated_at);
     }
 
     /**

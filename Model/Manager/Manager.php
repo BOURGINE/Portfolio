@@ -87,15 +87,16 @@ abstract class Manager extends Database
     /**
      *  
      * réflechir a comment factorier cette fonction en fonction de l'url envoyé par la fonction app.php
+     * @param string|null $condit
      * @param string|null $order
-     * @param string|null $by
      * @return array
      */
-    public function findAllBy(?string $by="", $val="", ?string $order=""):array
+    public function findAllBy(?string $condit="", ?string $order=""):array
     {
         $sql= "SELECT * FROM {$this->table}";
-        if($by AND $val){
-            $sql.=" WHERE ".$by."=".$val;
+        if($condit)
+        {
+            $sql.=" WHERE ".$condit;
         }
         if($order){
             $sql.= " ORDER BY ".$order;

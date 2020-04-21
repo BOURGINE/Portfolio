@@ -30,7 +30,7 @@
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
               <!--logo start-->
-              <a href="index.html" class="logo"><b>BOURGINE<span>ADMIN</span></b></a>
+              <a href="index.php?tsk=dashboard" class="logo"><b>BOURGINE<span>ADMIN</span></b></a>
               <!--logo end-->
               <div class="top-menu">
                 <ul class="nav pull-right top-menu">
@@ -50,8 +50,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
                 <!-- Présentation -->
-                <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-                <h5 class="centered">Sam Soffes</h5>
+                <h5 class="centered">Bourgine Bérenger</h5>
 
                 <!-- Background -->
                 <li class="sub-menu">

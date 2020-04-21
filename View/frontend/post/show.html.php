@@ -10,11 +10,14 @@
             <!-- ./Chapo -->
 
             <!-- TITRE -->
-            <h2 class="mb-3"> <?=$post->getTitle();?> </h2>
+            <div>
+              <h2 class="mb-3"> <?=$post->getTitle();?> </h2>
+              <span><?= date('d M Y', strtotime($post->getCreated_at())) ;?></span>
+            </div>
             <!-- Fin/.TITRE -->
             
             <!-- IMAGE -->
-            <img src="/Portfolio/public/front/images/image_3.jpg" alt="" class="img-fluid">
+            <img src="/Portfolio/public/front/images/<?= $post->getImg() ;?>" alt="" class="img-fluid">
             
             <!-- CONTENT -->
             <div>

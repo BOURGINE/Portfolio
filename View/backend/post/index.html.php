@@ -35,7 +35,7 @@
 
                                 <?php foreach ($items as $post):?>
                                     <tr>
-                                        <td><?=$post->getImg();?></td>
+                                        <td><img class="img-circle" src="/Portfolio/public/front/images/<?=$post->getImg();?>" alt="" width="32"></td>
                                         <td><?=$post->getTitle();?></td>
                                         <td><?=$post->getSlug();?></td>
                                         <td><?=$post->getChapo();?></td>

@@ -155,7 +155,7 @@ class Controller extends Security
                 $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
                 if (in_array($extension_upload, $extensions_autorisees))
                 {
-                    $executeIsOk= move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ .'/../Public/img/'.basename($_FILES['img']['name']));
+                    $executeIsOk= move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ .'/../public/front/images/'.basename($_FILES['img']['name']));
                     if($executeIsOk){echo '<script language="javascript"> alert("Super. Le format d\'image est valide")</script>';}
                     else
                     {echo '<script language="javascript"> alert("Il y a un problème d\'envoi de l\'image dans la BDD")</script>';}

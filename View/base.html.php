@@ -37,7 +37,6 @@ use Portfolio\Controller\Security;
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index.php" class="nav-link"><span>Accueil</span></a></li>
-	          <li class="nav-item"><a href="index.php#about-section" class="nav-link"><span>A propos</span></a></li>
 	          <li class="nav-item"><a href="index.php#resume-section" class="nav-link"><span>Parcours</span></a></li>
 	          <li class="nav-item"><a href="index.php#services-section" class="nav-link"><span>Compétences</span></a></li>
 	          <li class="nav-item"><a href="index.php#projects-section" class="nav-link"><span>Projets</span></a></li>
@@ -95,9 +94,8 @@ use Portfolio\Controller\Security;
           <div class="col-md">
             <div class="ftco-footer-widget">
               <ul class="ftco-footer-social list-unstyled">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <li class="ftco-animate"><a href="https://twitter.com/FAGADEB"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.linkedin.com/in/bourginefagade/"><span class="icon-linkedin"></span></a></li>
               </ul>
             </div>
           </div>
@@ -105,8 +103,9 @@ use Portfolio\Controller\Security;
 
         <div class="row">
           <div class="col-md-12 text-center">
+            <p> Template Colorlib modifié et adpaté</p>
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

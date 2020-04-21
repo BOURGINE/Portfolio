@@ -32,8 +32,8 @@
                     <!--boutons-->
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-theme" type="submit">Valider</button>
-                        <button class="btn btn-theme04" type="button">Annuler</button>
+                            <button class="btn btn-theme" type="submit">Valider</button>
+                            <a href="index.php?ent=skill" class="btn btn-theme04" type="button">Annuler</a>
                         </div>
                     </div>
 
