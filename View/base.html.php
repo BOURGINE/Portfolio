@@ -24,6 +24,9 @@ use Portfolio\Controller\Security;
     <link rel="stylesheet" href="public/front/css/style.css">
   </head>
 
+<style>
+
+</style>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     <!-- Navbarre -->
@@ -127,7 +130,19 @@ All rights reserved | This template is made with <i class="icon-heart color-dang
   <script src="public/front/js/aos.js"></script>
   <script src="public/front/js/jquery.animateNumber.min.js"></script>
   <script src="public/front/js/scrollax.min.js"></script>
-  
   <script src="public/front/js/main.js"></script>
+  <script src="public/front/js/contact.js"></script>
+  <script src="public/front/js/register.js"></script>
+  <script src="public/front/js/login.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
+  <!--Google Captcha-->
+  <script src="https://www.google.com/recaptcha/api.js?render=ICI_LA_CLE_DU_SITE"></script>
+    <script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('ICI_LA_CLE_DU_SITE', {action: 'homepage'}).then(function(token) {
+            document.getElementById('recaptchaResponse').value = token
+        });
+    });
+    </script>
 </body>
 </html>
