@@ -276,24 +276,7 @@ define("DIR", "/Portfolio/public/front/images");
 
     <div class="row no-gutters block-9">
       <div class="col-md-6 order-md-last d-flex">
-        <form method="POST" action="index.php?contact" class="bg-light p-4 p-md-5 contact-form">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Votre identité">
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="Votre email">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Sujet">
-          </div>
-          <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Votre Message"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Envoyer" class="btn btn-primary py-3 px-5">
-          </div>
-        </form>
-      
+          <?php include("forms/contact.html.php"); ?>
       </div>
 
       <div class="col-md-6 d-flex">

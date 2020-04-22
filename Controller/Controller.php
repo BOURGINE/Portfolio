@@ -83,9 +83,10 @@ class Controller extends Security
             $users = $this->userManager->findAll();
             $posts = $this->postManager->findAll();
             $users = $this->userManager->findAll();
+            $comments = $this->commentManager->findAll();
     
              // Render()
-             $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message'));
+             $this->view->renderBack('backend/dashboard', compact('skills','backgrounds','projects', 'posts', 'users', 'message', 'comments'));
         }else{
             $this->login();
         }
@@ -138,6 +139,13 @@ class Controller extends Security
         $items = $this->$em->findAll("id DESC");
         // Render()
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
+    }
+
+    public function contact()
+    {
+        // vérifier que les données ne sont pas vides. 
+        
+
     }
 
     /**

@@ -26,15 +26,13 @@ class App
         }
 
         // Secure Route
-        if($tsk=="new" OR $tsk=="update" OR $tsk=="delete")
+        if($tsk=="update" OR $tsk=="delete")
         {
             if(!isset($_SESSION['role_user']) OR $_SESSION['role_user']!=='ROLE_ADMIN')
             {
                 $tsk = "error_404";
             }
         }
-
-
 
         // Si une fonction utilise les variables globales, vérifier qu'elles ne sont pas vides.
         $controllerName = "Portfolio\Controller\\".$controllerName;

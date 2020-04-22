@@ -25,37 +25,37 @@
         <div class="row mt">
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 content-panel">  
-                <h2> <a href="index.php?ent=background" class="text-white"> Parcours </a></h3>
+                <h2> <a href="index.php?ent=background" class="text-white"> Parcours (<?=count($backgrounds)?>)</a></h3>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1> 
             </div>
 
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 mb content-panel">  
-                <h2> <a href="index.php?ent=skill"> Skill-Techno </a></h2>
+                <h2> <a href="index.php?ent=skill"> Skill-Techno (<?=count($skills)?>)</a></h2>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 mb content-panel">  
-                <h2> <a href="index.php?ent=project"> Projets </a></h2>
+                <h2> <a href="index.php?ent=project"> Projets (<?=count($projects)?>)</a></h2>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 mb content-panel">  
-                <h2> <a href="index.php?ent=post"> Articles </a></h2>
+                <h2> <a href="index.php?ent=post"> Articles (<?=count($posts)?>)</a></h2>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 mb content-panel">  
-                <h2> <a href="index.php?ent=comment"> Commentaires </a></h2>
+                <h2> <a href="index.php?ent=comment"> Commentaires (<?=count($comments)?>)</a></h2>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
             <!--  /col-md-4 -->
             <div class="col-md-3 col-sm-3 mb content-panel"> 
-                <h2> <a href="index.php?ent=user"> Utilisateurs </a></h2>
+                <h2> <a href="index.php?ent=user"> Utilisateurs (<?=count($users)?>)</a></h2>
                 <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
             </div>
 
