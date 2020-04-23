@@ -141,13 +141,7 @@ class Controller extends Security
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
     }
 
-    public function contact()
-    {
-        // vérifier que les données ne sont pas vides. 
-        
-
-    }
-
+    
     /**
      * Fonction de traitement et de gestion des images. 
      * @return void

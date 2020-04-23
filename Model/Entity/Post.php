@@ -118,7 +118,8 @@ class Post extends SecureData
      */ 
     public function getCreated_at()
     {
-        return (string) $this->clean_data($this->created_at);
+        $date = date_create($this->created_at);
+        return date_format($date, 'd M Y');
     }
 
     /**

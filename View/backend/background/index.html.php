@@ -64,16 +64,6 @@
           </div>
         </div>
         <!-- /tableau -->
-        
-
-
-
-
-
-
-
-
-
 
     </section> 
 </section>
