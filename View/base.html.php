@@ -144,5 +144,33 @@ All rights reserved | This template is made with <i class="icon-heart color-dang
         });
     });
     </script>
+
+    <script>
+      //Show more tricks on home page */
+      function loadMore()
+      {
+          // Hide trick from trick number 6
+          $(".grid-item").slice(5, $("div.grid-item").length).hide();
+          $("#loadLess").hide();  
+          $("#loadMore").on('click', function (e) { e.preventDefault(); 
+              $("div.grid-item:hidden").slice(0, 3).slideDown(); 
+              // Si le nombre de truc caché =0 dc si tout est affiché
+              if ($("div.grid-item:hidden").length == 0){ 
+                  //cache le button loadMore
+                  $("#loadMore").hide(); 
+                  // Affiche le button loadless
+                  $("#loadLess").show(); } }); 
+                  // Si je clique sur le button loadless
+                  $("#loadLess").on('click', function (e) { e.preventDefault(); 
+                  
+                  $("div.grid-item").slice(5, $("div.grid-item").length).slideUp(); 
+                  //je cache le button loadless
+                  $("#loadLess").hide(); 
+                  $("#loadMore").show(); 
+              }
+          ); 
+      } 
+      loadMore();
+    </script>
 </body>
 </html>

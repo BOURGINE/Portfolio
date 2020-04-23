@@ -243,7 +243,7 @@ define("DIR", "/Portfolio/public/front/images");
                                 <p class="mb-0">
                                     <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="mr-2">Bourgine Bérenger</a>
                                     <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="meta-chat">
-                                      - <?= date('d M Y', strtotime($post->getCreated_at())) ;?>
+                                      - <?= $post->getCreated_at() ;?>
                                     </a>
                                 </p>
                             </div>
