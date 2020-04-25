@@ -32,21 +32,7 @@ class SkillController extends Controller
         // Liste de l'entité demandée. 
         $this->index($message);
     }
-
-    /**
-    * Undocumented function
-    *
-    * @param [type] $id
-    * @return void
-    */
-    public function show($id)
-    {
-        $this->skill= $this->skillManager->find($id);
-
-        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
-            'skill'=>$this->skill
-            ]);
-    }
+    
 
     /*
      * Cette fonction appelle l'action de mise à jour

@@ -35,20 +35,6 @@ class projectController extends Controller
         }
     }
 
-    /**
-    * Undocumented function
-    *
-    * @param [type] $id
-    * @return void
-    */
-    public function show($id)
-    {
-        $this->project= $this->projectManager->find($id);
-
-        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
-            'project'=>$this->project
-            ]);
-    }
 
     /**
      * Fonction de modification

@@ -1,4 +1,4 @@
-<?php $title = 'Login'; ?>
+<?php $title = 'register'; ?>
 
 <div class="container">
     <div class="row mt-5">

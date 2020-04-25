@@ -152,14 +152,14 @@ define("DIR", "/Portfolio/public/front/images");
                         <?php foreach ($skills as $skill):?>
                             <!--********** for each ***********-->
                             <div class="col-md-2 text-center d-flex ftco-animate">
-                                <a href="#" class="services-1">
+                                <div class="services-1">
                                     <span class="icon">
                                       <img src="<?=$dir?>/<?= $skill->getImg();?>" alt="" height="48px" class="rounded-circle"/>
                                     </span>
                                     <div class="desc">
                                         <h3 class="mb-5"><?= $skill->getTitle();?></h3>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     <?php endif;?>

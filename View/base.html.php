@@ -75,11 +75,14 @@ use Portfolio\Controller\Security;
       <?php if(isset($message) AND !empty($message)):?>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-auto mt-3 mx-auto">
-                    <div class="mt-4 alert alert-<?= $type ?>">
-                      <?= $message ?>
-                    </div>
+              <div class="col-md-auto mt-3 mx-auto">
+                <div class="alert alert-<?= $type ?> alert-dismissible fade show" role="alert">
+                  <?= $message ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
+              </div>
             </div>
         </div>
       <?php endif ?>
@@ -128,49 +131,50 @@ All rights reserved | This template is made with <i class="icon-heart color-dang
   <script src="public/front/js/owl.carousel.min.js"></script>
   <script src="public/front/js/jquery.magnific-popup.min.js"></script>
   <script src="public/front/js/aos.js"></script>
-  <script src="public/front/js/jquery.animateNumber.min.js"></script>
+
   <script src="public/front/js/scrollax.min.js"></script>
   <script src="public/front/js/main.js"></script>
   <script src="public/front/js/contact.js"></script>
   <script src="public/front/js/register.js"></script>
   <script src="public/front/js/login.js"></script>
+  <script src="public/front/js/new_comment.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
   <!--Google Captcha-->
   <script src="https://www.google.com/recaptcha/api.js?render=ICI_LA_CLE_DU_SITE"></script>
-    <script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('ICI_LA_CLE_DU_SITE', {action: 'homepage'}).then(function(token) {
-            document.getElementById('recaptchaResponse').value = token
-        });
-    });
-    </script>
+  <script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('ICI_LA_CLE_DU_SITE', {action: 'homepage'}).then(function(token) {
+          document.getElementById('recaptchaResponse').value = token
+      });
+  });
+  </script>
 
-    <script>
-      //Show more tricks on home page */
-      function loadMore()
-      {
-          // Hide trick from trick number 6
-          $(".grid-item").slice(5, $("div.grid-item").length).hide();
-          $("#loadLess").hide();  
-          $("#loadMore").on('click', function (e) { e.preventDefault(); 
-              $("div.grid-item:hidden").slice(0, 3).slideDown(); 
-              // Si le nombre de truc caché =0 dc si tout est affiché
-              if ($("div.grid-item:hidden").length == 0){ 
-                  //cache le button loadMore
-                  $("#loadMore").hide(); 
-                  // Affiche le button loadless
-                  $("#loadLess").show(); } }); 
-                  // Si je clique sur le button loadless
-                  $("#loadLess").on('click', function (e) { e.preventDefault(); 
-                  
-                  $("div.grid-item").slice(5, $("div.grid-item").length).slideUp(); 
-                  //je cache le button loadless
-                  $("#loadLess").hide(); 
-                  $("#loadMore").show(); 
-              }
-          ); 
-      } 
-      loadMore();
-    </script>
+  <script>
+    //Show more article on home page */
+    function loadMore()
+    {
+        // Hide article from article number 6
+        $(".grid-item").slice(5, $("div.grid-item").length).hide();
+        $("#loadLess").hide();  
+        $("#loadMore").on('click', function (e) { e.preventDefault(); 
+            $("div.grid-item:hidden").slice(0, 3).slideDown(); 
+            // Si le nombre de truc caché =0 dc si tout est affiché
+            if ($("div.grid-item:hidden").length == 0){ 
+                //cache le button loadMore
+                $("#loadMore").hide(); 
+                // Affiche le button loadless
+                $("#loadLess").show(); } }); 
+                // Si je clique sur le button loadless
+                $("#loadLess").on('click', function (e) { e.preventDefault(); 
+                
+                $("div.grid-item").slice(5, $("div.grid-item").length).slideUp(); 
+                //je cache le button loadless
+                $("#loadLess").hide(); 
+                $("#loadMore").show(); 
+            }
+        ); 
+    } 
+    loadMore();
+  </script>
 </body>
 </html>

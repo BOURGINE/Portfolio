@@ -10,7 +10,7 @@ use Portfolio\Model\Entity\Background;
 class BackgroundManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "parcour"; // A renommer
+    protected $table= "background"; // A renommer
     protected $entity= "Background";
 
    /**

@@ -17,23 +17,47 @@ class CommentController extends Controller
      */
     public function new()
     {
-        $this->comment->setContent($_POST['content']);
-        $this->comment->setAuthor("Auteur");
-        $this->comment->setPostId($_POST['post_id']);
-        $this->comment->setStatut("EN ATTENTE");
-        
-        $saveIsOk = $this->commentManager->insert($this->comment);
-        if($saveIsOk){
-            $message = 'Félicitation. Votre commentaire bien été ajouté';
-        } else{
-            $message = 'Désolé. Une erreur est survenue. Action non effectuée';
+        // On vérifie que la méthode POST est utilisée
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            //verifier que les données ne sont pas vides
+            if(isset($_POST['post_id']) && !empty($_POST['post_id']) &&
+            isset($_POST['content']) && !empty($_POST['content']))
+            {
+                $this->comment->setContent($_POST['content']);
+                $this->comment->setAuthor($_SESSION['pseudo']);
+                $this->comment->setPostId($_POST['post_id']);
+                $this->comment->setStatut("EN ATTENTE");
+                
+                $saveIsOk = $this->commentManager->insert($this->comment);
+                
+                if($saveIsOk){
+                    $message = 'Félicitation. Votre commentaire bien été ajouté';
+                    $type='success';
+                }
+                else{
+                    $message = 'Désolé. Une erreur est survenue. Action non effectuée';
+                    $type='danger';
+                }
+            
+                $id_post=$this->comment->getPostId();
+                $post= $this->postManager->find($id_post);
+            
+                $slug= $post->getSlug();
+                $postController= new PostController();
+                $postController->show($slug,$message,$type);
+                //$this->view->redirectTo("index.php?ent=post&tsk=show&slug=".$slug);
+            }
+            else
+            {
+               //Il essaye de faire une action non recommandée.
+                $this->view->redirectTo("index.php?tsk=error_404");
+            }
         }
-    
-        $id_post=$this->comment->getPostId();
-        $post= $this->postManager->find($id_post);
-     
-        $slug= $post->getSlug();
-        $this->view->redirectTo("index.php?ent=post&tsk=show&slug=".$slug);  
+        else{
+            http_response_code(405);
+            echo 'Méthode non autorisée. Vous essayer de hacker mon site.';
+        }  
     }
 
     /**

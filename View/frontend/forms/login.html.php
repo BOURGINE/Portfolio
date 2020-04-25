@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="mt-5 col-4 mx-auto">
-            <form id="form_login" class="form-login" method="POST" action="index.php?tsk=signin">
+            <form id="form_login" class="form-login" method="POST" action="index.php?tsk=login">
                 <h2 class="form-login-heading">Connexion</h2>
 
                 <div class="login-wrap">

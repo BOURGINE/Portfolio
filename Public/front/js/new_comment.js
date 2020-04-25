@@ -1,17 +1,18 @@
 $(function(){
 
-    $("#form_comment_new").validate({
-        rules:{
-            pseudo:{
+    $("#form_comment").validate({
+        rules: {
+            content: {
                 required: true,
-                email: true
+                minlength: 10,
+                maxlength: 2000
             }
         },
-        messages:{
-            password:{
-                required: 'Ce champs est obligatoire.',
-                minlength: "Le mot de passe doit comporter au moins 8 caractères.",
-                maxlength: "Ce champs ne doit pas dépasser 100 caractères.",
+        messages: {
+            content:{
+                required: 'Vous ne pouvez soumettre un commentaire vide.',
+                minlength: "Votre commentaire doit comporter au moins 10 caractères.",
+                maxlength: "Votre commentaire dépasse les 2000 caractères autorisés."
             }
         }
     });

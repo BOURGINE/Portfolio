@@ -5,18 +5,19 @@ namespace Portfolio\Controller;
  */
 
 use Portfolio\View\View;
+use Portfolio\Model\Entity\Post;
 use Portfolio\Model\Entity\User;
 use Portfolio\Model\Entity\Skill;
+use Portfolio\Controller\Security;
+use Portfolio\Model\Entity\Comment;
 use Portfolio\Model\Entity\Project;
 use Portfolio\Model\Entity\Background;
-use Portfolio\Model\Entity\Post;
-use Portfolio\Model\Entity\Comment;
+use Portfolio\Model\Manager\PostManager;
 use Portfolio\Model\Manager\UserManager;
 use Portfolio\Model\Manager\SkillManager;
+use Portfolio\Model\Manager\CommentManager;
 use Portfolio\Model\Manager\ProjectManager;
 use Portfolio\Model\Manager\BackgroundManager;
-use Portfolio\Model\Manager\PostManager;
-use Portfolio\Model\Manager\CommentManager;
 
 class Controller extends Security
 {
@@ -90,19 +91,17 @@ class Controller extends Security
         }else{
             $this->login();
         }
-        
     }
 
-
     /**
-      * Signin | Connecte l'utilisateur
-     * @Route("/sign-in", name="index.php?tsk=signin")
+      * login | Connecte l'utilisateur
+     * @Route("/sign-in", name="index.php?tsk=login")
      * @return void
      */ 
-    public function signin()
+    public function login()
     {
         // Verififier le type de données.
-        if(!empty($_POST['pseudo']) && !empty($_POST['password']))
+        if(isset($_POST['pseudo']) && isset($_POST['password']) && !empty($_POST['pseudo']) && !empty($_POST['password']))
         {
             $pseudo= htmlspecialchars($_POST['pseudo']);
             $password=htmlspecialchars($_POST['password']);
@@ -112,18 +111,18 @@ class Controller extends Security
             {
                 if(isset($_SESSION['role_user']) && $_SESSION['role_user']== "ROLE_ADMIN")
                     $this->dashboard();
-                $this->view->redirectTo("index.php");  
+                $this->view->redirectTo("index.php?ent=post&tsk=list");  
                 }
             else
             {  
-                $message = "Identifiant ou mot de passe incorrect." ;             
-                $this->login($message,"danger");
+                $message = "Identifiant ou mot de passe incorrect." ;
+                $type= "danger";             
+                $this->view->render("frontend/forms/login", compact('message','type'));
             }
         }
         else
         {   
-            $message = "Vous devez remplir votre identifiant et votre mot de passe." ;   
-            $this->login($message,"danger");
+            $this->view->render("frontend/forms/login");
         }
     }
 
