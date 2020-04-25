@@ -12,6 +12,31 @@ class UserManager extends Manager
     private $pdoStatement;
     protected $table= "myuser"; 
     protected $entity= "User";
+    private $objectPath="Portfolio\Model\Entity\\";
+    /**
+     * findBy
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function countByPseudo(?string $param="")
+    {
+        $this->pdoStatement=$this->getPdo()->prepare("SELECT * FROM {$this->table} WHERE pseudo=:pseudo");
+        $this->pdoStatement->bindValue(':pseudo', $param, PDO::PARAM_STR);
+        $execIsOk = $this->pdoStatement->execute();
+
+        if($execIsOk)
+        {
+            $item= $this->pdoStatement->fetchObject($this->objectPath.$this->entity);
+            if($item === false)
+            {return null;}
+            else
+            {return $item;}
+        }
+        else
+        {return false;}
+    }
+
 
   /**
    * Undocumented function
@@ -37,6 +62,7 @@ class UserManager extends Manager
             return true;
         }
     }
+
 
     /*
      *@Route("/user/create", name="")

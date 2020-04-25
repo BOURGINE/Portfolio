@@ -9,7 +9,7 @@ class ContactController
     /**
      * 
      */
-    public function new()
+    public function contact()
     {
         // On vérifie que la méthode POST est utilisée
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

@@ -64,24 +64,42 @@
                 <h3 class="mb-5">Ajouter un nouveau commentaire</h3>
                 <!--************** Comment Form **************-->
                 <?php if(!empty($_SESSION['role_user'])):?>
-                  <form  method="POST" action="index.php?ent=comment&tsk=new" class="p-5 bg-dark">
-                    <input type="hidden" class="form-control" id="post_id" name="post_id" value="<?=$post->getId();?> ">
+                  <!--************** Message flash **************-->
+                  <?php if(isset($message) AND !empty($message)):?>
+                    <div class="container mt-5">
+                        <div class="row">
+                          <div class="col-md-auto mt-3 mx-auto">
+                            <div class="alert alert-<?= $type ?> alert-dismissible fade show" role="alert">
+                              <?= $message ?>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  <?php endif ?>
+                <!--************** end message flash **************-->
+                 <!--************** Comment Form **************-->
+                  <form id="form_comment" method="POST" action="index.php?ent=comment&tsk=new" class="p-5 bg-dark">
+                    <input type="hidden" class="form-control" id="post_id" name="post_id" value="<?=$post->getId();?>">
         
                     <div class="form-group">
                       <label for="content">Mon commentaire</label>
-                      <textarea name="content" id="content" cols="30" rows="5" class="form-control" require></textarea>
+                      <textarea id="content" name="content" cols="30" rows="5" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
-                      <p>Pour des raisons de sécurité, votre commentaire ne sera affiché qu'après validation de l'administrateur.</p>
                       <input type="submit" value="valider" class="btn py-3 px-4 btn-primary">
                     </div>
+                    <p>Votre commentaire ne sera affiché qu'une fois validé par l'administrateur.</p>
                   </form>
+                  <!--************** end Comment Form **************-->
                 <?php else:?>
                   <h5>Vous devez vous connectez pour écrire un commentaire</h5>
                   <a href="index.php?tsk=login" class="btn btn-primary"> Connexion </a>
                 <?php endif?>
-               <!--************** Comment Form **************-->
+              
               </div>
             </div>
           </div> 

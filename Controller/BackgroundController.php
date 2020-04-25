@@ -23,7 +23,10 @@ class BackgroundController extends Controller
         }
         else
         {
+            //Vérifier si le titre existe déjà.
             $this->background->setTitle($_POST['title']);
+            $title=$this->background->getTitle();
+            
             $this->background->setYear($_POST['year']);
             $this->background->setLocation($_POST['location']);
             $this->background->setDescription($_POST['description']);
@@ -38,21 +41,6 @@ class BackgroundController extends Controller
             // Liste de l'entité demandée. 
             $this->index($message);
         }
-    }
-
-    /**
-    * A modifier. A Adpater 
-    *
-    * @param [type] $id
-    * @return void
-    */
-    public function show($id)
-    {
-        $this->background= $this->backgroundManager->find($id);
-
-        $this->view->render('backend/'.strtolower($this->entity).'/edit',[
-            'background'=>$this->background
-            ]);
     }
 
     /**

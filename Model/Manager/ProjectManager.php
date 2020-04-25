@@ -10,7 +10,7 @@ use Portfolio\Model\Manager\Manager;
 class ProjectManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "realisation"; // A renommer
+    protected $table= "project"; // A renommer
     protected $entity= "Project";
 
     /**

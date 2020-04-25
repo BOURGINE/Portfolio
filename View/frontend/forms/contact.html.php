@@ -1,4 +1,4 @@
-<form id="form_contact" method="POST" action="index.php?ent=contact&tsk=new" class="bg-light p-4 p-md-5 contact-form" onsubmit="return verifForm(this)">
+<form id="form_contact" method="POST" action="index.php?tsk=contact" class="bg-light p-4 p-md-5 contact-form" onsubmit="return verifForm(this)">
     <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
     <div class="form-group">
         <input type="text" id="identity" name="identity" class="form-control" placeholder="Votre identité"/>

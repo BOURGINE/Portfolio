@@ -11,7 +11,7 @@ use Portfolio\Model\Manager\Manager;
 class SkillManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "competence"; // A renommer
+    protected $table= "skill"; // A renommer
     protected $entity= "Skill";
 
     /**
