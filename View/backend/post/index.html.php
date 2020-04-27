@@ -24,10 +24,11 @@
                             <table class="table table-striped table-advance table-hover">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Image</th>
                                     <th>Titre</th>
+                                 
                                     <th>Slug</th>
-                                    <th>Chapo</th>
                                     <th colspan="2">Actions</th>
                                 </tr>
                                 </thead>
@@ -35,10 +36,10 @@
 
                                 <?php foreach ($items as $post):?>
                                     <tr>
+                                        <td><?=$post->getId();?></td>
                                         <td><img class="img-circle" src="/Portfolio/public/front/images/<?=$post->getImg();?>" alt="" width="32"></td>
                                         <td><?=$post->getTitle();?></td>
                                         <td><?=$post->getSlug();?></td>
-                                        <td><?=$post->getChapo();?></td>
                                         <!-- Actions -->
                                         <td>
                                             <a class="btn btn-success btn-xs" href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug();?>">

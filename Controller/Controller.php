@@ -60,7 +60,7 @@ class Controller extends Security
      */ 
     public function home()
     {
-        $backgrounds = $this->backgroundManager->findAll();
+        $backgrounds = $this->backgroundManager->findAll('id DESC');
         $skills = $this->skillManager->findAll();
         $projects = $this->projectManager->findAll();
         $posts = $this->postManager->findAll("id DESC LIMIT 3");
@@ -149,7 +149,7 @@ class Controller extends Security
     {
         if (isset($_FILES['img']) AND $_FILES['img']['error'] == 0)
         {
-            if ($_FILES['img']['size'] <= 1300000)
+            if ($_FILES['img']['size'] <= 2300000)
             {
                 $infosfichier = pathinfo($_FILES['img']['name']);
                 $extension_upload = $infosfichier['extension'];
@@ -157,9 +157,6 @@ class Controller extends Security
                 if (in_array($extension_upload, $extensions_autorisees))
                 {
                     $executeIsOk= move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ .'/../public/front/images/'.basename($_FILES['img']['name']));
-                    if($executeIsOk){echo '<script language="javascript"> alert("Super. Le format d\'image est valide")</script>';}
-                    else
-                    {echo '<script language="javascript"> alert("Il y a un problème d\'envoi de l\'image dans la BDD")</script>';}
                 }
                 else{echo '<script language="javascript"> alert("l\'extention de votre image n\'est pas pris en charge")</script>';}
             }

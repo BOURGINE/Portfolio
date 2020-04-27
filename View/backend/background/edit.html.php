@@ -11,7 +11,7 @@
             <div class="form-panel">
               <div class="form">
 
-                <form class="cmxform form-horizontal style-form" id="form_CreateCompetence" method="POST" action="index.php?ent=background&tsk=edit">
+                <form class="cmxform form-horizontal style-form" id="background_edit_form" method="POST" action="index.php?ent=background&tsk=edit">
                     <input type="hidden" id="id" name="id" value="<?=$background->getId();?>">
 
                   <div class="form-group ">

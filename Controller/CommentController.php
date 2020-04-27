@@ -22,11 +22,14 @@ class CommentController extends Controller
         {
             //verifier que les données ne sont pas vides
             if(isset($_POST['post_id']) && !empty($_POST['post_id']) &&
-            isset($_POST['content']) && !empty($_POST['content']))
+            isset($_POST['content']) && !empty($_POST['content'])&&
+            isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])
+            )
             {
+                $this->comment->setPostId($_POST['post_id']);
                 $this->comment->setContent($_POST['content']);
                 $this->comment->setAuthor($_SESSION['pseudo']);
-                $this->comment->setPostId($_POST['post_id']);
+              
                 $this->comment->setStatut("EN ATTENTE");
                 
                 $saveIsOk = $this->commentManager->insert($this->comment);

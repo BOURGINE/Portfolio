@@ -12,7 +12,7 @@
             <div class="form-panel">
               <div class="form">
 
-                <form method="POST" action="index.php?ent=skill&tsk=edit" enctype="multipart/form-data" class="cmxform form-horizontal style-form" id="form_CreateCompetence" >
+                <form method="POST" action="index.php?ent=skill&tsk=edit" enctype="multipart/form-data" class="cmxform form-horizontal style-form" id="skill_edit_form" >
                     <input type="hidden" id="id" name="id" value="<?=$skill->getId();?>">
 
                     <div class="form-group ">

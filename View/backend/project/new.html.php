@@ -12,7 +12,7 @@
                 <div class="form-panel">
                     <div class="form">
 
-                        <form  method="POST" action="index.php?ent=project&tsk=new" class="cmxform form-horizontal style-form" enctype="multipart/form-data" id="project_new">
+                        <form  method="POST" action="index.php?ent=project&tsk=new" class="cmxform form-horizontal style-form" enctype="multipart/form-data" id="project_new_form">
 
                             <div class="form-group ">
                                 <label for="img" class="control-label col-lg-2">Image</label>

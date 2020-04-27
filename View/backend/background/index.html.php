@@ -24,19 +24,21 @@
                             <table class="table table-striped table-advance table-hover">
                                 <thead>
                                 <tr>
-                                    <th> Titre</th>
+                                    <th> ID </th>
                                     <th> Période </th>
-                                    <th> Description</th>
+                                    <th> Titre </th>  
+                                    <th> Description </th>
                                     <th> Lieu </th>
-                                    <th colspan="2">Actions</th>
+                                    <th colspan="2"> Actions </th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <?php foreach ($items as $background):?>
                                     <tr>
-                                        <td> <?= $background->getTitle();?> </td>
+                                        <td> <?= $background->getId();?> </td>
                                         <td> <span class="label label-info label-mini"><?= $background->getYear();?> </span></td>
+                                        <td> <?= $background->getTitle();?> </td>
                                         <td><?= $background->getDescription();?> </td>
                                         <td><?= $background->getLocation();?> </td>
                                         <!-- Actions -->

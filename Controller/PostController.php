@@ -19,12 +19,17 @@ class PostController extends Controller
      */
     public function new()
     { 
-        if(!isset($_POST) || empty($_POST))
+        //si ce n'est pas définis ou si c'est vide
+        if(!isset($_POST['title']) || empty($_POST['title'])||
+            !isset($_FILES['img']['name'])|| empty($_FILES['img']['name'])||
+            !isset($_POST['chapo']) || empty($_POST['chapo'])||
+            !isset($_POST['content']) || empty($_POST['content'])
+        )
         {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
         }
         else
-        {
+        { 
             $this->post->setSlug($_POST['title']);
             $slug=$this->post->getSlug($_POST['title']);
             $count=$this->postManager->findOneBySlug($slug);
@@ -32,6 +37,7 @@ class PostController extends Controller
                 //Article existe déjà.
                 $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
             }else{
+                
                 $this->post->setImg($_FILES['img']['name']);
                 $this->post->setTitle($_POST['title']);
                 $this->post->setChapo($_POST['chapo']);
@@ -57,7 +63,7 @@ class PostController extends Controller
     */
     public function show(?string $slug= "", ?string $message= "", ?string $type= "")
     {
-        // Post
+        // Si je ne recois pas le slug, je prend le slug de l'url
         if(!isset($slug) || empty($slug))
         { $slug=htmlspecialchars($_GET['slug']);}
        
@@ -87,7 +93,7 @@ class PostController extends Controller
     public function list($message=false)
     {
         $em = strtolower($this->entity)."Manager";
-        $items = $this->$em->findAll();
+        $items = $this->$em->findAll('id DESC');
         // Render()
         $this->view->render('frontend/'.strtolower($this->entity).'/index', compact('items'));
     }
@@ -100,9 +106,18 @@ class PostController extends Controller
     public function edit()
     {
          // S'il n'y a pas de soumission de formulaire
-         if(!isset($_POST) || empty($_POST))
+         if(!isset($_POST['title']) || empty($_POST['title'])||
+            !isset($_POST['chapo']) || empty($_POST['chapo'])||
+            !isset($_POST['content']) || empty($_POST['content'])
+            || !isset($_FILES['img']['name'])|| empty($_FILES['img']['name'])
+        )
          {
-            $id=htmlspecialchars($_GET['id']);
+            if(!isset($_GET['id']) || empty($_GET['id'])){
+                $id= htmlspecialchars($_POST['id']);}
+            else{
+                $id= htmlspecialchars($_GET['id']);
+            }
+
             $this->post = $this->postManager->find($id);
 
             $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
