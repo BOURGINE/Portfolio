@@ -34,7 +34,7 @@
 
                             <?php foreach ($items as $skill):?>
                                 <tr>
-                                    <td><?= $skill->getImg();?> </td>
+                                    <td><img class="img-circle" src="/Portfolio/public/front/images/<?=$skill->getImg();?>" alt="" width="32"></td>
                                     <td><?= $skill->getTitle();?> </td>
                                     <!-- Actions -->
                                     <td>

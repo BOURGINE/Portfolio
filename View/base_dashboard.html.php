@@ -152,18 +152,18 @@
         -->
         Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
       </div>
-      <a href="profile.html#" class="go-top">
-        <i class="fa fa-angle-up"></i>
-        </a>
     </div>
   </footer>
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="public/back/lib/jquery/jquery.min.js"></script>
   <script src="public/back/lib/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
+  <script src="public/back/lib/form-validation-script.js"></script>
+
   <script class="include" type="text/javascript" src="public/back/lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="public/back/lib/jquery.scrollTo.min.js"></script>
-  <script src="public/back/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="public/back/lib/common-scripts.js"></script>
   <!--script for this page-->

@@ -110,7 +110,7 @@ define("DIR", "/Portfolio/public/front/images");
                                   <span class="date"><?= $background->getYear();?></span>
                                   <span class="h6 ml-2 mt-3"><?= $background->getCategory();?></span>
                                 </div>
-                                <h3><?= $background->getTitle();?></h3>
+                                <h3><?= strtoupper($background->getTitle());?></h3>
                                 <span><?= $background->getLocation();?></span>
                                 <p class="mt-3"><?= $background->getDescription();?></p>
                             </div>
@@ -200,7 +200,7 @@ define("DIR", "/Portfolio/public/front/images");
                                     <h3><?= $project->getTitle();?></h3>
                                     <span><?= $project->getContent();?></span>
 
-                                    <p><a href="<?= $project->getLink();?>" class="btn btn-primary">Voir le site</a></p>
+                                    <p><a href="https://<?= $project->getLink();?>" target="_blank" class="btn btn-primary">Voir le site</a></p>
                                 </div>
                             </div>
                         </div>

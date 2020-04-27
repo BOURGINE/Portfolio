@@ -40,16 +40,15 @@ class SkillController extends Controller
     public function edit()
     {
          // S'il n'y a pas de soumission de formulaire
-        if(!isset($_POST) || empty($_POST))
+        if(!isset($_POST['title']) || empty($_POST['title']))
         {
         // Mettre cette partie dans une fonction au niveau de Controller centrale
-        $id=htmlspecialchars($_GET['id']);
-        
-        $this->skill = $this->skillManager->find($id);
+            $id=htmlspecialchars($_GET['id']);
+            $this->skill = $this->skillManager->find($id);
 
-        $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
-            'skill'=>$this->skill
-            ]);
+            $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
+                'skill'=>$this->skill
+                ]);
         }
         else
         {

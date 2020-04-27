@@ -35,7 +35,7 @@ class App
             //Alors le controlleur  get['ent] est définis et n'est pas vide.
             else
             {   //Si le controlleur get['ent] n'existe pas comme une class de l'app
-                $class= array('background','comment','contact','post','project','skill','user');
+                $class= array('background','comment','post','project','skill','user');
                 if((in_array($_GET['ent'],$class))===false)
                 {
                     $controllerName = "Controller";

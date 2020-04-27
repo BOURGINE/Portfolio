@@ -12,7 +12,7 @@
             <div class="form-panel">
               <div class="form">
 
-                <form method="POST" action="index.php?ent=post&tsk=new" enctype="multipart/form-data" class="cmxform form-horizontal style-form" id="form_CreateCompetence" >
+                <form method="POST" action="index.php?ent=post&tsk=new" enctype="multipart/form-data" class="cmxform form-horizontal style-form" id="post_new_form" >
 
                   <div class="form-group ">
                     <label for="img" class="control-label col-lg-2">Image</label>

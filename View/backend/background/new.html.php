@@ -12,7 +12,7 @@
             <div class="form-panel">
               <div class="form">
 
-                <form class="cmxform form-horizontal style-form" id="form_CreateCompetence" method="POST" action="index.php?ent=background&tsk=new">
+                <form class="cmxform form-horizontal style-form" id="background_new_form" method="POST" action="index.php?ent=background&tsk=new">
                     <input type="hidden" id="id" name="id">
 
                   <div class="form-group ">

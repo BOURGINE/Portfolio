@@ -66,6 +66,7 @@ class Security
 
     public function contact()
     {
+        
         // On vérifie que la méthode POST est utilisée
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             // On vérifie si le champ "recaptcha-response" contient une valeur
@@ -107,9 +108,11 @@ class Security
                             $message = htmlspecialchars($_POST['content']);
         
                             // Ici vous traitez vos données
-                            $this->sendMail($expediteur,$sujet,$email,$message);
+                            $sendIsOk=$this->sendMail($expediteur,$sujet,$email,$message);
         
-                           // echo "Message de {$nom} envoyé";
+                            var_dump('');
+                            die();
+                            
                         }
                     }else{
                         header('Location: index.php');

@@ -12,7 +12,7 @@
                 <div class="form-panel">
                 <div class="form">
 
-                    <form class="cmxform form-horizontal style-form" method="POST" action="index.php?ent=project&tsk=edit" enctype="multipart/form-data" >
+                    <form class="cmxform form-horizontal style-form" method="POST" action="index.php?ent=project&tsk=edit" enctype="multipart/form-data" id="project_edit_form">
                         <input type="hidden" id="id" name="id" value="<?=$project->getId();?>">
 
                         <div class="form-group ">

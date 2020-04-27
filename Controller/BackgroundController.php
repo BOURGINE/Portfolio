@@ -17,7 +17,9 @@ class BackgroundController extends Controller
      */
     public function new()
     { 
-        if(!isset($_POST) || empty($_POST))
+        if( !isset($_POST['title']) || empty($_POST['title'])
+            || !isset($_POST['year']) || empty($_POST['year'])
+            || !isset($_POST['location']) || empty($_POST['location']))
         {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
         }
@@ -25,8 +27,6 @@ class BackgroundController extends Controller
         {
             //Vérifier si le titre existe déjà.
             $this->background->setTitle($_POST['title']);
-            $title=$this->background->getTitle();
-            
             $this->background->setYear($_POST['year']);
             $this->background->setLocation($_POST['location']);
             $this->background->setDescription($_POST['description']);
@@ -50,7 +50,11 @@ class BackgroundController extends Controller
     public function edit()
     {
         // S'il n'y a pas de soumission de formulaire
-        if(!isset($_POST) || empty($_POST))
+        if(!isset($_POST['id']) || empty($_POST['id'])
+            || !isset($_POST['title']) || empty($_POST['title'])
+            || !isset($_POST['year']) || empty($_POST['year'])
+            || !isset($_POST['location']) || empty($_POST['location'])  
+        )
         {
             // Mettre cette partie dans une fonction au niveau de Controller centrale
             $id=htmlspecialchars($_GET['id']);
@@ -58,7 +62,7 @@ class BackgroundController extends Controller
 
             $this->view->renderBack('backend/'.strtolower($this->entity).'/edit',[
                 'background'=>$this->background
-                ]);
+            ]);
         }
         else
         {

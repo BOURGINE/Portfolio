@@ -1,5 +1,5 @@
 <!--header-->
-<section class="hero-wrap js-fullheight" style="background-image: url('/Portfolio/public/front/images/project_1.jpg');" data-stellar-background-ratio="0.3">
+<section class="hero-wrap js-fullheight" style="background-image: url('/Portfolio/public/front/images/project_1.jpg'); opacity: 0.9;" data-stellar-background-ratio="0.3">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
