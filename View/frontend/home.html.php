@@ -1,16 +1,14 @@
-<?php $title = 'Bourgine B. FAGADE';
-$dir= '/Portfolio/public/front/images';
-define("DIR", "/Portfolio/public/front/images");
-?>
+<?php $title = 'Bourgine B. FAGADE';?>
+
 <!--********** HERO ***********-->   
-<section id="home-section" class="hero">
+<section id="home-section" class="hero mt-3">
 		  <div class="home-slider  owl-carousel">
 
 	      <div class="slider-item ">
 	      	<div class="overlay"></div>
 	        <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(<?=$dir?>/bg_1.png);">
+	          <div class="row mt-3 d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+	          	<div class=" mt-4 one-third js-fullheight order-md-last img" style="background-image:url(public/front/images/bg_1.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -29,7 +27,7 @@ define("DIR", "/Portfolio/public/front/images");
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(<?=$dir?>/bg_2.png);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(public/front/images/bg_2.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -53,7 +51,7 @@ define("DIR", "/Portfolio/public/front/images");
       <div class="col-md-6 col-lg-5 d-flex">
         <div class="img-about img d-flex align-items-stretch">
           <div class="overlay"></div>
-          <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(<?=$dir?>/bg_3.png);">
+          <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(public/front/images/bg_3.png);">
           </div>
         </div>
       </div>
@@ -73,8 +71,7 @@ define("DIR", "/Portfolio/public/front/images");
         </div>
         <div class="counter-wrap ftco-animate d-flex mt-md-3">
           <div class="text">
-
-            <p><a href="#" class="btn btn-primary py-3 px-3">Télécharger CV</a></p>
+            <p><a href="public/front/doc/CV_dev.pdf" download="CV_Bourgine-FAGADE" target="_blank" class="btn btn-primary py-3 px-3">Télécharger CV</a></p>
           </div>
         </div>
       </div>
@@ -123,7 +120,7 @@ define("DIR", "/Portfolio/public/front/images");
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-6 text-center ftco-animate">
-        <p><a href="#" class="btn btn-primary py-2 px-3">Télécharger CV</a></p>
+        <p><a href="public/front/doc/CV_dev.pdf" download="CV_Bourgine-FAGADE" target="_blank" class="btn btn-primary py-2 px-3">Télécharger CV</a></p>
       </div>
     </div>
 
@@ -143,27 +140,27 @@ define("DIR", "/Portfolio/public/front/images");
         </div>
 
     		<div class="row">
-                <?php if(empty($skills)):?>
-                    <p> no skills </p>
-                <?php else:?>
-                    <?php if($skills === false):?>
-                        <p> Une erreur vient de se produire</p>
-                    <?php else:?>
-                        <?php foreach ($skills as $skill):?>
-                            <!--********** for each ***********-->
-                            <div class="col-md-2 text-center d-flex ftco-animate">
-                                <div class="services-1">
-                                    <span class="icon">
-                                      <img src="<?=$dir?>/<?= $skill->getImg();?>" alt="" height="48px" class="rounded-circle"/>
-                                    </span>
-                                    <div class="desc">
-                                        <h3 class="mb-5"><?= $skill->getTitle();?></h3>
-                                    </div>
-                                </div>
+          <?php if(empty($skills)):?>
+            <p> no skills </p>
+          <?php else:?>
+            <?php if($skills === false):?>
+                <p> Une erreur vient de se produire</p>
+            <?php else:?>
+                <?php foreach ($skills as $skill):?>
+                    <!--********** for each ***********-->
+                    <div class="col-md-2 text-center d-flex ftco-animate">
+                        <div class="services-1">
+                            <span class="icon">
+                              <img src="public/front/images/<?= $skill->getImg();?>" alt="" height="48px" class="rounded-circle"/>
+                            </span>
+                            <div class="desc">
+                                <h3 class="mb-5"><?= $skill->getTitle();?></h3>
                             </div>
-                        <?php endforeach; ?>
-                    <?php endif;?>
-                <?php endif;?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif;?>
+          <?php endif;?>
 			  </div>
     	</div>
 </section>
@@ -192,24 +189,24 @@ define("DIR", "/Portfolio/public/front/images");
                     <p>An error has occured</p>
                 <?php else:?>
                     <?php foreach ($projects as $project):?>
-                        <!--********** foreach ***********-->  
-                        <div class="col-md-6">
-                            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(<?=$dir?>/<?=$project->getImg();?>);">
-                                <div class="overlay"></div>
-                                <div class="text text-center p-4">
-                                    <h3><?= $project->getTitle();?></h3>
-                                    <span><?= $project->getContent();?></span>
+                      <!--********** foreach ***********-->  
+                      <div class="col-md-6">
+                          <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(public/front/images/<?=$project->getImg();?>);">
+                              <div class="overlay"></div>
+                              <div class="text text-center p-4">
+                                  <h3><?= $project->getTitle();?></h3>
+                                  <span><?= $project->getContent();?></span>
 
-                                    <p><a href="https://<?= $project->getLink();?>" target="_blank" class="btn btn-primary">Voir le site</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--********** foreach ***********-->  
+                                  <p><a href="https://<?= $project->getLink();?>" target="_blank" class="btn btn-primary">Voir le site</a></p>
+                              </div>
+                          </div>
+                      </div>
+                      <!--********** foreach ***********-->  
                     <?php endforeach; ?>
                 <?php endif;?>
             <?php endif;?>
     </div>
-        <!--********** ./ section title ***********-->   
+      <!--********** ./ section title ***********-->   
   </div>
 </section>
 
@@ -219,7 +216,7 @@ define("DIR", "/Portfolio/public/front/images");
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-md-7 heading-section text-center ftco-animate">
         <h1 class="big big-2">Blog</h1>
-        <h2 class="mb-4"> Mon Blog</h2>
+        <h2 class="mb-4">Mon Blog</h2>
         <p>Dernières articles</p>
       </div>
     </div>
@@ -236,7 +233,7 @@ define("DIR", "/Portfolio/public/front/images");
                   <!--********** foreach ***********--> 
                   <div class="col-md-4 mt-3 ftco-animate">
                     <div class="blog-entry justify-content-end">
-                        <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('<?=$dir?>/<?=$post->getImg()?>');">
+                        <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('public/front/images/<?=$post->getImg()?>');">
                         </a>
                         <div class="text mt-3 float-right d-block">
                             <div class="d-flex align-items-center mb-3 meta">
@@ -280,7 +277,7 @@ define("DIR", "/Portfolio/public/front/images");
       </div>
 
       <div class="col-md-6 d-flex">
-        <div class="img" style="background-image: url(<?=$dir?>/bg_3.png);"></div>
+        <div class="img" style="background-image: url(public/front/images/bg_3.png);"></div>
       </div>
     </div>
   </div>

@@ -1,7 +1,6 @@
 <section class="ftco-section">
       <div class="container">
         <div class="row">
-
          <!-- Partie 1 --> <!-- .col-md-4 -->
           <div class="col-lg-8 ftco-animate fadeInUp ftco-animated">
             
@@ -17,7 +16,7 @@
             <!-- Fin/.TITRE -->
             
             <!-- IMAGE -->
-            <img src="/Portfolio/public/front/images/<?= $post->getImg() ;?>" alt="" class="img-fluid">
+            <img src="public/front/images/<?= $post->getImg() ;?>" alt="" class="img-fluid">
             
             <!-- CONTENT -->
             <div>
