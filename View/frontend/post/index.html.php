@@ -1,5 +1,5 @@
 <!--header-->
-<section class="hero-wrap js-fullheight" style="background-image: url('/Portfolio/public/front/images/project_1.jpg'); opacity: 0.9;" data-stellar-background-ratio="0.3">
+<section class="hero-wrap js-fullheight" style="background-image: url('public/front/images/project_1.jpg'); opacity: 0.9;" data-stellar-background-ratio="0.3">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -32,7 +32,7 @@
                         <!--********** foreach ***********--> 
                         <div class="col-md-4 mt-4 ftco-animate grid-item">
                             <div class="blog-entry justify-content-center">
-                                <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('/Portfolio/public/front/images/<?=$post->getImg();?>');">
+                                <a href="index.php?ent=post&tsk=show&slug=<?=$post->getSlug()?>" class="block-20" style="background-image: url('public/front/images/<?=$post->getImg();?>');">
                                 </a>
                                 <div class="text mt-4 float-right d-block">
                                     <div class="d-flex align-items-center mb-3 meta">

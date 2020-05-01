@@ -23,7 +23,7 @@ class Controller extends Security
 {
     protected $skillManager;
     protected $backgroundManager;
-    protected $ProjectManager;
+    protected $projectManager;
     protected $userManager;
     protected $postManager;
     protected $commentManager;
@@ -109,10 +109,14 @@ class Controller extends Security
             $response= $this->userManager->singin($pseudo,$password);
             if($response)
             {
-                if(isset($_SESSION['role_user']) && $_SESSION['role_user']== "ROLE_ADMIN")
-                    $this->dashboard();
-                $this->view->redirectTo("index.php?ent=post&tsk=list");  
+                if(isset($_SESSION['role_user']) && $_SESSION['role_user']== "ROLE_ADMIN"){
+                    //$this->dashboard();
+                    $this->view->redirectTo("index.php?tsk=dashboard");
+                }else{ 
+                    $this->view->redirectTo("index.php?ent=post&tsk=list"); 
                 }
+                  
+            }
             else
             {  
                 $message = "Identifiant ou mot de passe incorrect." ;

@@ -66,15 +66,17 @@ class Security
 
     public function contact()
     {
-        
         // On vérifie que la méthode POST est utilisée
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
             // On vérifie si le champ "recaptcha-response" contient une valeur
-            if(empty($_POST['recaptcha-response'])){
-                header('Location: index.php');
+            if(empty($_POST['recaptcha-response']))
+            {
+                $message="Problème de soumission de google recaptcha.";
+                $this->view->render('frontend/home', compact('message'));
             }else{
                 // On prépare l'URL
-                $url = "https://www.google.com/recaptcha/api/siteverify?secret=6Ldw_9oUAAAAAMyZp2-qjvJX4xfRMEYvzS8DwSMy&response={$_POST['recaptcha-response']}";
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=".GOOGLE-SECRET-KEY."&response={$_POST['recaptcha-response']}";
         
                 // On vérifie si curl est installé
                 if(function_exists('curl_version')){
@@ -105,13 +107,18 @@ class Security
                             $expediteur = strip_tags($_POST['identity']);
                             $subject = strip_tags($_POST['subject']);
                             $email = strip_tags($_POST['email']);
-                            $message = htmlspecialchars($_POST['content']);
+                            $msg = htmlspecialchars($_POST['content']);
         
                             // Ici vous traitez vos données
-                            $sendIsOk=$this->sendMail($expediteur,$sujet,$email,$message);
-        
-                            var_dump('');
-                            die();
+                            $sendIsOk=$this->sendMail($expediteur,$subject,$email,$msg);
+                            if($sendIsOk){
+                                $message="Votre message a été envoyé avec succès.";
+                                  $this->view->render('frontend/home', compact('message'));
+                            }
+                            else{
+                                $message="Désolé votre massage n'a pas pu être envoyé. Essayez à nouveau.";
+                                  $this->view->render('frontend/home', compact('message'));
+                            }
                             
                         }
                     }else{
@@ -126,7 +133,7 @@ class Security
     }
 
 
-    private function sendMail($expediteur,$subject,$email,$message)
+    private function sendMail($expediteur,$subject,$email,$msg)
     {
         // Déclaration de l'adresse de destination.
         $mail = 'bourgine.fagade@gmail.com'; 
@@ -137,8 +144,14 @@ class Security
         else
         {$passage_ligne = "\n";}
         //=====Déclaration des messages au format texte et au format HTML.
-        $message_txt = $message;
-        $message_html = "<html><head></head><body><b> ok </b>, voici un e-mail envoyé par un <i>script PHP</i>.</body></html>";
+        $message_txt = $msg;
+        $message_html = "<html>
+                            <head></head>
+                            <body>
+                                <b> Contenu du message: </b> 
+                                <div>$msg </div>
+                            </body>
+                        </html>";
         //==========
 
         //=====Création de la boundary

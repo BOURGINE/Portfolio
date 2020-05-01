@@ -1,15 +1,15 @@
 <?php
 require_once "Controller/Security.php";
 use Portfolio\Controller\Security;
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <title>Bourgine Bérenger FAGADE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/Portfolio/public/front/images/icone.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="public/front/css/open-iconic-bootstrap.min.css">
@@ -24,9 +24,6 @@ use Portfolio\Controller\Security;
     <link rel="stylesheet" href="public/front/css/style.css">
   </head>
 
-<style>
-
-</style>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     <!-- Navbarre -->
@@ -140,10 +137,10 @@ All rights reserved | This template is made with <i class="icon-heart color-dang
   <script src="public/front/js/new_comment.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
   <!--Google Captcha-->
-  <script src="https://www.google.com/recaptcha/api.js?render=ICI_LA_CLE_DU_SITE"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcuoO8UAAAAAENEnVTBZL7CanGGkYrFJ_SiP_G9"></script>
   <script>
   grecaptcha.ready(function() {
-      grecaptcha.execute('ICI_LA_CLE_DU_SITE', {action: 'homepage'}).then(function(token) {
+      grecaptcha.execute('6LcuoO8UAAAAAENEnVTBZL7CanGGkYrFJ_SiP_G9', {action: 'homepage'}).then(function(token) {
           document.getElementById('recaptchaResponse').value = token
       });
   });
@@ -153,26 +150,26 @@ All rights reserved | This template is made with <i class="icon-heart color-dang
     //Show more article on home page */
     function loadMore()
     {
-        // Hide article from article number 6
-        $(".grid-item").slice(5, $("div.grid-item").length).hide();
-        $("#loadLess").hide();  
-        $("#loadMore").on('click', function (e) { e.preventDefault(); 
-            $("div.grid-item:hidden").slice(0, 3).slideDown(); 
-            // Si le nombre de truc caché =0 dc si tout est affiché
-            if ($("div.grid-item:hidden").length == 0){ 
-                //cache le button loadMore
-                $("#loadMore").hide(); 
-                // Affiche le button loadless
-                $("#loadLess").show(); } }); 
-                // Si je clique sur le button loadless
-                $("#loadLess").on('click', function (e) { e.preventDefault(); 
-                
-                $("div.grid-item").slice(5, $("div.grid-item").length).slideUp(); 
-                //je cache le button loadless
-                $("#loadLess").hide(); 
-                $("#loadMore").show(); 
-            }
-        ); 
+      // Hide article from article number 6
+      $(".grid-item").slice(5, $("div.grid-item").length).hide();
+      $("#loadLess").hide();  
+      $("#loadMore").on('click', function (e) { e.preventDefault(); 
+          $("div.grid-item:hidden").slice(0, 3).slideDown(); 
+          // Si le nombre de truc caché =0 dc si tout est affiché
+          if ($("div.grid-item:hidden").length == 0){ 
+              //cache le button loadMore
+              $("#loadMore").hide(); 
+              // Affiche le button loadless
+              $("#loadLess").show(); } }); 
+              // Si je clique sur le button loadless
+              $("#loadLess").on('click', function (e) { e.preventDefault(); 
+              
+              $("div.grid-item").slice(5, $("div.grid-item").length).slideUp(); 
+              //je cache le button loadless
+              $("#loadLess").hide(); 
+              $("#loadMore").show(); 
+          }
+      ); 
     } 
     loadMore();
   </script>
