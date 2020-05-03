@@ -3,13 +3,12 @@
 namespace Portfolio\Model\Manager;
 
 use PDO;
-use Portfolio\Model\Manager\Manager;
 use Portfolio\Model\Entity\Comment;
 
 class CommentManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "comment"; // A renommer
+    protected $table= "comment"; 
     protected $entity= "Comment";
 
    /**

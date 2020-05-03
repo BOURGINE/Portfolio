@@ -3,7 +3,6 @@
 namespace Portfolio\Controller;
 
 use Portfolio\Model\Entity\Project;
-use Portfolio\Controller\Controller;
 use Portfolio\Model\Manager\ProjectManager;
 
 class ProjectController extends Controller
@@ -15,7 +14,10 @@ class ProjectController extends Controller
      */
     public function new(): void
     {
-        if (!isset($_POST) || empty($_POST)) {
+        if (!isset($_POST['title']) || empty($_POST['title']) ||
+            !isset($_POST['content']) || empty($_POST['content']) ||
+            !isset($_POST['link']) || empty($_POST['link']) ||
+            !isset($_FILES['img']['name']) || empty($_FILES['img']['name'])) {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
             
             return;
@@ -32,9 +34,7 @@ class ProjectController extends Controller
             $this->saveImg();
         }
 
-        $this->index(
-            $response ?
-        'Féliciations. Votre Realisation a bien été ajoutée':
+        $this->index($response ? 'Féliciations. Votre Realisation a bien été ajoutée':
         'Désolé. Une erreur est survenue. Action non effectuée'
         );
     }
@@ -44,10 +44,11 @@ class ProjectController extends Controller
      */
     public function edit(): void
     {
-        if (!isset($_POST) || empty($_POST)) {
-            // Mettre cette partie dans une fonction au niveau de Controller centrale
-            $id=htmlspecialchars($_GET['id']);
-            $this->project = $this->projectManager->find($id);
+        if (!isset($_POST['title']) || empty($_POST['title']) ||
+            !isset($_POST['content']) || empty($_POST['content']) ||
+            !isset($_POST['link']) || empty($_POST['link']) ||
+            !isset($_FILES['img']['name']) || empty($_FILES['img']['name'])) {
+            $this->project = $this->projectManager->find(htmlspecialchars($_GET['id']));
 
             $this->view->renderBack('backend/'.strtolower($this->entity).'/edit', [
                 'project' => $this->project
@@ -61,11 +62,12 @@ class ProjectController extends Controller
         $this->project->setImg($_FILES['img']['name'])
             ->setTitle($_POST['title'])
             ->setContent($_POST['content'])
-            ->setLink($_POST['link']);
+            ->setLink($_POST['link'])
+        ;
 
         if ($response = $this->projectManager->update($this->project)) {
             $this->saveImg();
-        } 
+        }
 
         $this->index(
             $response ?
