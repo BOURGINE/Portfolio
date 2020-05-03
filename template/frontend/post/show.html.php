@@ -95,7 +95,7 @@
                   </form>
                   <!--************** end Comment Form **************-->
                 <?php else:?>
-                  <h5>Vous devez vous connectez pour écrire un commentaire</h5>
+                  <h5>Vous devez vous connecter pour écrire un commentaire.</h5>
                   <a href="index.php?tsk=login" class="btn btn-primary"> Connexion </a>
                 <?php endif?>
               

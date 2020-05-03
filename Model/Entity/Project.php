@@ -2,8 +2,6 @@
 
 namespace Portfolio\Model\Entity;
 
-use Portfolio\Model\Entity\SecureData;
-
 class Project extends SecureData
 {
     private $id;
@@ -15,107 +13,118 @@ class Project extends SecureData
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
-        return $this->id;
+        return $this->clean_data($this->id);
     }
 
     /**
      * @return mixed
      */
-    public function getImg()
+    public function getImg(): string
     {
-        return $this->img;
-    }
-
-    /**
-     * @param mixed $img
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
-    {
-        if(!isset($title) && !is_string($this->title)){
-            echo 'la fonction getTitle a du mal a récupérer le titre';
+        if (!isset($this->img) && !is_string($this->img)) {
+            die ('la fonction getImg a du mal a récupérer le titre. ');
         }
+
+        return $this->clean_data($this->img);
+    }
+
+    /**
+     * @param mixed
+     */
+    public function setImg($img): self
+    {
+        if (!isset($img) && !is_string($img)) {
+            die('img n\'est pas bien définie. ');
+        } else {
+            $this->img = $this->clean_data($img);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle(): string
+    {
+        if (!isset($this->title) && !is_string($this->title)) {
+            die('la fonction getTitle a du mal a récupérer le titre.');
+        }
+
         return (string) $this->clean_data($this->title);
     }
 
     /**
      * @param mixed $title
-     * @return $this
+     *
+     * @return self
      */
-    public function setTitle($title)
+    public function setTitle($title): self
     {
-        if(!isset($title) && !is_string($title))
-        {
-            echo'le titre n\'est pas bien définie';
-        }
-        else
-        {
+        if (!isset($title) && !is_string($title)) {
+            die ('le titre n\'est pas bien définie.');
+        } else {
             $this->title = $this->clean_data($title);
         }
+
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getContent(): string
     {
-        if(!isset($content) && !is_string($this->content)){
-            echo 'la fonction getContent a du mal à récupérer le titre';
+        if (!isset($this->content) && !is_string($this->content)) {
+            die ('La fonction getContent a du mal à récupérer le titre. ');
         }
+
         return (string) $this->clean_data($this->content);
     }
 
     /**
      * @param mixed $content
-     * @return $this
+     *
+     * @return self
      */
-    public function setContent($content)
+    public function setContent($content): self
     {
-        if(!isset($content) && !is_string($content))
-        {
-            echo'le contenu n\'est pas bien définie';
-        }
-        else
-        {
+        if (!isset($content) && !is_string($content)) {
+            die ('le contenu n\'est pas bien définie. ');
+        } else {
             $this->content = $this->clean_data($content);
         }
+
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getLink()
+    public function getLink(): string
     {
-        if(!isset($link) && !is_string($this->link)){
-            echo 'la fonction getContent a du mal à récupérer le titre';
+        if (!isset($this->link) && !is_string($this->link)) {
+            die ('la fonction getContent a du mal à récupérer le titre. ');
         }
+
         return (string) $this->clean_data($this->link);
     }
 
     /**
      * @param mixed $link
+     *
+     * return self
      */
-    public function setLink($link)
+    public function setLink($link): self
     {
-        if(!isset($link) && !is_string($link))
-        {
-            echo'lien mal définis définie';
-        }
-        else
-        {
+        if (!isset($link) && !is_string($link)) {
+            die ('Le lien est mal définis. ');
+        } else {
             $this->link = $this->clean_data($link);
         }
+
         return $this;
     }
 }

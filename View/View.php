@@ -6,45 +6,41 @@ class View
     private $pdoStatement;
 
     /**
-     * Undocumented function
-     *
      * @param string $path
      * @param array $data
+     * 
      * @return void
      */
-    public function render(string $path, array $data=null)
+    public function render(string $path, array $data = null): void
     {
-        if($data!=null)
-        {
+        if ($data !== null) {
             extract($data);
         }
        
         \ob_start();
-        require(__DIR__.'/../View/'.$path.'.html.php');
+        require(dirname(__DIR__).'/template/'.$path.'.html.php');
         $pageContent = \ob_get_clean();
 
-        require('base.html.php');
+        require(dirname(__DIR__).'/template/base.html.php');
     }
 
     /**
-     * Undocumented function
-     *
      * @param string $path
      * @param array $data
+     * 
      * @return void
      */
-    public function renderBack(string $path, array $data=null)
+    public function renderBack(string $path, array $data = null): void
     {
-        if($data!=null)
-        {
+        if ($data !== null) {
             extract($data);
         }
        
         \ob_start();
-        require(__DIR__.'/../View/'.$path.'.html.php');
+        require(dirname(__DIR__).'/template/'.$path.'.html.php');
         $pageContent = \ob_get_clean();
 
-        require('base_dashboard.html.php');
+        require(dirname(__DIR__).'/template/base_dashboard.html.php');
     }
 
      /**
