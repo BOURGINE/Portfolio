@@ -1,8 +1,7 @@
 <?php
-/** 
- * [insert] [update] [findAllWith]
- */
+
 namespace Portfolio\Model\Manager;
+
 use PDO;
 use Portfolio\Model\Entity\Post;
 use Portfolio\Model\Manager\Manager;

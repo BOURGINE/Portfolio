@@ -1,8 +1,7 @@
 <?php
-/** 
- * [insert] [update] [findAllWith]
- */
+
 namespace Portfolio\Model\Manager;
+
 use PDO;
 use Portfolio\Model\Entity\Project;
 use Portfolio\Model\Manager\Manager;
@@ -14,11 +13,11 @@ class ProjectManager extends Manager
     protected $entity= "Project";
 
     /**
-    * Undocumented function
     * @param Project $project
+    *
     * @return boolean
     */
-    public function insert(Project $project):bool
+    public function insert(Project $project): bool
     {
         $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :img, :title, :content, :link)");
 
@@ -27,9 +26,7 @@ class ProjectManager extends Manager
         $this->pdoStatement->bindValue(':content', $project->getContent(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':link', $project->getLink(), PDO::PARAM_STR);
 
-        $executeIsOk = $this->pdoStatement->execute();
-        if(!$executeIsOk) {return false;}
-        else{ return true; }
+        return $this->pdoStatement->execute();
     }
 
    /**

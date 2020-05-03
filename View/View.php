@@ -6,13 +6,12 @@ class View
     private $pdoStatement;
 
     /**
-     * Undocumented function
-     *
      * @param string $path
      * @param array $data
+     * 
      * @return void
      */
-    public function render(string $path, array $data=null)
+    public function render(string $path, array $data=null): void
     {
         if($data!=null)
         {
@@ -27,15 +26,14 @@ class View
     }
 
     /**
-     * Undocumented function
-     *
      * @param string $path
      * @param array $data
+     * 
      * @return void
      */
-    public function renderBack(string $path, array $data=null)
+    public function renderBack(string $path, array $data=null): void
     {
-        if($data!=null)
+        if($data != null)
         {
             extract($data);
         }

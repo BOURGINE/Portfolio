@@ -1,8 +1,6 @@
 <?php
+
 namespace Portfolio\Controller;
-/**
- * - [index] [edit] [show] [delete] [home] [dashboard] [saveImg]
- */
 
 use Portfolio\View\View;
 use Portfolio\Model\Entity\Post;
@@ -51,6 +49,7 @@ class Controller extends Security
         $this->userManager = new UserManager();
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
+
     }
   
     /**
@@ -140,11 +139,26 @@ class Controller extends Security
     {
         $em = strtolower($this->entity)."Manager";
         $items = $this->$em->findAll("id DESC");
+
         // Render()
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', compact('items', 'message'));
     }
 
-    
+     /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        $em = strtolower($this->entity)."Manager";
+        $response = $this->$em->delete(htmlspecialchars($_POST['id']));
+      
+        $this->index(
+            $response ?
+        'Félicitations. l\'éléménent a bien été supprimée':
+        'Désolé. Une erreur est arrivée. Impossible de supprimer l’élément.'
+        );
+    }
+
     /**
      * Fonction de traitement et de gestion des images. 
      * @return void

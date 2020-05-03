@@ -1,8 +1,6 @@
 <?php
+
 namespace Portfolio\Model\Manager;
-/** 
- * [insert] [update]
- */
 
 use PDO;
 use Portfolio\Model\Entity\Skill;

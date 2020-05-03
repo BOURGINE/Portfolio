@@ -1,8 +1,7 @@
 <?php
+
 namespace Portfolio\Model\Manager;
-/** 
- * [singin] [insert]
- */
+
 use PDO;
 use Portfolio\Model\Entity\User;
 use Portfolio\Model\Manager\Manager;
@@ -14,8 +13,6 @@ class UserManager extends Manager
     protected $entity= "User";
     private $objectPath="Portfolio\Model\Entity\\";
     /**
-     * findBy
-     *
      * @param integer $id
      * @return void
      */

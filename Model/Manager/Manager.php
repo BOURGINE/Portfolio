@@ -1,7 +1,5 @@
 <?php
-/** 
- * [find] [findAll] [findAllBy] [delete]
- */
+
 namespace Portfolio\Model\Manager;
 
 use PDO;

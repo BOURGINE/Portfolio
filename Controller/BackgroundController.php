@@ -1,8 +1,6 @@
 <?php
+
 namespace Portfolio\Controller;
-/**
- * [new] [show] [edit]  [delete]
- */ 
 
 use Portfolio\Model\Entity\Background;
 use Portfolio\Model\Manager\BackgroundManager;
@@ -12,10 +10,9 @@ class BackgroundController extends Controller
     protected $entity= "Background"; // no object just a name to render root
 
     /**
-     * @param [type] $contenu
      * @return void
      */
-    public function new()
+    public function new(): void
     { 
         if( !isset($_POST['title']) || empty($_POST['title'])
             || !isset($_POST['year']) || empty($_POST['year'])
@@ -83,24 +80,4 @@ class BackgroundController extends Controller
             $this->index($message);
         }
     }
-
-    /**
-     * Fonction de suppression
-     * @param [type] $recupPost
-     * @return void
-     */
-    public function delete()
-    {
-        $id=htmlspecialchars($_POST['id']);
-        $deleteIsOk = $this->backgroundManager->delete($id);
-        if($deleteIsOk){
-            $message = 'Félicitation. La realisation bien été supprimée';
-        }else
-        {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-        }
-        // Liste de l'entité demandée. 
-        $this->index($message);
-    }
-
 }

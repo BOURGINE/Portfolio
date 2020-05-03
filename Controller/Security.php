@@ -1,6 +1,6 @@
 <?php
-namespace Portfolio\Controller;
 
+namespace Portfolio\Controller;
 
 class Security
 {
@@ -50,8 +50,8 @@ class Security
      */
     public static function is_admin():bool
     {
-        if(Security::is_logged())
-            if(isset($_SESSION['role_user']) && ($_SESSION['role_user'])=="ROLE_ADMIN")
+        if (Security::is_logged())
+            if (isset($_SESSION['role_user']) && ($_SESSION['role_user']) === "ROLE_ADMIN")
                 return true;
         return false;
     }

@@ -1,5 +1,5 @@
 <?php
-//il ne restera que login, signin, create et update
+
 namespace Portfolio\Controller;
 
 use Portfolio\View\View;
@@ -72,26 +72,4 @@ class UserController extends Controller
             $this->view->render("frontend/forms/register");
         }
     }
-
-
-
-    /**
-     * Fonction de suppression
-     * @param [type] $recupPost
-     * @return void
-     */
-    public function delete()
-    {
-        $id=htmlspecialchars($_POST['id']);
-        $deleteIsOk = $this->userManager->delete($id);
-        if($deleteIsOk){
-            $message = 'Félicitation. Le compte bien été supprimée';
-        }else
-        {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer ce compte';
-        }
-        // Liste de l'entité demandée. 
-        $this->index($message);
-    }
-    
 }

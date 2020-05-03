@@ -1,4 +1,5 @@
 <?php
+
 namespace Portfolio\Controller;
 
 use Portfolio\Model\Entity\Skill;
@@ -67,25 +68,6 @@ class SkillController extends Controller
         }
        // Liste de l'entité demandée. 
        $this->index($message);
-    }
-
-     /**
-     * Fonction de suppression
-     * @param [type] $recupPost
-     * @return void
-     */
-    public function delete()
-    {
-        $id=htmlspecialchars($_POST['id']);
-        $deleteIsOk = $this->skillManager->delete($id);
-        if($deleteIsOk){
-            $message = 'Félicitation. le project bien été supprimée';
-        }else
-        {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-        }
-        // Liste de l'entité demandée. 
-        $this->index($message);
     }
 
 }

@@ -1,13 +1,10 @@
 <?php
-/**
- * [new] [show] [edit]  [delete]
- */
+
 namespace Portfolio\Controller;
 
 use Portfolio\View\View;
 use Portfolio\Model\Entity\Post;
 use Portfolio\Controller\Controller;
-//use Portfolio\Model\Manager\UserManager;
 
 class PostController extends Controller
 {
@@ -145,26 +142,5 @@ class PostController extends Controller
             $this->index($message);
         }
     }
-
-    /**
-     * Fonction de suppression
-     * @param [type] $recupPost
-     * @return void
-     */
-    public function delete()
-    {
-        $id=htmlspecialchars($_POST['id']);
-        $deleteIsOk = $this->postManager->delete($id);
-        if($deleteIsOk){
-            $message = 'Félicitation. le project bien été supprimée';
-        }else
-        {
-            $message = 'Désolé. Une erreur est arrivée. Impossible de supprimer cette réalisation';
-        }
-       // Liste de l'entité demandée. 
-       $this->index($message);
-    }
-
-
     
 }

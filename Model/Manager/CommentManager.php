@@ -1,8 +1,7 @@
 <?php
+
 namespace Portfolio\Model\Manager;
-/** 
- * [insert] [update]
- */
+
 use PDO;
 use Portfolio\Model\Manager\Manager;
 use Portfolio\Model\Entity\Comment;
