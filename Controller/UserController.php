@@ -37,12 +37,12 @@ class UserController extends Controller
         }  
 
         $this->user->setPseudo($_POST['pseudo']);
-        $pseudo=$this->user->getPseudo();
-        $compt=$this->userManager->countByPseudo($pseudo);
+        $pseudo = $this->user->getPseudo();
+        $compt = $this->userManager->countByPseudo($pseudo);
 
-        if ($compt!==false || $compt!==null) {
+        if ($compt != FALSE || $compt != NULL) {
             $this->view->render("frontend/forms/register", [
-                'message' => 'Un compte existe déja avec ce pseudo.</br> Si ce compte est le votre nous vous prions de bien <br/> vouloir nous contactez par le formulaire de contact.',
+                'message' => 'Un compte existe déja avec ce pseudo.</br> Si ce compte est le votre nous vous prions de bien <br/> vouloir nous contacter par le formulaire de contact.',
                 'type' => 'danger'
             ]);
 
@@ -50,7 +50,7 @@ class UserController extends Controller
         } 
       
         $this->user->setPassword($_POST['password']);
-        $pass_secure=$this->user->getPassword();
+        $pass_secure = $this->user->getPassword();
         $pass_hache = password_hash($pass_secure, PASSWORD_BCRYPT, ['cost'=>12]);
         
         $this->user->setPseudo($_POST['pseudo'])
@@ -58,15 +58,21 @@ class UserController extends Controller
             ->setPassword($pass_hache)
         ;
 
-        if ($this->userManager->insert($this->user)) {
-            $message = "Votre Compte à bien été créé avec succès.";
-            $type= "success";
-            $this->login($message, $type);
-        } else {
+        if ($this->userManager->insert($this->user) == FALSE) {
             $message = 'Votre compte n\'a pas pu être créé. Une erreur est survenue.';
             $type= "danger";
             $this->register($message, $type);
-        }
+
+            return;
+        } 
+
+        $message = "Votre Compte à été créé avec succès.";
+        $type = "success";
+
+        $this->view->render("frontend/forms/login", [
+            'message' => 'Votre compte a été créé avec succès.',
+            'type' => 'success'
+        ]);
 
     }
 }

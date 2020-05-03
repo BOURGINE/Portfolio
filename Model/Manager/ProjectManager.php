@@ -4,12 +4,11 @@ namespace Portfolio\Model\Manager;
 
 use PDO;
 use Portfolio\Model\Entity\Project;
-use Portfolio\Model\Manager\Manager;
 
 class ProjectManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "project"; // A renommer
+    protected $table= "project";
     protected $entity= "Project";
 
     /**
@@ -30,11 +29,11 @@ class ProjectManager extends Manager
     }
 
    /**
-    * Undocumented function
-    * @param Realisation $project
-    * @return boolean
-    */
-    public function update(Project $project):bool
+     * @param Realisation $project
+     * 
+     * @return boolean
+     */
+    public function update(Project $project): bool
     {
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, content=:content, Link=:link WHERE id=:id");
 
@@ -44,8 +43,7 @@ class ProjectManager extends Manager
         $this->pdoStatement->bindValue(':content', $project->getContent(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':link', $project->getLink(), PDO::PARAM_STR);
 
-        $executeIsOk= $this->pdoStatement->execute();
-        return $executeIsOk;
+        return $this->pdoStatement->execute();
     }
 
 }

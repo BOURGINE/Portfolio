@@ -15,9 +15,9 @@ class Database
   private static $instance = null;
   private $pdo;
 
-  /*
-  * @return PDO
-  * */
+  /**
+   * @return self
+   */
   public function getPdo()
   {
     if(self::$instance === null)
