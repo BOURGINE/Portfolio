@@ -2,60 +2,77 @@
 
 namespace Portfolio\Model\Entity;
 
-use Portfolio\Model\Entity\SecureData;
-
 class Skill extends SecureData
 {
     private $id;
     private $img;
     private $title;
   
-
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
-        return $this->id;
+        if (!is_numeric($this->id)) {
+            die ('Problème de validation de la fonction getId');
+        }
+
+        return $this->clean_data($this->id);
     }
 
     /**
      * @return mixed
      */
-    public function getImg()
+    public function getImg(): string
     {
-        return $this->img;
+        if (!isset($this->img) && !is_string($this->img)) {
+            die ('la fonction getImg a du mal a récupérer le titre. ');
+        }
+
+        return $this->clean_data($this->img);
     }
 
     /**
      * @param mixed $img
+     * 
+     * @return self
      */
-    public function setImg($img)
+    public function setImg($img): self
     {
-        $this->img = $this->clean_data($img);
+        if (!isset($img) && !is_string($img)) {
+            die ('img n\'est pas bien définie. ');
+        } else {
+            $this->img = $this->clean_data($img);
+        }
+
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getTitle(): string
     {
-        if(!isset($title) && !is_string($this->title)){
-            echo 'la fonction getTitle a du mal a récupérer le titre';
+        if (!isset($this->title) && !is_string($this->title)) {
+            die ('la fonction getTitle a du mal a récupérer le titre');
         }
+
         return (string) $this->clean_data($this->title);
     }
 
     /**
      * @param mixed $title
-     * @return $this
+     * 
+     * @return self
      */
-    public function setTitle($title)
+    public function setTitle($title): self
     {
-        if(!isset($title) && !is_string($title))
-        { echo'le titre n\'est pas bien définie'; }
-        else
-        {$this->title = $this->clean_data($title);  }
+        if (!isset($title) && !is_string($title)) {
+            die ('Le titre n\'est pas bien définie. ');
+        } else {
+            $this->title = $this->clean_data($title);
+        }
+
         return $this;
     }
 }

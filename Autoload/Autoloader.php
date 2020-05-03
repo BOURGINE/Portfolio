@@ -1,5 +1,7 @@
 <?php
+
 namespace Autoload;
+
 /**
  * Class Autoloader
  * @package App\Autoloading
@@ -7,9 +9,6 @@ namespace Autoload;
  */
 class Autoloader
 {
-    /**
-     * Enregistre notre autoloader
-     */
     public static function register(){
        return spl_autoload_register(array(__CLASS__, 'autoload'));
     }

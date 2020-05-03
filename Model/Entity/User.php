@@ -2,100 +2,104 @@
 
 namespace Portfolio\Model\Entity;
 
-use Portfolio\Model\Entity\SecureData;
-
 class User extends SecureData
 {
     private $id;
     private $pseudo;
     private $password;
-    private $role_user; // A supprimer
+    private $role_user;
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
-        if(!is_numeric($this->id)){
-            echo 'Problème de validation de la fonction getId';
+        if (!is_numeric($this->id)) {
+            die ('Problème de validation de la fonction getId');
         }
+
         return $this->clean_data($this->id);
     }
 
     /**
      * @return mixed
      */
-    public function getPseudo()
+    public function getPseudo(): string
     {
-        if(!is_string($this->pseudo)){
-            echo 'Problème de validation de la fonction getPseudo';
+        if (!is_string($this->pseudo)) {
+            die ('Problème de validation de la fonction getPseudo');
         }
+
         return (string) $this->clean_data($this->pseudo);
     }
 
     /**
      * @param mixed $pseudo
-     * @return $this
+     * 
+     * @return self
      */
-    public function setPseudo($pseudo)
+    public function setPseudo($pseudo): self
     {
-        if(!isset($pseudo) && !is_string($pseudo))
-        {
-            echo'le titre n\'est pas bien définie';
-        }else{
+        if (!isset($pseudo) && !is_string($pseudo)) {
+            die ('Le pseudo n\'est pas bien définie. ');
+        } else {
             $this->pseudo = $this->clean_data($pseudo);
         }
+
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getPassword(): string
     {
-        if(!isset($password) && !is_string($this->password)){
-            echo 'Problème de validation de la fonction getPassword';
+        if (!isset($password) && !is_string($this->password)) {
+            die ('Problème de validation de la fonction getPassword. ');
         }
-        return (string)$this->clean_data($this->password);
+
+        return (string) $this->clean_data($this->password);
     }
 
     /**
-     * Undocumented function
-     *
      * @param [type] $password
-     * @return void
+     * 
+     * @return self
      */
-    public function setPassword($password)
+    public function setPassword($password): self
     {
-        if(!isset($password) && !is_string($password))
-        { echo'Il y a un problème au niveau de setPassword'; }
-        else
-        {$this->password = $this->clean_data($password);  }
+        if (!isset($password) && !is_string($password)) {
+            die ('Il y a un problème au niveau de setPassword. ');
+        } else {
+            $this->password = $this->clean_data($password);
+        }
+
         return $this;
     }
 
     /**
      * Get the value of role_user
-     */ 
-    public function getRole_user()
+     */
+    public function getRole_user(): string
     {
-        if(!isset($role_user) && !is_string($this->role_user)){
-            echo 'Problème de validation de la fonction getRole_user';
+        if (!isset($this->role_user) && !is_string($this->role_user)) {
+            die ('Problème de validation de la fonction getRole_user ');
         }
+        
         return (string) $this->clean_data($this->role_user);
     }
 
     /**
-     * Set the value of role_user
-     *
      * @return  self
-     */ 
-    public function setRole_user($role_user)
+     */
+    public function setRole_user($role_user): self
     {
-        if(!isset($role_user) && !is_string($role_user))
-        { echo'Il y a un problème au niveau de setRole_user'; }
-        else
-        {$this->role_user = $this->clean_data($role_user);  }
+        if (!isset($role_user) && !is_string($role_user)) {
+            die ('Il y a un problème au niveau de setRole_user');
+        } else {
+            $this->role_user = $this->clean_data($role_user);
+        }
+
         return $this;
     }
 }
