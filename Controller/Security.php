@@ -157,8 +157,9 @@ class Security
         $message_html = "<html>
                             <head></head>
                             <body>
+                                <b> Expediteur: $email </b> 
                                 <b> Contenu du message: </b> 
-                                <div>$msg </div>
+                                <div> $msg </div>
                             </body>
                         </html>";
         //==========
@@ -196,11 +197,8 @@ class Security
         //==========
 
         //=====Envoi de l'e-mail.
-        $send_response=mail($mail, $sujet, $message, $header);
-        if ($send_response) {
-            return true;
-        }
-        return false;
+        return mail($mail, $sujet, $message, $header);
+        
         //==========
     }
 }

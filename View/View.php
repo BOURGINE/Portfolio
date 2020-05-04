@@ -3,8 +3,6 @@ namespace Portfolio\View;
 
 class View
 {
-    private $pdoStatement;
-
     /**
      * @param string $path
      * @param array $data

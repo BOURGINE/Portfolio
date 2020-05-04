@@ -50,11 +50,11 @@ class User extends SecureData
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword(): string
     {
-        if (!isset($password) && !is_string($this->password)) {
+        if (!isset($this->password) && !is_string($this->password)) {
             die ('Problème de validation de la fonction getPassword. ');
         }
 
@@ -78,7 +78,7 @@ class User extends SecureData
     }
 
     /**
-     * Get the value of role_user
+     * @return string
      */
     public function getRole_user(): string
     {
@@ -90,7 +90,7 @@ class User extends SecureData
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setRole_user($role_user): self
     {
