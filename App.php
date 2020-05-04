@@ -9,7 +9,7 @@ class App
     public static function process()
     {
         //Si ni la class ni la fonction ne sont définis
-        if(!isset($_GET['ent']) && !isset($_GET['tsk']))
+        if(!isset($_GET['ent'], $_GET['tsk']))
         {
             $controllerName = "Controller";
             $tsk = "home";
@@ -49,7 +49,7 @@ class App
                     /**** A partir d'ici le controller est définis. et correspond a un class de l'app  ***/
 
                     //si la fonction n'est pas definis ou est vide
-                    if(!isset($_GET['tsk']) or empty($_GET['tsk']))
+                    if(!isset($_GET['tsk']) || empty($_GET['tsk']))
                     { 
                         $class= array('background','comment','contact','post','project','skill','user');
                         // s'il a un role admin et que la controlleur est un class de l'app
@@ -87,7 +87,7 @@ class App
                                 }
                             }
                             //si ent = comment
-                            elseif($_GET['ent']==="comment")
+                            elseif($_GET['ent'] === "comment")
                             {
                                 //si visiteur est connecté et est user ou admin
                                 if(isset($_SESSION['role_user']) && ($_SESSION['role_user']==="ROLE_USER" || $_SESSION['role_user']==="ROLE_ADMIN"))
@@ -108,9 +108,9 @@ class App
                             }
                         }
                         //si get tsk= edit
-                        elseif(($_GET['tsk'])==="edit")
+                        elseif(($_GET['tsk']) === "edit")
                         {
-                            $class= array('background','post','project','skill');
+                            $class = array('background','post','project','skill');
                             // es-ce la class existe. et peut être modifier
                             if(in_array($_GET['ent'],$class))
                             {
@@ -133,11 +133,11 @@ class App
                             }
                         }
                         //si get tsk= edit
-                        elseif(($_GET['tsk'])==="delete")
+                        elseif(($_GET['tsk']) === "delete")
                         {
                             $class= array('background','post','project','skill','user','comment');
                             // es-ce la class existe et le visiteur est un admin
-                            if(in_array($_GET['ent'],$class) && isset($_SESSION['role_user']) && ($_SESSION['role_user'] == "ROLE_ADMIN"))
+                            if(in_array($_GET['ent'], $class) && isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN"))
                             {
                                 $tsk = $_GET['tsk'];
                             }
@@ -148,21 +148,20 @@ class App
                             }
                         }
                         //si get tsk = register
-                        elseif(($_GET['tsk'])==="register" && ($_GET['ent'])==="user")
+                        elseif(($_GET['tsk']) === "register" && ($_GET['ent']) === "user")
                         {
                           //  $controllerName =  ucfirst($_GET['ent'])."Controller";
                             $tsk = $_GET['tsk'];
                         }
                         //si get tsk= list
-                        elseif(($_GET['tsk']==="list" || $_GET['tsk']==="show" ) && ($_GET['ent'])==="post")
+                        elseif(($_GET['tsk'] === "list" || $_GET['tsk'] === "show" ) && ($_GET['ent']) === "post")
                         {
-                          //  $controllerName =  ucfirst($_GET['ent'])."Controller";
                             $tsk = $_GET['tsk'];
                         }
                         //si get tsk= validate ou refuse et ent- commentaire et user existe et égala en admin
-                        elseif((($_GET['tsk'])==="validate" || ($_GET['tsk'])==="refuse") && $_GET['ent']==="comment" && isset($_SESSION['role_user']) && ($_SESSION['role_user'] == "ROLE_ADMIN"))
+                        elseif((($_GET['tsk']) === "validate" || ($_GET['tsk']) === "refuse") && $_GET['ent'] === "comment"
+                         && isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN"))
                         {
-                          //  $controllerName =  ucfirst($_GET['ent'])."Controller";
                             $tsk = $_GET['tsk'];
                         }
                         else
@@ -178,7 +177,6 @@ class App
 
         }
 
-        //instanciation
         $controllerName = "Portfolio\Controller\\".$controllerName;
         $controller = new $controllerName();
         $controller->$tsk();

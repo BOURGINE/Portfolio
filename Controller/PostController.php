@@ -83,18 +83,16 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function list($message=false): void
+    public function list(?string $message = ""): void
     {
         $em = strtolower($this->entity)."Manager";
-        $items = $this->$em->findAll('id DESC');
         
-        $this->view->render('frontend/'.strtolower($this->entity).'/index', compact('items'));
+        $this->view->render('frontend/'.strtolower($this->entity).'/index', [
+            'items' => $this->$em->findAll('id DESC')
+        ]);
     }
 
-
     /**
-     * Fonction de modification
-     *
      * @return void
      */
     public function edit(): void

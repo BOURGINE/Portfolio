@@ -106,7 +106,7 @@ class Controller extends Security
         $response = $this->userManager->singin(htmlspecialchars($_POST['pseudo']),
         htmlspecialchars($_POST['password']));
 
-        if (!$response) {
+        if (! $response) {
             $this->view->render('frontend/forms/login', [
                 'message' => 'Identifiant ou mot de passe incorrect.',
                 'type' => 'danger',
@@ -127,13 +127,13 @@ class Controller extends Security
      * 
      * @return void
      */
-    public function index($message = false): void
+    public function index(?string $message = ""): void
     {
         $em = strtolower($this->entity)."Manager";
 
         $this->view->renderBack('backend/'.strtolower($this->entity).'/index', [
             'items' => $this->$em->findAll("id DESC"),
-            'message' => false,
+            'message' => $message,
         ]);
     }
 
@@ -179,8 +179,7 @@ class Controller extends Security
             return;
         } 
         
-        $executeIsOk= move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ .'/../public/front/images/'.basename($_FILES['img']['name']));
-        
+        move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ .'/../public/front/images/'.basename($_FILES['img']['name']));  
     }
 
 }
