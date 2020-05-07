@@ -1,6 +1,5 @@
 <?php
 
-//session_start();
 require_once "Autoload/Autoloader.php";
 require_once "Controller/Security.php";
 use Autoload\Autoloader;

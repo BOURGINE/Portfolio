@@ -16,8 +16,6 @@ class Security
     }
 
     /**
-      * Initialise la session
-      *
       * @return bool
       */
     public static function init_php_session(): bool
@@ -49,6 +47,7 @@ class Security
         if (isset($_SESSION['pseudo']) && isset($_SESSION['role_user'])) {
             return true;
         }
+
         return false;
     }
 
@@ -62,6 +61,7 @@ class Security
                 return true;
             }
         }
+        
         return false;
     }
 

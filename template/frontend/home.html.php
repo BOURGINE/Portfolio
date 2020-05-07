@@ -94,10 +94,10 @@
 
     <div class="row">
             <!--********** foreach ***********-->  
-                <?php if(empty($backgrounds)):?>
+                <?php if (empty($backgrounds)):?>
                     <p> Il n'y a aucun parcours  </p>
                 <?php else:?>
-                    <?php if($backgrounds === false):?>
+                    <?php if ($backgrounds === false):?>
                         <p> Une erreur est survenue</p>
                     <?php else:?>
                         <?php foreach ($backgrounds as $background):?>
@@ -140,10 +140,10 @@
         </div>
 
     		<div class="row">
-          <?php if(empty($skills)):?>
+          <?php if (empty($skills)):?>
             <p> no skills </p>
           <?php else:?>
-            <?php if($skills === false):?>
+            <?php if ($skills === false):?>
                 <p> Une erreur vient de se produire</p>
             <?php else:?>
                 <?php foreach ($skills as $skill):?>
@@ -182,10 +182,10 @@
     <!--********** content row ***********-->                 
     <div class="row">
             <!--********** foreach ***********-->  
-            <?php if(empty($projects)):?>
+            <?php if (empty($projects)):?>
                 <p>No project</p>
             <?php else:?>
-                <?php if($projects === false):?>
+                <?php if ($projects === false):?>
                     <p>An error has occured</p>
                 <?php else:?>
                     <?php foreach ($projects as $project):?>
@@ -223,10 +223,10 @@
     
     <div class="row d-flex">
           <!--********** foreach ***********-->  
-          <?php if(empty($posts)):?>
+          <?php if (empty($posts)):?>
             <p>Il n'y a aucun article en ligne.</p>
           <?php else:?>
-            <?php if($posts === false):?>
+            <?php if ($posts === false):?>
                 <p>Une erreur vient de de produire</p>
             <?php else:?>
                 <?php foreach ($posts as $post):?>

@@ -14,8 +14,8 @@ class SkillController extends Controller
     */
     public function new(): void
     { 
-        if (!isset($_POST['title']) || empty($_POST['title']) || 
-            !isset($_FILES['img']['name']) || empty($_FILES['img']['name'])) {
+        if (!isset($_POST['title'], $_FILES['img']['name']) 
+            || empty($_POST['title']) ||  empty($_FILES['img']['name'])) {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
 
             return;
@@ -50,7 +50,7 @@ class SkillController extends Controller
         $this->skill = $this->skillManager->find($_POST['id']);
 
         $this->skill->setImg($_FILES['img']['name'])
-            ->setTitle($_POST['title'])
+                ->setTitle($_POST['title'])
         ;
        
         if ($response = $this->skillManager->update($this->skill)) {

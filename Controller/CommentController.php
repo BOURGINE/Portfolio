@@ -8,19 +8,17 @@ use Portfolio\Model\Manager\CommentManager;
 
 class CommentController extends Controller
 {
-    protected $entity= "Comment";
+    protected $entity = "Comment";
 
     /**
-     * Make new Comment
      * @Route("/comment/new", name="index.php?ent=comment&tsk=new")
      *
      * @return void
      */
     public function new(): void
     {
-        if (!isset($_POST['post_id']) || empty($_POST['post_id']) ||
-            !isset($_POST['content']) || empty($_POST['content']) ||
-            !isset($_SESSION['pseudo']) || empty($_SESSION['pseudo'])) {
+        if (!isset($_POST['post_id'], $_POST['content'], $_SESSION['pseudo']) 
+            || empty($_POST['post_id']) || empty($_POST['content']) || empty($_SESSION['pseudo'])) {
             $this->view->redirectTo("index.php?tsk=error_404");
 
             return;
@@ -34,23 +32,22 @@ class CommentController extends Controller
         
         if ($this->commentManager->insert($this->comment)) {
             $message = 'Félicitations. Votre commentaire bien été ajouté';
-            $type='success';
+            $type ='success';
         } else {
             $message = 'Désolé. Une erreur est survenue. Action non effectuée';
             $type='danger';
         }
   
-        $post= $this->postManager->find($this->comment->getPostId());
-        $slug= $post->getSlug();
+        $post = $this->postManager->find($this->comment->getPostId());
+        $slug = $post->getSlug();
 
-        $postController= new PostController();
+        $postController = new PostController();
         $postController->show($slug, $message, $type);
     }
 
     /**
-    * @param [type] $id
-    * @return void
-    */
+     * @return void
+     */
     public function validate(): void
     {
         if (!is_numeric($_GET['id'])) {
@@ -64,7 +61,6 @@ class CommentController extends Controller
     }
 
     /**
-    * @param [type] $id
     * @return void
     */
     public function refuse(): void

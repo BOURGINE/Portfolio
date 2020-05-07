@@ -14,7 +14,7 @@ class ProjectManager extends Manager
     /**
     * @param Project $project
     *
-    * @return boolean
+    * @return bool
     */
     public function insert(Project $project): bool
     {
@@ -31,7 +31,7 @@ class ProjectManager extends Manager
    /**
      * @param Realisation $project
      * 
-     * @return boolean
+     * @return bool
      */
     public function update(Project $project): bool
     {
