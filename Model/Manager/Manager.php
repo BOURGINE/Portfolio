@@ -102,7 +102,7 @@ abstract class Manager extends Database
     /**
      * @param integer $id
      * 
-     * @return boolean
+     * @return bool
      */
     public function delete(int $id): bool
     {

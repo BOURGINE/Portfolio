@@ -8,14 +8,14 @@ use Portfolio\Model\Entity\Comment;
 class CommentManager extends Manager
 {
     private $pdoStatement;
-    protected $table = "comment"; 
+    protected $table = "comment";
     protected $entity = "Comment";
 
-   /**
+    /**
      * @param Comment $Comment
      *
      * @return bool
-    */
+     */
     public function insert(Comment $Comment): bool
     {
         $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :post_id, :content, :author, now(), :statut)");
@@ -27,7 +27,7 @@ class CommentManager extends Manager
         return $this->pdoStatement->execute();
     }
 
-   /**
+    /**
      * @param Comment $Comment
      * @param int $id
      *
@@ -40,6 +40,6 @@ class CommentManager extends Manager
         $this->pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
         $this->pdoStatement->bindValue(':statut', $Comment->getStatut(), PDO::PARAM_STR);
 
-       return $this->pdoStatement->execute();
+        return $this->pdoStatement->execute();
     }
 }

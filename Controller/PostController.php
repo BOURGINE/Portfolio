@@ -7,7 +7,7 @@ use Portfolio\Model\Entity\Post;
 
 class PostController extends Controller
 {
-    protected $entity= "Post";
+    protected $entity = "Post";
     
     /**
      * @param [type] $contenu
@@ -16,19 +16,17 @@ class PostController extends Controller
      */
     public function new(): void
     {
-        if (!isset($_POST['title']) || empty($_POST['title'])||
-            !isset($_FILES['img']['name'])|| empty($_FILES['img']['name'])||
-            !isset($_POST['chapo']) || empty($_POST['chapo'])||
-            !isset($_POST['content']) || empty($_POST['content'])) {
+        if (!isset($_POST['title'],$_FILES['img']['name'], $_POST['chapo'], $_POST['content']) || empty($_POST['title'])||
+             empty($_FILES['img']['name'])|| empty($_POST['chapo']) || empty($_POST['content'])) {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
 
             return;
         }
 
         $this->post->setSlug($_POST['title']);
-        $slug=$this->post->getSlug($_POST['title']);
-        $count=$this->postManager->findOneBySlug($slug);
-        if ($count!==null) {
+        $slug = $this->post->getSlug($_POST['title']);
+        $count = $this->postManager->findOneBySlug($slug);
+        if ($count !== null) {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
 
             return;
@@ -59,21 +57,21 @@ class PostController extends Controller
     public function show(?string $slug = "", ?string $message = "", ?string $type = ""): void
     {
         if (!isset($slug) || empty($slug)) {
-            $slug=htmlspecialchars($_GET['slug']);
+            $slug = htmlspecialchars($_GET['slug']);
         }
     
-        $post= $this->postManager->findOneBySlug($slug);
+        $post = $this->postManager->findOneBySlug($slug);
        
-        if ($post===false || $post ===null) {
+        if ($post === false || $post === null) {
             $this->view->redirectTo("index.php?ent=post&tsk=list");
 
             return;
         }
 
         //get comments of post
-        $comments= $this->commentManager->findAllBy("statut='ACCEPTE' AND post_id=".$post->getId());
+        $comments = $this->commentManager->findAllBy("statut='ACCEPTE' AND post_id=".$post->getId());
         // index posts for list of articles
-        $posts= $this->postManager->findAll();
+        $posts = $this->postManager->findAll();
         // Render
         $this->view->render('frontend/'.strtolower($this->entity).'/show', compact('post', 'posts', 'comments', 'message', 'type'));
     }
@@ -97,14 +95,11 @@ class PostController extends Controller
      */
     public function edit(): void
     {
-        if (!isset($_POST['title']) || empty($_POST['title'])||
-            !isset($_POST['chapo']) || empty($_POST['chapo'])||
-            !isset($_POST['content']) || empty($_POST['content'])
-            || !isset($_FILES['img']['name'])|| empty($_FILES['img']['name'])) {
-
-            if (!isset($_GET['id']) || empty($_GET['id'])) 
-                $id = htmlspecialchars($_POST['id']);
-            $id = htmlspecialchars($_GET['id']);
+        if (!isset($_POST['title'], $_POST['chapo'], $_POST['content'], $_FILES['img']['name']) || empty($_POST['title'])||
+             empty($_POST['chapo']) || empty($_POST['content']) || empty($_FILES['img']['name'])) {
+                if (!isset($_GET['id']) || empty($_GET['id'])) 
+                    $id = htmlspecialchars($_POST['id']);
+                $id = htmlspecialchars($_GET['id']);
 
             $this->view->renderBack('backend/'.strtolower($this->entity).'/edit', [
                 'post' => $this->postManager->find($id)

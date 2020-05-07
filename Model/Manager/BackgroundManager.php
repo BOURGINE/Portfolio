@@ -8,14 +8,14 @@ use Portfolio\Model\Entity\Background;
 class BackgroundManager extends Manager
 {
     private $pdoStatement;
-    protected $table= "background"; 
+    protected $table= "background";
     protected $entity= "Background";
 
-   /**
-    * @param Background $background
-    *
-    * @return bool
-    */
+    /**
+     * @param Background $background
+     *
+     * @return bool
+     */
     public function insert(Background $background): bool
     {
         $this->pdoStatement=$this->getPdo()->prepare("INSERT INTO {$this->table} VALUES(NULL, :title, :year, :location, :description, :category)");
@@ -27,14 +27,13 @@ class BackgroundManager extends Manager
         $this->pdoStatement->bindValue(':category', $background->getCategory(), PDO::PARAM_STR);
         
         return $this->pdoStatement->execute();
-
     }
 
     /**
-    * @param Background $background
-    *
-    * @return bool
-    */
+     * @param Background $background
+     *
+     * @return bool
+     */
     public function update(Background $background): bool
     {
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set title=:title, year=:year, location=:location, description=:description, category=:category  WHERE id=:id");
@@ -46,6 +45,6 @@ class BackgroundManager extends Manager
         $this->pdoStatement->bindValue(':description', $background->getDescription(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':category', $background->getCategory(), PDO::PARAM_STR);
 
-       return $this->pdoStatement->execute();
+        return $this->pdoStatement->execute();
     }
 }

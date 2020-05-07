@@ -14,7 +14,7 @@ class PostManager extends Manager
     /**
      * @param Post $post
      * 
-     * @return boolean
+     * @return bool
      */
     public function insert(Post $post): bool
     {
@@ -29,10 +29,10 @@ class PostManager extends Manager
     }
 
    /**
-    * @param Post $post
-
-    * @return boolean
-    */
+     * @param Post $post
+     * 
+     * @return bool
+     */
     public function update(Post $post): bool
     {
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title, chapo=:chapo, content=:content, updated_at=date(now()), slug=:slug WHERE id=:id");

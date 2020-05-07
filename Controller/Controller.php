@@ -34,7 +34,7 @@ class Controller extends Security
     */
     public function __construct()
     {
-        $this->background= new Background();
+        $this->background = new Background();
         $this->skill = new Skill();
         $this->project = new Project();
         $this->user = new User();
@@ -173,7 +173,7 @@ class Controller extends Security
         $extension_upload = $infosfichier['extension'];
         $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
 
-        if (in_array($extension_upload, $extensions_autorisees)===false) {
+        if (in_array($extension_upload, $extensions_autorisees) === false) {
             echo '<script language="javascript"> alert("l\'extention de votre image n\'est pas pris en charge")</script>';
             
             return;

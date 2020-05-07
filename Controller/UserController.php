@@ -8,19 +8,17 @@ use Portfolio\Model\Manager\UserManager;
 
 class UserController extends Controller
 {
-    protected $entity= "User";
+    protected $entity = "User";
 
     /**
      * @Route("/user/register", name="index.php?ent=user&tsk=register")
      * 
      * @return void 
      */
-    public function register(?String $message="", ?String $type=""): void
+    public function register(?String $message = "", ?String $type = ""): void
     {
         if (!isset($_POST['pseudo'], $_POST['password'], $_POST['confirm_password']) ||
-            empty($_POST['pseudo']) || 
-            empty($_POST['password']) || 
-            empty($_POST['confirm_password'])) {
+            empty($_POST['pseudo']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
             $this->view->render("frontend/forms/register");
 
             return;

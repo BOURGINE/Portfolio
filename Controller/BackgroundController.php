@@ -7,16 +7,15 @@ use Portfolio\Model\Manager\BackgroundManager;
 
 class BackgroundController extends Controller
 {
-    protected $entity= "Background"; // no object just a name to render root
+    protected $entity = "Background"; // no object just a name to render root
 
     /**
      * @return void
      */
     public function new(): void
     {
-        if (!isset($_POST['title']) || empty($_POST['title'])
-            || !isset($_POST['year']) || empty($_POST['year'])
-            || !isset($_POST['location']) || empty($_POST['location'])) {
+        if (!isset($_POST['title'], $_POST['year'], $_POST['location']) || empty($_POST['title'])
+            || empty($_POST['year']) || empty($_POST['location'])) {
             $this->view->renderBack('backend/'.strtolower($this->entity).'/new');
 
             return;
@@ -41,11 +40,8 @@ class BackgroundController extends Controller
      */
     public function edit(): void
     {
-        // S'il n'y a pas de soumission de formulaire
-        if (!isset($_POST['id']) || empty($_POST['id'])
-            || !isset($_POST['title']) || empty($_POST['title'])
-            || !isset($_POST['year']) || empty($_POST['year'])
-            || !isset($_POST['location']) || empty($_POST['location'])) {
+        if (!isset($_POST['id'], $_POST['title'], $_POST['year'], $_POST['location']) || empty($_POST['id'])
+           || empty($_POST['title']) || empty($_POST['year']) || empty($_POST['location'])) {
             $this->background = $this->backgroundManager->find(htmlspecialchars($_GET['id']));
 
             $this->view->renderBack('backend/'.strtolower($this->entity).'/edit', [

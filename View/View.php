@@ -1,4 +1,5 @@
 <?php
+
 namespace Portfolio\View;
 
 class View
@@ -41,10 +42,12 @@ class View
         require(dirname(__DIR__).'/template/base_dashboard.html.php');
     }
 
-     /**
-     * fonction render($path')
+    /**
+     * @param string $url
+     * 
+     * @return void
      */
-    public function redirectTo(string $url):void
+    public function redirectTo(string $url): void
     {
         header("Location: $url");
         exit();

@@ -31,7 +31,7 @@ class SkillManager extends Manager
      * 
      * @return bool
      */
-    public function update(Skill $skill)
+    public function update(Skill $skill): bool
     {
         $this->pdoStatement = $this->getPdo()->prepare("UPDATE {$this->table} set img=:img, title=:title WHERE id=:id");
 
