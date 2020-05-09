@@ -46,7 +46,6 @@
                     <label for="category" class="control-label col-lg-2">Catégorie</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="category" name="category" value="<?=$background->getCategory();?>">
-                            <option><?=$background->getCategory();?></option>
                             <option>EXPERIENCE PRO</option>
                             <option>FORMATION</option>
                         </select>
