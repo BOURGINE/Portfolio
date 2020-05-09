@@ -9,18 +9,16 @@ class App
     public static function process()
     {
         //Si ni la class ni la fonction ne sont définis
-        if (!isset($_GET['ent'], $_GET['tsk'])) {
+        if (!isset($_GET['ent']) && !isset($_GET['tsk'])) {
             $controllerName = "Controller";
             $tsk = "home";
         } else {   //Si le controller n'est pas définis ou s'il est vide.
             if (!isset($_GET['ent']) || empty($_GET['ent'])) {
                 $controllerName = "Controller";
-               
                 // Si le controlleur n'est pas définis ou vide et si la fonction est définis et exist
-                $class= array('home','dashboard','login','logout','error_404','contact');
+                $class = array('home','dashboard','login','logout','error_404','contact');
                 if (in_array($_GET['tsk'], $class)) {
-                    //$controllerName = "Controller";
-                    $tsk = $_GET['tsk'];
+                    $tsk = htmlspecialchars($_GET['tsk']);
                 } else {
                     $tsk = "error_404";
                 }
@@ -61,7 +59,7 @@ class App
                             if (in_array($_GET['ent'], $class)) {
                                 //es-t-il administrateur
                                 if (isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN")) {
-                                    $tsk = $_GET['tsk'];
+                                    $tsk = htmlspecialchars($_GET['tsk']);
                                 }
                                 //s'il n'est pas admin
                                 else {
@@ -72,7 +70,7 @@ class App
                             elseif ($_GET['ent'] === "comment") {
                                 //si visiteur est connecté et est user ou admin
                                 if (isset($_SESSION['role_user']) && ($_SESSION['role_user']==="ROLE_USER" || $_SESSION['role_user']==="ROLE_ADMIN")) {
-                                    $tsk = $_GET['tsk'];
+                                    $tsk = htmlspecialchars($_GET['tsk']);
                                 }
                                 //va te connecter
                                 else {
@@ -91,7 +89,7 @@ class App
                             if (in_array($_GET['ent'], $class)) {
                                 //es-t-il administrateur
                                 if (isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN")) {
-                                    $tsk = $_GET['tsk'];
+                                    $tsk = htmlspecialchars($_GET['tsk']);
                                 }
                                 //s'il n'est pas admin
                                 else {
@@ -108,7 +106,7 @@ class App
                             $class= array('background','post','project','skill','user','comment');
                             // es-ce la class existe et le visiteur est un admin
                             if (in_array($_GET['ent'], $class) && isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN")) {
-                                $tsk = $_GET['tsk'];
+                                $tsk = htmlspecialchars($_GET['tsk']);
                             } else {
                                 $controllerName = "Controller";
                                 $tsk = "error_404";
@@ -117,16 +115,16 @@ class App
                         //si get tsk = register
                         elseif (($_GET['tsk']) === "register" && ($_GET['ent']) === "user") {
                             //  $controllerName =  ucfirst($_GET['ent'])."Controller";
-                            $tsk = $_GET['tsk'];
+                            $tsk = htmlspecialchars($_GET['tsk']);
                         }
                         //si get tsk= list
                         elseif (($_GET['tsk'] === "list" || $_GET['tsk'] === "show") && ($_GET['ent']) === "post") {
-                            $tsk = $_GET['tsk'];
+                            $tsk = htmlspecialchars($_GET['tsk']);
                         }
                         //si get tsk= validate ou refuse et ent- commentaire et user existe et égala en admin
                         elseif ((($_GET['tsk']) === "validate" || ($_GET['tsk']) === "refuse") && $_GET['ent'] === "comment"
                          && isset($_SESSION['role_user']) && ($_SESSION['role_user'] === "ROLE_ADMIN")) {
-                            $tsk = $_GET['tsk'];
+                            $tsk = htmlspecialchars($_GET['tsk']);
                         } else {
                             $tsk = 'error_404';
                         }

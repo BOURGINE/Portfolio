@@ -16,12 +16,11 @@
 
 ## DATABASE
 - Create Model/Manager/config.php
-- download DB. Sql file is in
-- define globals vars
-
+- Define globals vars
 
         define("SERVER", "");
         define("BASE", "");
         define("USER", "");
         define("PASSWORD", "");
 
+- Download DB. Sql file is in the folder.
